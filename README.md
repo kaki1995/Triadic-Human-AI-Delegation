@@ -4,7 +4,7 @@ This repository provides the simulation framework and synthetic data generator s
 
 The project investigates how managers dynamically delegate task execution and decision authority to AI systems within triadic organizational settings involving managers, AI systems, and human employees. It focuses on how algorithm appreciation and aversion evolve as managers receive performance feedback under uncertainty and performance pressure.
 
-**Research Motivation**
+## Research Motivation
 
 Modern organizations increasingly rely on AI-based decision support systems while retaining human accountability. Delegation is no longer purely dyadic (manager–employee), but triadic, involving:
 
@@ -56,7 +56,7 @@ The simulation generates a **longitudinal triadic delegation dataset** with the 
 
 The primary analysis table is panel_manager_period, structured at the manager–period level.
 
-**Simulation Logic (High-Level)**
+## Simulation Logic (High-Level)
 
 - Managers have latent willingness-to-delegate states (low / medium / high).
 
@@ -72,7 +72,7 @@ The primary analysis table is panel_manager_period, structured at the manager–
 
 All parameters are explicitly configurable via config.py.
 
-**How to Run**
+## How to Run
 
 1. Install dependencies
 
@@ -102,7 +102,7 @@ Triadic_Delegation_Dataset_SYNTH.xlsx
 
 aligned to the provided schema workbook.
 
-**Reproducibility**
+## Reproducibility
 
 - All randomness is controlled via a global seed.
 
@@ -112,7 +112,7 @@ aligned to the provided schema workbook.
 
 - Designed for replication, robustness checks, and scenario comparison.
 
-**Intended Use**
+## Intended Use
 
 This repository is intended for:
 
