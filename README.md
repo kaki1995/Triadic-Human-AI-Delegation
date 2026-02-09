@@ -4,7 +4,7 @@ This repository provides the simulation framework and synthetic data generator s
 
 The project investigates how managers dynamically delegate task execution and decision authority to AI systems within triadic organizational settings involving managers, AI systems, and human employees. It focuses on how algorithm appreciation and aversion evolve as managers receive performance feedback under uncertainty and performance pressure.
 
-Conceptual Motivation
+**Conceptual Motivation**
 
 As Artificial Intelligence becomes embedded in core managerial tasks—such as forecasting, resource allocation, pricing, and inventory reallocation—managerial work increasingly shifts from direct decision execution to orchestrating and calibrating authority across hybrid human–AI systems.
 
