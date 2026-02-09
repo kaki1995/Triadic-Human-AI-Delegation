@@ -1,6 +1,6 @@
 # Triadic Human–AI Delegation
 
-This repository provides the simulation framework and synthetic data generator supporting the Master’s thesis titled "Revisiting Delegation Theory in the Age of AI: Dynamic Algorithm Appreciation and Aversion in Triadic Organizational Relationships."
+This repository provides the simulation framework and synthetic data generator supporting the Master’s thesis titled "**_Revisiting Delegation Theory in the Age of AI: Dynamic Algorithm Appreciation and Aversion in Triadic Organizational Relationships._**"
 
 The project investigates how managers dynamically delegate task execution and decision authority to AI systems within triadic organizational settings involving managers, AI systems, and human employees. It focuses on how algorithm appreciation and aversion evolve as managers receive performance feedback under uncertainty and performance pressure.
 
