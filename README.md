@@ -41,19 +41,18 @@ notebooks/
   01_generate_dataset.ipynb
   02_validate_dataset.ipynb
   03_analysis_figures.ipynb
+```
 
+## Dataset Overview
 
-**Dataset Overview**
+The simulation generates a **longitudinal triadic delegation dataset** with the following core tables:
 
-The simulation generates a longitudinal triadic delegation dataset with the following core tables:
-
-Table	Description
-manager_master	Manager characteristics and governance orientation
-employee_team_master	Human execution teams
-ai_system_master	AI system properties (autonomy, calibration)
-panel_manager_period	Period-level delegation, KPIs, and latent states
-decision_episode	Individual AI recommendations and manager decisions
-execution_episode	Execution responsibility and downstream overrides
+| Table | Description |
+|------|------------|
+| `manager_master` | Manager characteristics and governance orientation |
+| `employee_team_master` | Human execution teams |
+| `ai_system_master` | AI system properties (autonomy, calibration) |
+| `panel_manager_period` | Period-level delegation, KPIs, and latent states |
 
 The primary analysis table is panel_manager_period, structured at the manager–period level.
 
@@ -76,21 +75,30 @@ All parameters are explicitly configurable via config.py.
 **How to Run**
 
 1. Install dependencies
-pip install numpy pandas openpyxl
 
-2. Configure simulation
+```text
+pip install numpy pandas openpyxl
+```
+
+3. Configure simulation
 
 Edit parameters in:
 
+```text
 triadic_sim/config.py
+```
 
 3. Generate dataset
-python -m triadic_sim.main
 
+```text
+python -m triadic_sim.main
+```
 
 This will produce:
 
+```text
 Triadic_Delegation_Dataset_SYNTH.xlsx
+```
 
 aligned to the provided schema workbook.
 
