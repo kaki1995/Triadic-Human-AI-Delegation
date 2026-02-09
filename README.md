@@ -26,8 +26,9 @@ This project simulates such settings to study:
 
 The simulation is designed to support Hidden Markov Model (HMM) and panel-based analyses.
 
-**Repository Structure**
+## Repository Structure
 
+```text
 triadic_sim/
   config.py        # Global simulation configuration
   simulator.py     # Core simulation logic
@@ -40,6 +41,7 @@ notebooks/
   01_generate_dataset.ipynb
   02_validate_dataset.ipynb
   03_analysis_figures.ipynb
+
 
 **Dataset Overview**
 
