@@ -1,6 +1,13 @@
 # triadic_sim/config.py
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from pathlib import Path
+
+
+def _project_root() -> Path:
+    """Return the project root (directory containing this file)."""
+    return Path(__file__).resolve().parent
+
 
 @dataclass(frozen=True)
 class SimConfig:
@@ -42,5 +49,5 @@ class SimConfig:
     n_states: int = 3
 
     # I/O paths
-    input_schema_xlsx: str = "/mnt/data/Triadic_Delegation_Dataset.xlsx"
-    output_xlsx: str = "/mnt/data/Triadic_Delegation_Dataset_SYNTH.xlsx"
+    input_schema_xlsx: str = field(default_factory=lambda: str(_project_root() / "data" / "Triadic_Delegation_Dataset.xlsx"))
+    output_xlsx: str = field(default_factory=lambda: str(_project_root() / "data" / "Triadic_Delegation_Dataset_SYNTH.xlsx"))
