@@ -1,1 +1,1 @@
-# Algorithm-Appreciation-and-Aversion-in-Triadic-Delegation-Settings
+# Triadic-Human-AI-Delegation
