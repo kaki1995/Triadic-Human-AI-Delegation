@@ -1,4 +1,4 @@
-# triadic_sim/main.py
+﻿# triadic_sim/main.py
 from __future__ import annotations
 
 from .config import SimConfig
@@ -11,13 +11,21 @@ def run() -> None:
     cfg = SimConfig()
     dfs = simulate(cfg)
 
+    sm = SheetMap()
     sheet_map = {
-        "manager_master": SheetMap().manager_master,
-        "employee_team_master": SheetMap().employee_team_master,
-        "ai_system_master": SheetMap().ai_system_master,
-        "panel_manager_period": SheetMap().panel_manager_period,
-        "decision_episode": SheetMap().decision_episode,
-        "execution_episode": SheetMap().execution_episode,
+        # L3 master
+        "manager_master": sm.manager_master,
+        "employee_master": sm.employee_master,
+        "ai_system_master": sm.ai_system_master,
+        "site_master": sm.site_master,
+
+        # L1 panels
+        "panel_manager_period": sm.panel_manager_period,
+        "panel_employee_period": sm.panel_employee_period,
+
+        # L2 episodes
+        "decision_episode": sm.decision_episode,
+        "execution_episode": sm.execution_episode,
     }
 
     write_to_schema_workbook(
@@ -27,7 +35,7 @@ def run() -> None:
         sheet_map=sheet_map,
     )
 
-    print(f"✅ Wrote: {cfg.output_xlsx}")
+    print("Done - Wrote: " + cfg.output_xlsx)
     for k, df in dfs.items():
         print(f"{k}: {df.shape}")
 
