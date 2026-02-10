@@ -4,9 +4,10 @@ from __future__ import annotations
 from typing import Dict, List
 import pandas as pd
 from openpyxl import load_workbook
+from openpyxl.worksheet.worksheet import Worksheet
 
 
-def safe_sheet_to_df(ws) -> pd.DataFrame:
+def safe_sheet_to_df(ws: Worksheet) -> pd.DataFrame:
     """Read a worksheet where the first row is a header."""
     rows = list(ws.values)
     if not rows:
@@ -18,7 +19,7 @@ def safe_sheet_to_df(ws) -> pd.DataFrame:
     return df
 
 
-def write_df_to_sheet(ws, df: pd.DataFrame) -> None:
+def write_df_to_sheet(ws: Worksheet, df: pd.DataFrame) -> None:
     """Overwrite worksheet with DataFrame content."""
     ws.delete_rows(1, ws.max_row if ws.max_row else 1)
     ws.append(list(df.columns))
