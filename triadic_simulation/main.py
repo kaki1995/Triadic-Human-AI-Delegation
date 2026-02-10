@@ -1,4 +1,4 @@
-﻿# triadic_sim/main.py
+# triadic_sim/main.py
 from __future__ import annotations
 
 from .config import SimConfig
@@ -15,13 +15,13 @@ def run() -> None:
     sheet_map = {
         # L3 master
         "manager_master": sm.manager_master,
-        "employee_master": sm.employee_master,
+        "employee_master": sm.employee_master,          # NEW
         "ai_system_master": sm.ai_system_master,
-        "site_master": sm.site_master,
+        "site_master": sm.site_master,                  # NEW
 
         # L1 panels
         "panel_manager_period": sm.panel_manager_period,
-        "panel_employee_period": sm.panel_employee_period,
+        "panel_employee_period": sm.panel_employee_period,  # NEW
 
         # L2 episodes
         "decision_episode": sm.decision_episode,
@@ -35,7 +35,7 @@ def run() -> None:
         sheet_map=sheet_map,
     )
 
-    print("Done - Wrote: " + cfg.output_xlsx)
+    print(f"✅ Wrote: {cfg.output_xlsx}")
     for k, df in dfs.items():
         print(f"{k}: {df.shape}")
 

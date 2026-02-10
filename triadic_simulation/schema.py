@@ -1,4 +1,4 @@
-﻿# triadic_sim/schema.py
+# triadic_sim/schema.py
 from __future__ import annotations
 from dataclasses import dataclass
 
@@ -15,7 +15,7 @@ class SheetMap:
     """
 
     # ------------------------------------------------------------------
-    # LEVEL 3 - Master data (stable attributes)
+    # LEVEL 3 — Master data (stable attributes)
     # ------------------------------------------------------------------
     manager_master: str = "manager_master"
     employee_master: str = "employee_master"
@@ -23,13 +23,13 @@ class SheetMap:
     site_master: str = "site_master"
 
     # ------------------------------------------------------------------
-    # LEVEL 1 - Dynamic panels
+    # LEVEL 1 — Dynamic panels
     # ------------------------------------------------------------------
     panel_manager_period: str = "panel_manager_period"
     panel_employee_period: str = "panel_employee_period"
 
     # ------------------------------------------------------------------
-    # LEVEL 2 - Episode-level data
+    # LEVEL 2 — Episode-level data
     # ------------------------------------------------------------------
     decision_episode: str = "decision_episode"
     execution_episode: str = "execution_episode"
