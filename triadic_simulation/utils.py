@@ -36,7 +36,7 @@ def clip01(x: float) -> float:
     return float(min(1.0, max(0.0, x)))
 
 
-def safe_divide(num: float, den: float, default: float = 0.0) -> float:
+def safe_divide(num: float, den: float | None, default: float = 0.0) -> float:
     """
     Safe division helper.
 
@@ -47,7 +47,7 @@ def safe_divide(num: float, den: float, default: float = 0.0) -> float:
     return float(num / den)
 
 
-def zscore(x: float, mean: float, std: float) -> float:
+def zscore(x: float, mean: float, std: float | None) -> float:
     """
     Compute a z-score with numerical safety.
 

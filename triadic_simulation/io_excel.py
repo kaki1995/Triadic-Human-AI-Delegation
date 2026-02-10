@@ -1,7 +1,7 @@
 # triadic_sim/io_excel.py
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Any, Dict, List
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.worksheet.worksheet import Worksheet
@@ -39,9 +39,9 @@ def safe_sheet_to_df(ws: Worksheet) -> pd.DataFrame:
         return pd.DataFrame()
 
     # data rows: take only as many columns as header
-    data = []
+    data: list[list[Any]] = []
     for r in rows[1:]:
-        if r is None:
+        if not r:  # skip None / empty tuples
             continue
         rr = list(r)[: len(header)]
         # drop fully-empty rows
@@ -76,7 +76,7 @@ def write_df_to_sheet(ws: Worksheet, df: pd.DataFrame) -> None:
 
     # Write rows; convert numpy types to Python scalars
     for row in df.itertuples(index=False, name=None):
-        out = []
+        out: list[Any] = []
         for v in row:
             if pd.isna(v):
                 out.append(None)
@@ -86,7 +86,7 @@ def write_df_to_sheet(ws: Worksheet, df: pd.DataFrame) -> None:
                     try:
                         out.append(v.item())
                         continue
-                    except Exception:
+                    except (TypeError, ValueError, AttributeError):
                         pass
                 out.append(v)
         ws.append(out)

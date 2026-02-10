@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import pandas as pd
@@ -420,7 +420,7 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
             error_incidents = 0
 
             # period accumulators (employee panel) by employee_id
-            emp_acc = {}
+            emp_acc: dict[str, dict[str, Any]] = {}
             for e in emp_by_manager.get(m.manager_id, []):
                 emp_acc[e.employee_id] = dict(
                     employee_id=e.employee_id,
@@ -715,10 +715,12 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                     ai_execution_share = acc["n_ai"] / n_exec
                     employee_execution_share = acc["n_human"] / n_exec
                     joint_execution_share = acc["n_joint"] / n_exec
-                    avg_execution_time = float(np.mean(acc["exec_time_list"]))
+                    _etl: list[float] = acc["exec_time_list"]
+                    avg_execution_time = float(np.mean(_etl))
                     error_rate = acc["error_count"] / n_exec
                     rework_rate = acc["rework_count"] / n_exec
-                    ai_support_intensity = float(np.mean(acc["ai_support_level_list"])) if acc["ai_support_level_list"] else float("nan")
+                    _asl: list[float] = acc["ai_support_level_list"]
+                    ai_support_intensity = float(np.mean(_asl)) if _asl else float("nan")
                     employee_workload = int(n_exec)
 
                 panel_employee_rows.append(
