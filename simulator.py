@@ -135,7 +135,6 @@ def episode_decision_probabilities(
 
     base_accept = [0.15, 0.45, 0.75][s]
     base_reject = [0.55, 0.25, 0.10][s]
-    base_modify = 1.0 - base_accept - base_reject
 
     tr = {"none": 0.00, "basic": 0.05, "detailed": 0.10}[explanation_capability]
     conf_effect = 0.20 * (ai_confidence - 0.5)
@@ -227,12 +226,12 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
     rng = np.random.default_rng(cfg.seed)
     managers = sample_manager_profiles(cfg, rng)
 
-    manager_master_rows = []
-    employee_team_rows = []
-    ai_system_rows = []
-    panel_rows = []
-    decision_rows = []
-    execution_rows = []
+    manager_master_rows: List[Dict[str, object]] = []
+    employee_team_rows: List[Dict[str, object]] = []
+    ai_system_rows: List[Dict[str, object]] = []
+    panel_rows: List[Dict[str, object]] = []
+    decision_rows: List[Dict[str, object]] = []
+    execution_rows: List[Dict[str, object]] = []
 
     ai_system_id = "AI001"
     ai_system_rows.append(
@@ -243,7 +242,7 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
         )
     )
 
-    team_seen = set()
+    team_seen: set[str] = set()
     for m in managers:
         manager_master_rows.append(
             dict(
