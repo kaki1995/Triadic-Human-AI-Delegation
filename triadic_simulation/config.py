@@ -36,16 +36,14 @@ class SimConfig:
 
     seed: int = 7
     # Fixed random seed to ensure full reproducibility of the synthetic dataset.
-    # Ensures that observed patterns are driven by model structure, not randomness.
-
+    
     # ------------------------------------------------------------------
     # Organizational scale and time structure
     # ------------------------------------------------------------------
 
     n_managers: int = 120
     # Number of distinct managers (cross-sectional units).
-    # Chosen to balance heterogeneity with sufficient longitudinal depth
-    # for identifying manager-specific delegation trajectories.
+
 
     n_periods: int = 26
     # Number of decision periods per manager.
@@ -55,8 +53,6 @@ class SimConfig:
     episodes_per_period_low: int = 30
     episodes_per_period_high: int = 60
     # Number of decision episodes per manager within each period.
-    # Introduces realistic workload variation and prevents mechanical
-    # delegation patterns across periods.
 
     # ------------------------------------------------------------------
     # Manager governance orientations (ex ante heterogeneity)
@@ -67,8 +63,6 @@ class SimConfig:
     p_opportunistic: float = 0.25
     # Probability distribution over initial governance orientations.
     # These represent *baseline managerial styles*, not outcomes.
-    # They shape initial delegation behavior and learning sensitivity,
-    # while appreciation and aversion emerge endogenously over time.
 
     # ------------------------------------------------------------------
     # AI transparency intervention (time-varying design feature)
@@ -76,13 +70,11 @@ class SimConfig:
 
     transparency_shift_period: int = 13
     # Period at which the AI system's explanation capability changes.
-    # Acts as a quasi-experimental intervention affecting trust calibration.
 
     explanation_capability_pre: str = "none"
     explanation_capability_post: str = "detailed"
     # Level of AI explainability before and after the intervention.
-    # Transparency is modeled as a contextual feature influencing
-    # delegation behavior rather than a latent construct.
+
 
     # ------------------------------------------------------------------
     # AI system design (held constant; not analytically varied)
@@ -91,7 +83,6 @@ class SimConfig:
     autonomy_level: str = "high"
     # AI autonomy is treated as a fixed contextual condition.
     # High autonomy enables meaningful delegation of decision authority,
-    # ensuring that delegation decisions have organizational consequences.
     # Autonomy is not analyzed as an explanatory variable in this study.
 
     confidence_calibration_score: float = 0.75
@@ -105,7 +96,6 @@ class SimConfig:
     high_pressure_share_of_managers: float = 0.50
     # Share of managers operating under high KPI pressure.
     # Pressure affects sensitivity to performance feedback and overrides,
-    # allowing analysis of stress-contingent delegation dynamics.
 
     # ------------------------------------------------------------------
     # Latent state structure (HMM)
@@ -114,7 +104,6 @@ class SimConfig:
     n_states: int = 3
     # Number of latent willingness-to-delegate states.
     # Interpreted as low, medium, and high delegation willingness.
-    # States capture emergent algorithm aversion and appreciation dynamics.
 
     # ------------------------------------------------------------------
     # Input / output paths
