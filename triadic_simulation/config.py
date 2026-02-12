@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import List
 
 
 def _project_root() -> Path:
@@ -106,3 +107,12 @@ class SimConfig:
     output_xlsx: str = field(
         default_factory=lambda: str(_project_root() / "data" / "Triadic_Delegation_Dataset_SYNTH.xlsx")
     )
+    output_analysis_xlsx: str = field(
+        default_factory=lambda: str(_project_root() / "data" / "Triadic_Delegation_Dataset_SYNTH_ANALYSIS.xlsx")
+    )
+
+    # NEW: Columns to drop from the ANALYSIS export (true latent states only)
+    analysis_drop_cols: List[str] = field(default_factory=lambda: [
+        "latent_state",
+        "latent_state_next",
+    ])    

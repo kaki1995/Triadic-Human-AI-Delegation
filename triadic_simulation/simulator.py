@@ -687,9 +687,9 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                     supply_disruption_count=int(ctx["supply_disruption_count"]),
                     forecast_accuracy_mape=ctx["forecast_accuracy_mape"],
                     ai_version=ai_version,
-                    # (optional) keep for ground-truth validation in synthetic data
-                    latent_state=m.state,
-                    latent_state_next=new_state,
+                    # (validation-only) ground truth latent state in synthetic data
+                    latent_state_true=m.state,
+                    latent_state_true_next=new_state,
                 )
             )
 
