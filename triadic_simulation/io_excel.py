@@ -99,7 +99,6 @@ def ensure_columns(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
     - Drop extra columns not in `cols`
     - Return in the exact `cols` order
     """
-    # normalize df columns to strings (avoid mismatches)
     df = df.copy()
     df.columns = [str(c).strip() for c in df.columns]
 
@@ -107,7 +106,6 @@ def ensure_columns(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
         if c not in df.columns:
             df[c] = pd.NA
 
-    # keep only schema columns, in schema order
     return df[cols]
 
 
@@ -125,8 +123,9 @@ def write_to_schema_workbook(
     - If sheet missing: create it and write df as-is
 
     Practical notes:
-    - This supports your workflow where the schema workbook defines the "official"
-      column order and acts as a template.
+    - The schema workbook defines the "official" column order and acts as a template.
+    - IMPORTANT: If the template sheet has headers, any df columns not present in the
+      template WILL be dropped. This function prints a warning when that happens.
     """
     wb = load_workbook(input_schema_xlsx)
 
@@ -135,8 +134,6 @@ def write_to_schema_workbook(
             raise KeyError(f"DataFrame key '{df_key}' missing from dfs. Available: {list(dfs.keys())}")
 
         df = dfs[df_key].copy()
-
-        # Normalize df columns (helps alignment with Excel template)
         df.columns = [str(c).strip() for c in df.columns]
 
         if sheet_name in wb.sheetnames:
@@ -145,7 +142,16 @@ def write_to_schema_workbook(
 
             # If template has headers, enforce them (order + missing cols)
             if not existing.empty and len(existing.columns) > 0:
-                df = ensure_columns(df, list(existing.columns))
+                template_cols = list(existing.columns)
+
+                # Warn about columns that will be dropped
+                extra = [c for c in df.columns if c not in template_cols]
+                if extra:
+                    preview = extra[:8]
+                    suffix = "..." if len(extra) > 8 else ""
+                    print(f"⚠️ [{df_key}] Dropping {len(extra)} columns not in template: {preview}{suffix}")
+
+                df = ensure_columns(df, template_cols)
 
             write_df_to_sheet(ws, df)
         else:
