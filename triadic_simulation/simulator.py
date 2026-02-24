@@ -6,7 +6,6 @@ from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import pandas as pd
-from datetime import datetime, timedelta
 
 from .config import SimConfig
 from .utils import clip01, choice_with_probs
@@ -43,40 +42,13 @@ class EmployeeProfile:
 # -----------------------------
 # Transparency helpers (NEW)
 # -----------------------------
-def _default_transparency_schedule(n_periods: int) -> List[int]:
-    """
-    Create a stepwise 4-level rollout: 0 -> 1 -> 2 -> 3 across the horizon.
-    Evenly distributes periods across 4 buckets (differences at most 1 period).
-    """
-    n = int(n_periods)
-    if n <= 0:
-        return []
-    # split n into 4 buckets as evenly as possible
-    base = n // 4
-    rem = n % 4
-    sizes = [base + (1 if i < rem else 0) for i in range(4)]  # sums to n
-    sched: List[int] = []
-    for lvl, sz in enumerate(sizes):
-        sched.extend([lvl] * sz)
-    return sched
-
-
 def transparency_level_for_period(cfg: SimConfig, period_id: int) -> int:
     """
-    Period-level transparency level (0..3).
-    Priority:
-      1) cfg.transparency_schedule (list length >= n_periods) if provided
-      2) fallback: a default 4-step rollout across n_periods
+    Period-level transparency level (0..3) from cfg.transparency_schedule.
+    Assumes cfg.transparency_schedule has length == cfg.n_periods (validated in config.py).
+    period_id is 1-indexed.
     """
-    sched = getattr(cfg, "transparency_schedule", None)
-
-    if isinstance(sched, (list, tuple)) and len(sched) >= cfg.n_periods:
-        lvl = int(sched[period_id - 1])  # period_id is 1-indexed
-        return int(np.clip(lvl, 0, 3))
-
-    # fallback schedule: 0->1->2->3 stepwise across the horizon
-    fallback = _default_transparency_schedule(cfg.n_periods)
-    lvl = int(fallback[period_id - 1])
+    lvl = int(cfg.transparency_schedule[period_id - 1])
     return int(np.clip(lvl, 0, 3))
 
 
@@ -85,8 +57,8 @@ def transparency_components(level: int) -> Dict[str, int]:
     Optional flags describing what is shown at each transparency level.
       0 none
       1 basic: inputs + short rationale
-      2 drivers + confidence
-      3 process details (+ constraints/training/guardrails)
+      2 drivers + confidence/uncertainty
+      3 process-level detail (model type/training basis/constraints/guardrails)
     """
     level = int(np.clip(level, 0, 3))
     return {
@@ -98,7 +70,7 @@ def transparency_components(level: int) -> Dict[str, int]:
 
 
 # -----------------------------
-# Master sampling
+# Helper sampling functions
 # -----------------------------
 def sample_site_master(cfg: SimConfig, rng: np.random.Generator) -> pd.DataFrame:
     """
@@ -135,11 +107,9 @@ def sample_manager_profiles(cfg: SimConfig, rng: np.random.Generator, site_ids: 
         manager_id = f"M{i+1:04d}"
         gov = str(rng.choice(modes, p=p))
 
-        # Attitude distribution depends on governance mode (domain assumption)
         mu = {"fearful_exclusion": -0.6, "controlled_opening": -0.1, "opportunistic_teaming": 0.5}[gov]
         baseline_ai_attitude = float(np.clip(rng.normal(mu, 0.35), -1.0, 1.0))
 
-        # Risk aversion distribution depends on governance mode (domain assumption)
         rmu = {"fearful_exclusion": 0.75, "controlled_opening": 0.55, "opportunistic_teaming": 0.35}[gov]
         risk_aversion_index = float(np.clip(rng.normal(rmu, 0.15), 0.0, 1.0))
 
@@ -209,19 +179,17 @@ def sample_employee_master(cfg: SimConfig, rng: np.random.Generator, managers: L
     return rows
 
 
-# -----------------------------
-# Period context + AI signals
-# -----------------------------
 def period_context(rng: np.random.Generator, manager: ManagerProfile) -> Dict[str, float]:
     base_pressure = 0.75 if manager.high_pressure else 0.45
     performance_pressure_index = float(np.clip(rng.normal(base_pressure, 0.08), 0.0, 1.0))
-    target_difficulty = float(np.clip(0.35 + 0.7 * performance_pressure_index + rng.normal(0, 0.1), 0.0, 1.0))
 
+    target_difficulty = float(np.clip(0.35 + 0.7 * performance_pressure_index + rng.normal(0, 0.1), 0.0, 1.0))
     demand_volatility = float(np.clip(rng.beta(2, 4) + 0.15 * rng.random(), 0.0, 1.0))
     task_complexity_index = float(np.clip(rng.beta(2.2, 2.2), 0.0, 1.0))
     supply_disruption_count = float(int(rng.random() < (0.10 + 0.20 * demand_volatility)))
 
     forecast_accuracy_mape = float(np.clip(rng.normal(0.22 + 0.18 * demand_volatility, 0.07), 0.05, 0.60))
+
     shock_prob = 0.06 + 0.08 * demand_volatility
     recent_negative_shock = float(int(rng.random() < shock_prob))
 
@@ -254,9 +222,6 @@ def sample_ai_uncertainty(rng: np.random.Generator, ai_confidence: float) -> flo
     return float(np.clip(rng.normal(u, 0.06), 0.0, 1.0))
 
 
-# -----------------------------
-# Decision + escalation (UPDATED to use transparency_level)
-# -----------------------------
 def episode_decision_probabilities(
     manager: ManagerProfile,
     ctx: Dict[str, float],
@@ -264,11 +229,10 @@ def episode_decision_probabilities(
     ai_confidence: float,
 ) -> Tuple[float, float, float]:
     """
-    Compute (p_accept, p_modify, p_reject).
-
-    - Latent state s controls baseline willingness (accept ↑ with s)
-    - Transparency improves acceptance, reduces rejection (diminishing returns)
-    - Pressure/risk/shock push toward modify/reject (especially at low s)
+    Compute (p_accept, p_modify, p_reject) for a single recommendation episode.
+      - Latent state s controls baseline willingness (accept ↑ with s)
+      - Transparency improves acceptance, reduce rejection (diminishing returns)
+      - Pressure/risk/shock push toward modify/reject (especially at low s)
     """
     s = manager.state
     pressure = ctx["performance_pressure_index"]
@@ -278,7 +242,7 @@ def episode_decision_probabilities(
     base_accept = [0.15, 0.45, 0.75][s]
     base_reject = [0.55, 0.25, 0.10][s]
 
-    tr_map = {0: 0.00, 1: 0.04, 2: 0.08, 3: 0.10}  # diminishing returns
+    tr_map = {0: 0.00, 1: 0.04, 2: 0.08, 3: 0.10}
     tr = tr_map[int(np.clip(transparency_level, 0, 3))]
 
     conf_effect = 0.20 * (ai_confidence - 0.5)
@@ -364,7 +328,7 @@ def update_latent_state(
 # -----------------------------
 def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
     """
-    Main simulation function updated to include 4 transparency levels (0..3).
+    Main simulation function updated to use 4 transparency levels (0..3) by period.
 
     Outputs (keys):
       - manager_master
@@ -386,16 +350,14 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
     managers = sample_manager_profiles(cfg, rng, site_ids)
     employees = sample_employee_master(cfg, rng, managers)
 
-    # ai_system_master
+    # ai_system_master (single deployed version; transparency varies by period)
     ai_version = getattr(cfg, "ai_version", "v1")
     ai_system_rows = [
         dict(
             ai_version=ai_version,
             deployment_date=str(getattr(cfg, "ai_deployment_date", "2017-01-01")),
             autonomy_level=cfg.autonomy_level,
-            # transparency varies by period; store schedule for traceability
-            transparency_schedule=str(getattr(cfg, "transparency_schedule", _default_transparency_schedule(cfg.n_periods))),
-            explanation_capability=getattr(cfg, "explanation_capability_post", "detailed"),
+            transparency_schedule=str(getattr(cfg, "transparency_schedule", [])),
             confidence_calibration_score=cfg.confidence_calibration_score,
         )
     ]
@@ -438,9 +400,8 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
     panel_employee_rows: List[Dict[str, object]] = []
     decision_rows: List[Dict[str, object]] = []
     execution_rows: List[Dict[str, object]] = []
-    outcome_rows: List[Dict[str, object]] = []
 
-    # employees by manager
+    # Convenience: employees by manager
     emp_by_manager: Dict[str, List[EmployeeProfile]] = {}
     for e in employees:
         emp_by_manager.setdefault(e.manager_id, []).append(e)
@@ -450,20 +411,19 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
         transparency_level = transparency_level_for_period(cfg, period_id)
         base_eps = int(rng.integers(cfg.episodes_per_period_low, cfg.episodes_per_period_high + 1))
 
+        # --- Manager-period loop
         for m in managers:
             ctx = period_context(rng, m)
             n_episodes = int(max(5, rng.integers(max(5, base_eps - 8), base_eps + 9)))
 
-            # manager-period accumulators
+            # period accumulators (manager panel)
             accepted = overridden = escalated = 0
             decision_latency_list: List[float] = []
             correctness_list: List[int] = []
             error_incidents = 0
             expl_shown = 0
-            tr_sum = 0
-            override_pct_list: List[float] = []
 
-            # employee-period accumulators
+            # period accumulators (employee panel) by employee_id
             emp_acc: dict[str, dict[str, Any]] = {}
             for e in emp_by_manager.get(m.manager_id, []):
                 emp_acc[e.employee_id] = dict(
@@ -479,7 +439,9 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                     error_count=0,
                     rework_count=0,
                     ai_support_level_list=[],
-                    coordination_complexity=float(np.clip(rng.normal(0.55 + 0.25 * ctx["task_complexity_index"], 0.12), 0.0, 1.0)),
+                    coordination_complexity=float(
+                        np.clip(rng.normal(0.55 + 0.25 * ctx["task_complexity_index"], 0.12), 0.0, 1.0)
+                    ),
                 )
 
             site_complexity = float(site_complexity_map.get(m.site_id, 0.5))
@@ -493,7 +455,7 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
 
                 ai_recommendation_type = str(rng.choice(["transfer", "reroute", "reorder", "expedite"]))
 
-                # Episode-level explanation provision depends on transparency_level
+                # Episode-level explanation provision (still stochastic)
                 if transparency_level == 0:
                     explanation_provided = 0
                 else:
@@ -505,15 +467,13 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                     explanation_provided = int(rng.random() < float(np.clip(base, 0.0, 1.0)))
 
                 expl_shown += explanation_provided
-                tr_sum += transparency_level
 
-                # component flags (only meaningful if explanation actually shown)
+                # component flags only meaningful if explanation is shown
                 tcomp = transparency_components(transparency_level) if explanation_provided else {
                     "shows_inputs": 0, "shows_top_drivers": 0, "shows_confidence": 0, "shows_process_details": 0
                 }
 
                 escalation_flag = int(rng.random() < escalation_probability(cfg, m, ai_conf, transparency_level))
-
                 p_acc, p_mod, p_rej = episode_decision_probabilities(m, ctx, transparency_level, ai_conf)
                 manager_action = choice_with_probs(rng, ["accept", "modify", "reject"], [p_acc, p_mod, p_rej])
 
@@ -522,23 +482,12 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                 escalated += escalation_flag
                 accepted += int(manager_action == "accept")
 
-                # override magnitude (continuous)
-                if manager_action == "accept":
-                    override_pct = 0.0
-                elif manager_action == "modify":
-                    override_pct = float(rng.uniform(0.15, 0.65))
-                else:  # reject
-                    override_pct = float(rng.uniform(0.70, 1.0))
-                override_pct_list.append(override_pct)
-
                 # time_to_decision (minutes)
                 base_latency = 2.0 + 6.0 * ctx["task_complexity_index"] + 4.0 * ctx["demand_volatility"]
                 base_latency += 3.5 * override_flag + 2.0 * escalation_flag
                 base_latency *= (1.10 - 0.08 * m.state)
-
-                # small latency benefit when explanation is provided (faster comprehension)
+                # small speed-up when explanation shown (comprehension)
                 base_latency *= (0.98 if explanation_provided else 1.00)
-
                 time_to_decision = float(np.clip(rng.normal(base_latency, 1.5), 0.5, 25.0))
                 decision_latency_list.append(time_to_decision)
 
@@ -570,11 +519,11 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
 
                 correctness_list.append(decision_correct)
 
-                # executor employee
+                # Select an employee executing this episode
                 e_list = emp_by_manager.get(m.manager_id, [])
                 executor_emp = e_list[int(rng.integers(0, len(e_list)))] if e_list else None
 
-                # execution mode depends on manager_action and autonomy
+                # Execution mode
                 if manager_action == "accept":
                     if cfg.autonomy_level == "high":
                         exec_mode = choice_with_probs(rng, ["ai", "joint", "human"], [0.65, 0.25, 0.10])
@@ -590,14 +539,15 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                     ai_support_level = float(np.clip(rng.beta(2, 3), 0.0, 1.0))
                 else:
                     base_support = {"ai": 0.85, "joint": 0.65, "human": 0.30}[exec_mode]
-                    # slightly higher support when transparency is higher (better handoff/context)
+                    # slight increase with transparency (better handoff/context)
                     base_support += 0.03 * transparency_level
-                    ai_support_level = float(np.clip(rng.normal(base_support + 0.20 * executor_emp.ai_familiarity, 0.10), 0.0, 1.0))
+                    ai_support_level = float(
+                        np.clip(rng.normal(base_support + 0.20 * executor_emp.ai_familiarity, 0.10), 0.0, 1.0)
+                    )
 
                 employee_override_during_execution = int((decision_correct == 0) and (rng.random() < 0.08))
                 local_adjustment_flag = int(rng.random() < clip01(0.12 + 0.18 * ctx["task_complexity_index"]))
 
-                # execution outcomes
                 exec_time = float(
                     np.clip(
                         rng.normal(
@@ -611,7 +561,6 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                         60.0,
                     )
                 )
-
                 execution_error_flag = int(
                     (decision_correct == 0) and (rng.random() < (0.05 + 0.06 * ctx["performance_pressure_index"]))
                 )
@@ -636,13 +585,12 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                         **tcomp,
                         manager_action=manager_action,
                         override_flag=override_flag,
-                        override_pct=override_pct,
                         escalation_flag=escalation_flag,
                         time_to_decision=time_to_decision,
                     )
                 )
 
-                # execution_episode row (unchanged)
+                # execution_episode row
                 execution_rows.append(
                     dict(
                         execution_id=execution_id,
@@ -658,7 +606,7 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                     )
                 )
 
-                # update employee accumulators
+                # Update employee accumulators
                 if executor_emp is not None:
                     acc = emp_acc[executor_emp.employee_id]
                     acc["n_exec"] += 1
@@ -723,84 +671,33 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                 ctx=ctx,
             )
 
-            # Period calendar dates (3-week periods from deployment)
-            _deploy = datetime.strptime(str(getattr(cfg, "ai_deployment_date", "2017-01-01")), "%Y-%m-%d")
-            period_start_date = (_deploy + timedelta(weeks=3 * (period_id - 1))).strftime("%Y-%m-%d")
-            period_end_date = (_deploy + timedelta(weeks=3 * period_id) - timedelta(days=1)).strftime("%Y-%m-%d")
-
-            mean_override_pct = float(np.mean(override_pct_list)) if override_pct_list else 0.0
-
-            # Composite KPI gap index (within-team change vs baseline)
-            kpi_operational_gap_index = float(
-                -0.40 * service_level_delta
-                - 0.30 * inventory_cost_delta
-                - 0.20 * expedite_cost_delta
-                - 0.30 * error_incidents
-                + rng.normal(0, 0.12)
-            )
-
-            # Bonus eligibility: eligible if not extreme low performance
-            bonus_eligibility_flag = int(
-                kpi_improvement_score > -0.5 and ctx["performance_pressure_index"] > 0.40
-            )
-
-            # --- panel_manager_period_outcomes row ---
-            _baseline_sl = 95.0
-            _baseline_inv = 52000.0
-            _baseline_exp = 8500.0
-
-            service_level_pct = float(np.clip(_baseline_sl - service_level_delta, 80.0, 100.0))
-            inventory_cost_eur = float(np.clip(_baseline_inv + inventory_cost_delta * 1000, 20000, 120000))
-            expedite_cost_eur = float(np.clip(_baseline_exp + expedite_cost_delta * 500, 1000, 40000))
-            production_disruption_minutes = float(np.clip(
-                error_incidents * rng.normal(45, 15) + rng.normal(10, 5), 0, 500
-            ))
-
-            outcome_rows.append(
-                dict(
-                    manager_id=m.manager_id,
-                    period_id=period_id,
-                    service_level_pct=service_level_pct,
-                    inventory_cost_eur=inventory_cost_eur,
-                    expedite_cost_eur=expedite_cost_eur,
-                    error_incident_count=int(error_incidents),
-                    production_disruption_minutes=production_disruption_minutes,
-                )
-            )
-
             panel_manager_rows.append(
                 dict(
                     manager_id=m.manager_id,
                     period_id=period_id,
-                    period_start_date=period_start_date,
-                    period_end_date=period_end_date,
-                    weeks_in_period=3,
-                    ai_version=ai_version,
+                    # transparency exposure
+                    transparency_level=transparency_level,
+                    explanation_provided_rate=float(expl_shown / n_episodes) if n_episodes > 0 else float("nan"),
                     # emissions (main HMM)
                     ai_decision_authority_share=ai_decision_authority_share,
-                    mean_override_pct=mean_override_pct,
-                    kpi_operational_gap_index=kpi_operational_gap_index,
-                    # placeholder — computed post-hoc across managers
-                    kpi_peer_pressure_index=float("nan"),
-                    bonus_eligibility_flag=bonus_eligibility_flag,
-                    target_difficulty=ctx["target_difficulty"],
-                    decision_latency_avg=decision_latency_avg,
-                    task_complexity_index=ctx["task_complexity_index"],
-                    supply_disruption_count=int(ctx["supply_disruption_count"]),
-                    forecast_accuracy_mape=ctx["forecast_accuracy_mape"],
-                    # --- extras (keep for analysis) ---
-                    transparency_level=transparency_level,
-                    avg_transparency_level=float(tr_sum / n_episodes) if n_episodes > 0 else float("nan"),
-                    explanation_provided_rate=float(expl_shown / n_episodes) if n_episodes > 0 else float("nan"),
                     override_rate=override_rate,
                     escalation_rate=escalation_rate,
+                    decision_latency_avg=decision_latency_avg,
+                    # KPI appraisal (transition drivers)
                     service_level_delta=service_level_delta,
                     inventory_cost_delta=inventory_cost_delta,
                     expedite_cost_delta=expedite_cost_delta,
                     error_incident_count=int(error_incidents),
+                    # incentives/pressure
+                    target_difficulty=ctx["target_difficulty"],
                     performance_pressure_index=ctx["performance_pressure_index"],
                     recent_negative_shock=int(ctx["recent_negative_shock"]),
+                    # context controls
+                    task_complexity_index=ctx["task_complexity_index"],
                     demand_volatility=ctx["demand_volatility"],
+                    supply_disruption_count=int(ctx["supply_disruption_count"]),
+                    forecast_accuracy_mape=ctx["forecast_accuracy_mape"],
+                    ai_version=ai_version,
                     # (validation-only) ground truth latent state in synthetic data
                     latent_state_true=m.state,
                     latent_state_true_next=new_state,
@@ -854,34 +751,12 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                     )
                 )
 
-    # ------------------------------------------------------------------
-    # Post-processing: lag columns + peer pressure index
-    # ------------------------------------------------------------------
-    pmp = pd.DataFrame(panel_manager_rows)
-
-    # Peer-pressure index: rank kpi_operational_gap_index within each period
-    pmp["kpi_peer_pressure_index"] = pmp.groupby("period_id")["kpi_operational_gap_index"].rank(pct=True)
-
-    # Lag columns (shift by 1 period per manager)
-    lag_cols = {
-        "ai_decision_authority_share": "lag_ai_decision_authority_share",
-        "mean_override_pct": "lag_mean_override_pct",
-        "kpi_operational_gap_index": "lag_kpi_operational_gap_index",
-        "kpi_peer_pressure_index": "lag_kpi_peer_pressure_index",
-        "bonus_eligibility_flag": "lag_bonus_eligibility_flag",
-        "decision_latency_avg": "lag_decision_latency_avg",
-    }
-    pmp = pmp.sort_values(["manager_id", "period_id"])
-    for src_col, lag_col in lag_cols.items():
-        pmp[lag_col] = pmp.groupby("manager_id")[src_col].shift(1)
-
     return {
         "manager_master": pd.DataFrame(manager_master_rows),
         "employee_master": pd.DataFrame(employee_master_rows),
         "ai_system_master": pd.DataFrame(ai_system_rows),
         "site_master": site_master_df,
-        "panel_manager_period": pmp,
-        "panel_manager_period_outcomes": pd.DataFrame(outcome_rows),
+        "panel_manager_period": pd.DataFrame(panel_manager_rows),
         "panel_employee_period": pd.DataFrame(panel_employee_rows),
         "decision_episode": pd.DataFrame(decision_rows),
         "execution_episode": pd.DataFrame(execution_rows),

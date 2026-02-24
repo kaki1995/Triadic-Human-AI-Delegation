@@ -15,9 +15,7 @@ def _default_transparency_schedule(n_periods: int) -> List[int]:
     """
     Default 4-level rollout across the horizon: 0 -> 1 -> 2 -> 3.
     Evenly distributes periods across 4 buckets (differences at most 1 period).
-
-    Example for n_periods=26:
-      [0]*7 + [1]*7 + [2]*6 + [3]*6
+    Example for n_periods=26: [0]*7 + [1]*7 + [2]*6 + [3]*6
     """
     n = int(n_periods)
     if n <= 0:
@@ -35,6 +33,16 @@ def _default_transparency_schedule(n_periods: int) -> List[int]:
 class SimConfig:
     """
     Configuration for the Triadic Delegation synthetic data generator.
+
+    Conceptual role:
+    - Encodes structural assumptions of the empirical setting.
+    - Parameters are fixed design choices (not estimation targets).
+    - Behavioral dynamics are analyzed downstream (HMM, panel models).
+
+    Design principles:
+    - Reproducibility (fixed seed, immutable config)
+    - Parsimony (keep tech features fixed where not theorized)
+    - Longitudinal identification (within-manager time series)
     """
 
     # ------------------------------------------------------------------
@@ -70,19 +78,20 @@ class SimConfig:
     p_opportunistic: float = 0.25
 
     # ------------------------------------------------------------------
-    # AI transparency (UPDATED: 4-level time-varying design feature)
+    # AI transparency (UPDATED: 4-level time-varying schedule)
     # ------------------------------------------------------------------
-    # 0 = none (black box)
+    # 0 = none
     # 1 = basic (inputs + short rationale)
-    # 2 = drivers + confidence/uncertainty
-    # 3 = process-level details (model type/training basis/constraints/guardrails)
+    # 2 = drivers + confidence
+    # 3 = process-level detail (model type/training basis/constraints)
     #
-    # Must have length == n_periods and values in {0,1,2,3}.
-    # Default is a stepwise rollout 0->1->2->3 across n_periods.
+    # If you want full control, override this list when you instantiate SimConfig.
+    # Otherwise, it defaults to an even 0->1->2->3 rollout across n_periods.
     transparency_schedule: List[int] = field(default_factory=lambda: _default_transparency_schedule(26))
-    transparency_shift_period: int = 13          # period (1-indexed) at which explanation capability upgrades
-    explanation_capability_pre: str = "none"    # before shift
-    explanation_capability_post: str = "detailed" # on/after shift
+
+    # Optional: If you want a "step-change" instead of a gradual rollout, you can
+    # ignore transparency_schedule and implement pre/post logic in the simulator.
+    # (Not needed for the 4-level design you requested.)
 
     # ------------------------------------------------------------------
     # AI system design (contextual; can be held constant or extended)
@@ -123,13 +132,16 @@ class SimConfig:
     ])
 
     def __post_init__(self) -> None:
-        # Validate schedule length
+        """
+        Validate transparency_schedule without breaking immutability.
+        """
+        # dataclass frozen=True → use object.__setattr__ if we were to change values.
+        # Here we only validate.
         if len(self.transparency_schedule) != self.n_periods:
             raise ValueError(
                 f"transparency_schedule must have length n_periods={self.n_periods}, "
                 f"but got {len(self.transparency_schedule)}."
             )
-        # Validate schedule values
         bad = [x for x in self.transparency_schedule if int(x) < 0 or int(x) > 3]
         if bad:
             raise ValueError(f"transparency_schedule values must be in 0..3, but found: {bad}")
