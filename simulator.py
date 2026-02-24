@@ -7,8 +7,8 @@ from typing import Any, Dict, List, Tuple
 import numpy as np
 import pandas as pd
 
-from .config import SimConfig
-from .utils import clip01, choice_with_probs
+from ..triadic_simulation.config import SimConfig
+from ..triadic_simulation.utils import clip01, choice_with_probs
 
 
 # -----------------------------
