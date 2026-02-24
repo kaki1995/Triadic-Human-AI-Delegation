@@ -11,24 +11,30 @@ def _project_root() -> Path:
     return Path(__file__).resolve().parent
 
 
+def _default_transparency_schedule(n_periods: int) -> List[int]:
+    """
+    Default 4-level rollout across the horizon: 0 -> 1 -> 2 -> 3.
+    Evenly distributes periods across 4 buckets (differences at most 1 period).
+
+    Example for n_periods=26:
+      [0]*7 + [1]*7 + [2]*6 + [3]*6
+    """
+    n = int(n_periods)
+    if n <= 0:
+        return []
+    base = n // 4
+    rem = n % 4
+    sizes = [base + (1 if i < rem else 0) for i in range(4)]  # sums to n
+    sched: List[int] = []
+    for lvl, sz in enumerate(sizes):
+        sched.extend([lvl] * sz)
+    return sched
+
+
 @dataclass(frozen=True)
 class SimConfig:
     """
     Configuration for the Triadic Delegation synthetic data generator.
-
-    Conceptual role:
-    - Encodes structural assumptions of the empirical setting.
-    - Parameters are fixed design choices (not estimation targets).
-    - Behavioral dynamics are analyzed downstream (HMM, panel models).
-
-    Design principles:
-    - Reproducibility (fixed seed, immutable config)
-    - Parsimony (keep tech features fixed where not theorized)
-    - Longitudinal identification (within-manager time series)
-
-    NOTE:
-    - This configuration defines the simulated empirical setting.
-    - Parameters are not tuned to generate desired results.
     """
 
     # ------------------------------------------------------------------
@@ -49,14 +55,12 @@ class SimConfig:
     # Sites / plants (context)
     # ------------------------------------------------------------------
     n_sites: int = 12
-    # Number of sites/plants used to generate site_master and attach site_id to managers/employees/episodes.
 
     # ------------------------------------------------------------------
     # Employee layer (execution panel)
     # ------------------------------------------------------------------
     employees_per_manager_low: int = 3
     employees_per_manager_high: int = 8
-    # Each manager supervises k employees sampled uniformly in [low, high].
 
     # ------------------------------------------------------------------
     # Manager governance orientations (ex ante heterogeneity)
@@ -66,37 +70,38 @@ class SimConfig:
     p_opportunistic: float = 0.25
 
     # ------------------------------------------------------------------
-    # AI transparency intervention (time-varying design feature)
+    # AI transparency (UPDATED: 4-level time-varying design feature)
     # ------------------------------------------------------------------
-    transparency_shift_period: int = 13
-    explanation_capability_pre: str = "none"
-    explanation_capability_post: str = "detailed"
-    # Allowed values should align with simulator mappings: {"none","basic","detailed"}.
+    # 0 = none (black box)
+    # 1 = basic (inputs + short rationale)
+    # 2 = drivers + confidence/uncertainty
+    # 3 = process-level details (model type/training basis/constraints/guardrails)
+    #
+    # Must have length == n_periods and values in {0,1,2,3}.
+    # Default is a stepwise rollout 0->1->2->3 across n_periods.
+    transparency_schedule: List[int] = field(default_factory=lambda: _default_transparency_schedule(26))
+    transparency_shift_period: int = 13          # period (1-indexed) at which explanation capability upgrades
+    explanation_capability_pre: str = "none"    # before shift
+    explanation_capability_post: str = "detailed" # on/after shift
 
     # ------------------------------------------------------------------
     # AI system design (contextual; can be held constant or extended)
     # ------------------------------------------------------------------
     ai_version: str = "v1"
     ai_deployment_date: str = "2017-01-01"
-    # Stored in ai_system_master; ai_version also appears in decision_episode and panel_manager_period.
 
-    autonomy_level: str = "high"
-    # Allowed values: {"low","medium","high"}.
-
-    confidence_calibration_score: float = 0.75
-    # 0..1; higher = better calibrated confidence.
+    autonomy_level: str = "high"  # {"low","medium","high"}
+    confidence_calibration_score: float = 0.75  # 0..1
 
     # ------------------------------------------------------------------
     # Performance pressure environment
     # ------------------------------------------------------------------
     high_pressure_share_of_managers: float = 0.50
-    # Share of managers operating under high KPI pressure.
 
     # ------------------------------------------------------------------
     # Latent state structure (HMM)
     # ------------------------------------------------------------------
     n_states: int = 3
-    # Low / medium / high willingness-to-delegate states.
 
     # ------------------------------------------------------------------
     # Input / output paths
@@ -111,8 +116,20 @@ class SimConfig:
         default_factory=lambda: str(_project_root() / "data" / "Triadic_Delegation_Dataset_SYNTH_ANALYSIS.xlsx")
     )
 
-    # NEW: Columns to drop from the ANALYSIS export (true latent states only)
+    # Columns to drop from the ANALYSIS export (true latent states only)
     analysis_drop_cols: List[str] = field(default_factory=lambda: [
         "latent_state",
         "latent_state_next",
-    ])    
+    ])
+
+    def __post_init__(self) -> None:
+        # Validate schedule length
+        if len(self.transparency_schedule) != self.n_periods:
+            raise ValueError(
+                f"transparency_schedule must have length n_periods={self.n_periods}, "
+                f"but got {len(self.transparency_schedule)}."
+            )
+        # Validate schedule values
+        bad = [x for x in self.transparency_schedule if int(x) < 0 or int(x) > 3]
+        if bad:
+            raise ValueError(f"transparency_schedule values must be in 0..3, but found: {bad}")
