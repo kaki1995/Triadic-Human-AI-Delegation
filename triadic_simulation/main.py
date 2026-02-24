@@ -4,9 +4,9 @@ from __future__ import annotations
 from typing import Dict
 import pandas as pd
 
-from .config import SimConfig
+from .config import SimConfig          # <- UPDATED (was config_new)
 from .schema import SheetMap
-from .simulator import simulate
+from .simulator import simulate        # <- UPDATED (was simulator_new)
 from .io_excel import write_to_schema_workbook
 
 
@@ -29,6 +29,9 @@ def _drop_validation_columns(
 
 
 def run() -> None:
+    # Optional: set schedule explicitly for reproducibility (length must equal n_periods)
+    # cfg = SimConfig(transparency_schedule=[0]*7 + [1]*7 + [2]*6 + [3]*6)
+
     cfg = SimConfig()
     dfs = simulate(cfg)
 
@@ -42,6 +45,7 @@ def run() -> None:
 
         # L1 panels
         "panel_manager_period": sm.panel_manager_period,
+        "panel_manager_period_outcomes": sm.panel_manager_period_outcomes,
         "panel_employee_period": sm.panel_employee_period,
 
         # L2 episodes

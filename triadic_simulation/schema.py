@@ -26,6 +26,7 @@ class SheetMap:
     # LEVEL 1 — Dynamic panels
     # ------------------------------------------------------------------
     panel_manager_period: str = "panel_manager_period"
+    panel_manager_period_outcomes: str = "panel_manager_period_outcomes"
     panel_employee_period: str = "panel_employee_period"
 
     # ------------------------------------------------------------------
