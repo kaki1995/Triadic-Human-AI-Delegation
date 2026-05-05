@@ -1,12 +1,12 @@
-# triadic_sim/main.py
+# triadic_simulation/main.py
 from __future__ import annotations
 
 from typing import Dict
 import pandas as pd
 
-from .config import SimConfig          # <- UPDATED (was config_new)
+from .config import SimConfig
 from .schema import SheetMap
-from .simulator import simulate        # <- UPDATED (was simulator_new)
+from .simulator import simulate
 from .io_excel import write_to_schema_workbook
 
 
@@ -28,12 +28,30 @@ def _drop_validation_columns(
     return cleaned
 
 
+def _add_derived_tables(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    """
+    Add schema-level tables that are derived from simulator outputs.
+    """
+    out = dict(dfs)
+    manager_period = out["panel_manager_period"]
+    outcome_cols = [
+        "manager_id",
+        "period_id",
+        "service_level_delta",
+        "inventory_cost_delta",
+        "expedite_cost_delta",
+        "error_incident_count",
+    ]
+    out["panel_manager_period_outcomes"] = manager_period[outcome_cols].copy()
+    return out
+
+
 def run() -> None:
     # Optional: set schedule explicitly for reproducibility (length must equal n_periods)
     # cfg = SimConfig(transparency_schedule=[0]*7 + [1]*7 + [2]*6 + [3]*6)
 
     cfg = SimConfig()
-    dfs = simulate(cfg)
+    dfs = _add_derived_tables(simulate(cfg))
 
     sm = SheetMap()
     sheet_map = {
@@ -62,7 +80,7 @@ def run() -> None:
         dfs=dfs,
         sheet_map=sheet_map,
     )
-    print(f"✅ Wrote FULL synthetic dataset: {cfg.output_xlsx}")
+    print(f"Wrote FULL synthetic dataset: {cfg.output_xlsx}")
 
     # ------------------------------------------------------------
     # 2) ANALYSIS dataset (drops validation-only columns)
@@ -75,7 +93,7 @@ def run() -> None:
         dfs=dfs_analysis,
         sheet_map=sheet_map,
     )
-    print(f"✅ Wrote ANALYSIS dataset (no true latent states): {cfg.output_analysis_xlsx}")
+    print(f"Wrote ANALYSIS dataset (no true latent states): {cfg.output_analysis_xlsx}")
 
     # Diagnostics
     for k, df in dfs.items():

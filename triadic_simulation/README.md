@@ -29,7 +29,7 @@ The simulation is designed to support Hidden Markov Model (HMM) and panel-based 
 ## Repository Structure
 
 ```text
-triadic_sim/
+triadic_simulation/
   config.py        # Global simulation configuration
   simulator.py     # Core simulation logic
   schema.py        # Dataset & sheet mappings
@@ -85,13 +85,13 @@ pip install numpy pandas openpyxl
 Edit parameters in:
 
 ```text
-triadic_sim/config.py
+triadic_simulation/config.py
 ```
 
 3. Generate dataset
 
 ```text
-python -m triadic_sim.main
+python -m triadic_simulation.main
 ```
 
 This will produce:

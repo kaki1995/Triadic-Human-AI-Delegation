@@ -1,4 +1,4 @@
-# triadic_sim/utils.py
+# triadic_simulation/utils.py
 from __future__ import annotations
 
 import math

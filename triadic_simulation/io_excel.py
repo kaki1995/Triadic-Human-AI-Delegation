@@ -1,4 +1,4 @@
-# triadic_sim/io_excel.py
+# triadic_simulation/io_excel.py
 from __future__ import annotations
 
 from typing import Any, Dict, List
@@ -149,7 +149,7 @@ def write_to_schema_workbook(
                 if extra:
                     preview = extra[:8]
                     suffix = "..." if len(extra) > 8 else ""
-                    print(f"⚠️ [{df_key}] Dropping {len(extra)} columns not in template: {preview}{suffix}")
+                    print(f"WARNING [{df_key}] Dropping {len(extra)} columns not in template: {preview}{suffix}")
 
                 df = ensure_columns(df, template_cols)
 

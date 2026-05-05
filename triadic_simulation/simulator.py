@@ -1,4 +1,4 @@
-# triadic_sim/simulator.py
+# triadic_simulation/simulator.py
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -230,7 +230,7 @@ def episode_decision_probabilities(
 ) -> Tuple[float, float, float]:
     """
     Compute (p_accept, p_modify, p_reject) for a single recommendation episode.
-      - Latent state s controls baseline willingness (accept ↑ with s)
+      - Latent state s controls baseline willingness (accept increases with s)
       - Transparency improves acceptance, reduce rejection (diminishing returns)
       - Pressure/risk/shock push toward modify/reject (especially at low s)
     """
