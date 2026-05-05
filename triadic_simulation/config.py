@@ -3,30 +3,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List
 
 
 def _project_root() -> Path:
     """Return the project root (directory containing this file)."""
     return Path(__file__).resolve().parent
-
-
-def _default_transparency_schedule(n_periods: int) -> List[int]:
-    """
-    Default 4-level rollout across the horizon: 0 -> 1 -> 2 -> 3.
-    Evenly distributes periods across 4 buckets (differences at most 1 period).
-    Example for n_periods=26: [0]*7 + [1]*7 + [2]*6 + [3]*6
-    """
-    n = int(n_periods)
-    if n <= 0:
-        return []
-    base = n // 4
-    rem = n % 4
-    sizes = [base + (1 if i < rem else 0) for i in range(4)]  # sums to n
-    sched: List[int] = []
-    for lvl, sz in enumerate(sizes):
-        sched.extend([lvl] * sz)
-    return sched
 
 
 @dataclass(frozen=True)
@@ -53,11 +34,11 @@ class SimConfig:
     # ------------------------------------------------------------------
     # Organizational scale and time structure
     # ------------------------------------------------------------------
-    n_managers: int = 120
-    n_periods: int = 26  # ~3-week cycles -> ~1.5 years
+    n_managers: int = 875
+    n_periods: int = 26  # planning cycles
 
-    episodes_per_period_low: int = 30
-    episodes_per_period_high: int = 60
+    episodes_per_period_low: int = 8
+    episodes_per_period_high: int = 12
 
     # ------------------------------------------------------------------
     # Sites / plants (context)
@@ -67,8 +48,7 @@ class SimConfig:
     # ------------------------------------------------------------------
     # Employee layer (execution panel)
     # ------------------------------------------------------------------
-    employees_per_manager_low: int = 3
-    employees_per_manager_high: int = 8
+    n_employees: int = 17680
 
     # ------------------------------------------------------------------
     # Manager governance orientations (ex ante heterogeneity)
@@ -76,22 +56,6 @@ class SimConfig:
     p_fearful: float = 0.35
     p_controlled: float = 0.40
     p_opportunistic: float = 0.25
-
-    # ------------------------------------------------------------------
-    # AI transparency (UPDATED: 4-level time-varying schedule)
-    # ------------------------------------------------------------------
-    # 0 = none
-    # 1 = basic (inputs + short rationale)
-    # 2 = drivers + confidence
-    # 3 = process-level detail (model type/training basis/constraints)
-    #
-    # If you want full control, override this list when you instantiate SimConfig.
-    # Otherwise, it defaults to an even 0->1->2->3 rollout across n_periods.
-    transparency_schedule: List[int] = field(default_factory=lambda: _default_transparency_schedule(26))
-
-    # Optional: If you want a "step-change" instead of a gradual rollout, you can
-    # ignore transparency_schedule and implement pre/post logic in the simulator.
-    # (Not needed for the 4-level design you requested.)
 
     # ------------------------------------------------------------------
     # AI system design (contextual; can be held constant or extended)
@@ -126,22 +90,19 @@ class SimConfig:
     )
 
     # Columns to drop from the ANALYSIS export (true latent states only)
-    analysis_drop_cols: List[str] = field(default_factory=lambda: [
+    analysis_drop_cols: list[str] = field(default_factory=lambda: [
         "latent_state_true",
         "latent_state_true_next",
     ])
 
     def __post_init__(self) -> None:
-        """
-        Validate transparency_schedule without breaking immutability.
-        """
-        # dataclass frozen=True -> use object.__setattr__ if we were to change values.
-        # Here we only validate.
-        if len(self.transparency_schedule) != self.n_periods:
-            raise ValueError(
-                f"transparency_schedule must have length n_periods={self.n_periods}, "
-                f"but got {len(self.transparency_schedule)}."
-            )
-        bad = [x for x in self.transparency_schedule if int(x) < 0 or int(x) > 3]
-        if bad:
-            raise ValueError(f"transparency_schedule values must be in 0..3, but found: {bad}")
+        if self.n_managers <= 0:
+            raise ValueError("n_managers must be positive.")
+        if self.n_periods <= 0:
+            raise ValueError("n_periods must be positive.")
+        if self.n_employees < self.n_managers:
+            raise ValueError("n_employees must be at least n_managers.")
+        if self.episodes_per_period_low <= 0:
+            raise ValueError("episodes_per_period_low must be positive.")
+        if self.episodes_per_period_low > self.episodes_per_period_high:
+            raise ValueError("episodes_per_period_low cannot exceed episodes_per_period_high.")

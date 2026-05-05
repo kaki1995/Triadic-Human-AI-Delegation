@@ -26,7 +26,7 @@ This project simulates such settings to study:
 
 - Dynamic willingness to delegate to AI.
 - Algorithm appreciation vs. aversion over time.
-- Effects of transparency, performance feedback, and pressure.
+- Effects of performance feedback and pressure.
 - Delegation authority vs. execution responsibility.
 
 The simulation is designed to support Hidden Markov Model (HMM) and panel-based
@@ -52,7 +52,13 @@ notebooks/
 ## Dataset Overview
 
 The simulation generates a longitudinal triadic delegation dataset with the
-following core tables:
+following default scale:
+
+- 875 managers.
+- 17,680 employees.
+- 26 planning cycles.
+
+The generated workbook contains the following core tables:
 
 | Table | Description |
 | --- | --- |
@@ -60,7 +66,7 @@ following core tables:
 | `employee_master` | Human employee characteristics |
 | `ai_system_master` | AI system properties, autonomy, and calibration |
 | `site_master` | Site-level operational context |
-| `panel_manager_period` | Period-level delegation, KPIs, and latent states |
+| `panel_manager_period` | Period-level delegation, controls, transitions, and latent states |
 | `panel_manager_period_outcomes` | Derived manager-period outcome measures |
 | `panel_employee_period` | Period-level employee execution outcomes |
 | `decision_episode` | Episode-level AI recommendation and manager action data |
@@ -69,13 +75,32 @@ following core tables:
 The primary analysis table is `panel_manager_period`, structured at the
 manager-period level.
 
+The manager-period table includes these HMM emission variables:
+
+- `ai_authority_share`
+- `escalation_share`
+- `decision_latency`
+- `demand_volatility`
+- `forecast_accuracy`
+- `performance_pressure`
+- `recent_negative_shock`
+- `supply_disruptions`
+- `target_difficulty`
+- `task_complexity`
+
+It also includes these transition variables:
+
+- `team_t_minus_1_vs_team_t`
+- `team_vs_peer_average`
+- `target_attainment`
+
 ## Simulation Logic
 
 - Managers have latent willingness-to-delegate states: low, medium, or high.
 - AI generates recommendations with varying confidence.
 - Managers accept, modify, or reject AI recommendations.
 - Execution is delegated to AI, humans, or jointly.
-- Performance feedback and transparency drive state transitions over time.
+- Performance feedback and operating conditions drive state transitions over time.
 - Latent states evolve via an HMM-like transition process.
 
 All parameters are explicitly configurable via `triadic_simulation/config.py`.

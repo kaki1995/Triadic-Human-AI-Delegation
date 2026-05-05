@@ -37,19 +37,17 @@ def _add_derived_tables(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]
     outcome_cols = [
         "manager_id",
         "period_id",
-        "service_level_delta",
-        "inventory_cost_delta",
-        "expedite_cost_delta",
-        "error_incident_count",
+        "composite_kpi_score",
+        "kpi_target",
+        "team_t_minus_1_vs_team_t",
+        "team_vs_peer_average",
+        "target_attainment",
     ]
     out["panel_manager_period_outcomes"] = manager_period[outcome_cols].copy()
     return out
 
 
 def run() -> None:
-    # Optional: set schedule explicitly for reproducibility (length must equal n_periods)
-    # cfg = SimConfig(transparency_schedule=[0]*7 + [1]*7 + [2]*6 + [3]*6)
-
     cfg = SimConfig()
     dfs = _add_derived_tables(simulate(cfg))
 
