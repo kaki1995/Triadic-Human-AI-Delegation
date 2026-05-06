@@ -1,5 +1,15 @@
 {
     "python.analysis.extraPaths": [
-        "."
-    ]
+        "Data Generation Engine"
+    ],
+    "python.analysis.exclude": [
+        "**/Archive/**",
+        "**/.venv/**",
+        "**/__pycache__/**",
+        "Datasets/**",
+        "HMM Estimation/**"
+    ],
+    "files.exclude": {
+        "**/__pycache__": true
+    }
 }
