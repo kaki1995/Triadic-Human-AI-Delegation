@@ -1,0 +1,6 @@
+mechanism,state_implication,transition_role
+positive_historical_feedback,reinforces self-efficacy and upward or persistent delegation when AI-backed performance improves,raises upward movement for neutral managers and persistence for appreciative managers
+negative_historical_feedback,increases frustration and retreat toward manual control,raises downward movement or aversion persistence after shortfalls and overrides
+appreciative_peer_outperformance,AI-using managers attribute competitive gains to collaboration with AI,reinforces appreciation and lowers exits from the appreciative state
+aversive_peer_outperformance,AI-withholding managers attribute gains to manual intervention,reinforces aversion unless AI-using peer best-practice evidence is strong
+neutral_peer_benchmark_sensitivity,neutral managers actively recalibrate reliance from recent and peer signals,makes the neutral state most responsive to peer benchmarks and target signals

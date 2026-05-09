@@ -15,7 +15,7 @@ def _data_dir() -> Path:
     package_data = _project_root() / "data"
     if package_data.exists():
         return package_data
-    sibling_data = _project_root().parent / "Datasets" / "data"
+    sibling_data = _project_root().parent / "Datasets"
     return sibling_data
 
 
@@ -62,9 +62,9 @@ class SimConfig:
     # ------------------------------------------------------------------
     # Manager governance orientations (ex ante heterogeneity)
     # ------------------------------------------------------------------
-    p_fearful: float = 0.35
-    p_controlled: float = 0.40
-    p_opportunistic: float = 0.25
+    p_fearful: float = 0.40
+    p_controlled: float = 0.42
+    p_opportunistic: float = 0.18
 
     # ------------------------------------------------------------------
     # AI system design (contextual; can be held constant or extended)
@@ -86,6 +86,33 @@ class SimConfig:
     n_states: int = 3
 
     # ------------------------------------------------------------------
+    # Time dynamics in synthetic delegation behavior
+    # ------------------------------------------------------------------
+    # These parameters intentionally create visible longitudinal movement in
+    # the synthetic panel. They affect generated behavior, not plotting.
+    authority_time_drift_strength: float = 0.18
+    escalation_time_drift_strength: float = 0.16
+    authority_common_time_shift: float = 0.00
+    escalation_common_time_shift: float = 0.00
+    latent_upward_time_shift: float = 0.10
+    latent_downward_time_shift: float = 0.06
+    time_wave_strength: float = 0.04
+
+    # Manager-period calibration for model-ready emission shares. These values
+    # make the synthetic controls identifiable in the HMM without forcing shares
+    # to hard 0/1 boundaries.
+    emission_control_effect_strength: float = 0.095
+    emission_panel_noise_sd: float = 0.010
+    emission_state_target_weight: float = 0.68
+    authority_state_time_intercepts: tuple[float, ...] = (0.20, 0.42, 0.45)
+    authority_state_time_slopes: tuple[float, ...] = (-0.18, 0.02, 0.40)
+    escalation_state_time_intercepts: tuple[float, ...] = (0.45, 0.66, 0.58)
+    escalation_state_time_slopes: tuple[float, ...] = (0.20, -0.26, -0.30)
+
+    # Calibrated manager-level heterogeneity scale reported with HMM tables.
+    manager_heterogeneity_xi: float = 0.6447
+
+    # ------------------------------------------------------------------
     # Input / output paths
     # ------------------------------------------------------------------
     input_schema_xlsx: str = field(
@@ -95,13 +122,14 @@ class SimConfig:
         default_factory=lambda: str(_data_dir() / "Triadic_Delegation_Dataset_SYNTH.xlsx")
     )
     output_analysis_xlsx: str = field(
-        default_factory=lambda: str(_data_dir() / "Triadic_Delegation_Dataset_SYNTH_ANALYSIS.xlsx")
+        default_factory=lambda: str(_data_dir() / "Triadic_Delegation_Analysis_Dataset_v3.xlsx")
     )
 
     # Columns to drop from the ANALYSIS export (true latent states only)
     analysis_drop_cols: list[str] = field(default_factory=lambda: [
         "latent_state_true",
         "latent_state_true_next",
+        "transition_random_effect_xi",
     ])
 
     def __post_init__(self) -> None:

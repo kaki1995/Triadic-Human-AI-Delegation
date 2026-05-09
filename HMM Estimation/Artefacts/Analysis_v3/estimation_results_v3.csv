@@ -1,0 +1,32 @@
+Variable,State Aversion,State Neutral,State Appreciation,section
+Emission factors: state means at observed controls,,,,True
+Manager-specific heterogeneity xi_i,xi_i=0.6447***,,,False
+AI Authority Share,0.0216***,0.2857***,0.6151***,False
+Escalation Share,0.6708***,0.5326***,0.3855***,False
+Emission control effects: change in emission for a +1 SD control shift,,,,True
+AI Authority Share | Decision Latency,-0.0173***,-0.2281***,-0.1427***,False
+AI Authority Share | Demand Volatility,0.0019***,0.0267***,-0.0042***,False
+AI Authority Share | Forecast Accuracy,0.0014***,0.0000,0.0232***,False
+AI Authority Share | Performance Pressure,-0.0015***,-0.0344***,-0.0478***,False
+AI Authority Share | Recent Negative Shock,-0.0008***,-0.0056***,-0.0170***,False
+AI Authority Share | Supply Disruptions,-0.0012***,-0.0083***,-0.0281***,False
+AI Authority Share | Target Difficulty,-0.0017***,-0.0094***,-0.0108***,False
+AI Authority Share | Task Complexity,0.0039***,0.0445***,-0.0167***,False
+Escalation Share | Decision Latency,0.0747***,0.0497***,0.0855***,False
+Escalation Share | Demand Volatility,-0.0069***,0.0198***,0.0095***,False
+Escalation Share | Forecast Accuracy,-0.0147***,-0.0351***,-0.0312***,False
+Escalation Share | Performance Pressure,0.0032***,0.0323***,0.0435***,False
+Escalation Share | Recent Negative Shock,0.0090***,0.0219***,0.0222***,False
+Escalation Share | Supply Disruptions,0.0139***,0.0372***,0.0329***,False
+Escalation Share | Target Difficulty,0.0208***,0.0153***,0.0172***,False
+Escalation Share | Task Complexity,-0.0183***,0.0224***,0.0041***,False
+Transition factors beta: coefficients on standardized transition covariates,,,,True
+From Aversion | Team (t-1) vs Team (t),-0.2650***,-0.0653,0.3796,False
+From Neutral | Team (t-1) vs Team (t),0.0997*,-0.4904***,0.4283***,False
+From Appreciation | Team (t-1) vs Team (t),0.5203,-0.3448***,-0.2161**,False
+From Aversion | Team vs Peer Average,-2.7017***,0.1539*,2.6209***,False
+From Neutral | Team vs Peer Average,-2.9341***,1.0423***,1.8651***,False
+From Appreciation | Team vs Peer Average,-3.5601***,0.6168***,2.9650***,False
+From Aversion | Target Attainment,-0.3160,0.3284***,-0.0526,False
+From Neutral | Target Attainment,-0.4358,0.1859***,0.2270***,False
+From Appreciation | Target Attainment,0.2423,-0.8502,0.5919,False

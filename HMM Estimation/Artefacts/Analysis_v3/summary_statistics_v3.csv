@@ -1,0 +1,21 @@
+Variable,Column,Role,N,Mean,SD,Skewness,Kurtosis,Min,Max
+AI Authority Share,ai_authority_share,Emission,22750,0.2549,0.2492,0.7606,-0.5362,0.015,0.955
+Escalation Share,escalation_share,Emission,22750,0.553,0.1446,-0.6609,-0.3095,0.03,0.72
+Decision Latency,decision_latency,Emission control,22750,10.2395,2.1669,-0.0467,-0.3952,3.1375,17.7345
+Demand Volatility,demand_volatility,Emission control,22750,0.427,0.1213,0.2805,-0.4318,0.0773,0.8723
+Forecast Accuracy,forecast_accuracy,Emission control,22750,0.7431,0.086,-0.0221,-0.1008,0.38,0.96
+Performance Pressure,performance_pressure,Emission control,22750,0.2353,0.1161,-0.1387,-0.6522,0.0,0.5848
+Recent Negative Shock,recent_negative_shock,Emission control,22750,0.0926,0.2899,2.8108,5.901,0.0,1.0
+Supply Disruptions,supply_disruptions,Emission control,22750,0.8175,0.9311,1.2129,1.6581,0.0,7.0
+Target Difficulty,target_difficulty,Emission control,22750,0.2498,0.0701,0.0112,-0.1121,0.02,0.5258
+Task Complexity,task_complexity,Emission control,22750,6.2491,2.4509,0.4891,0.136,1.0,15.0
+Team (t-1) vs Team (t),team_t_minus_1_vs_team_t,Transition,22750,-0.0027,0.1124,0.08,0.1728,-0.4195,0.5478
+Team vs Peer Average,team_vs_peer_average,Transition,22750,-0.0,0.1156,0.2888,-0.4537,-0.3641,0.4275
+Target Attainment,target_attainment,Transition,22750,0.0502,0.2184,4.1181,14.9602,0.0,1.0
+Composite KPI Score,composite_kpi_score,Outcome,22750,0.4461,0.1175,0.3604,-0.4378,0.1095,0.8908
+KPI Target,kpi_target,Outcome,22750,0.682,0.065,-0.0234,-0.2522,0.4449,0.9148
+Override Rate,override_rate,Outcome,22750,0.8,0.225,-0.9478,-0.0002,0.0,1.0
+Service Level Delta,service_level_delta,Outcome,22750,-0.4095,0.8249,-0.0104,0.0736,-3.4696,2.9675
+Inventory Cost Delta,inventory_cost_delta,Outcome,22750,2.0512,0.8448,-0.0805,0.0183,-1.0911,4.9917
+Expedite Cost Delta,expedite_cost_delta,Outcome,22750,2.4503,0.7878,-0.02,0.0494,-0.9261,6.4007
+Error Incident Count,error_incident_count,Outcome,22750,0.1085,0.3323,3.1209,10.1696,0.0,4.0

@@ -29,6 +29,7 @@ class ManagerProfile:
     org_unit_id: str
     site_id: str
     state: int                            # 0..n_states-1
+    transition_random_effect_xi: float     # manager random intercept in transition propensity
 
 
 @dataclass
@@ -91,13 +92,24 @@ def sample_manager_profiles(cfg: SimConfig, rng: np.random.Generator, site_ids: 
         org_unit_id = f"OU{rng.integers(1, 9):02d}"
         site_id = str(rng.choice(site_ids))
 
-        # Initial latent state from attitude
-        if baseline_ai_attitude < -0.25:
-            state = 0
-        elif baseline_ai_attitude < 0.25:
-            state = 1
+        # Initial latent state from attitude.
+        if cfg.n_states >= 4:
+            if baseline_ai_attitude < -0.45:
+                state = 0
+            elif baseline_ai_attitude < -0.10:
+                state = 1
+            elif baseline_ai_attitude < 0.35:
+                state = 2
+            else:
+                state = 3
         else:
-            state = 2
+            if baseline_ai_attitude < -0.25:
+                state = 0
+            elif baseline_ai_attitude < 0.40:
+                state = 1
+            else:
+                state = 2
+        transition_random_effect_xi = float(rng.normal(0.0, cfg.manager_heterogeneity_xi))
 
         profiles.append(
             ManagerProfile(
@@ -109,6 +121,7 @@ def sample_manager_profiles(cfg: SimConfig, rng: np.random.Generator, site_ids: 
                 org_unit_id=org_unit_id,
                 site_id=site_id,
                 state=state,
+                transition_random_effect_xi=transition_random_effect_xi,
             )
         )
     return profiles
@@ -155,25 +168,67 @@ def sample_employee_master(cfg: SimConfig, rng: np.random.Generator, managers: L
 
 
 def period_context(
+    cfg: SimConfig,
     rng: np.random.Generator,
     manager: ManagerProfile,
     previous_scores: List[float],
+    period_id: int,
 ) -> Dict[str, float]:
+    denom = max(int(cfg.n_periods) - 1, 1)
+    period_progress = float((period_id - 1) / denom)
+    period_wave = float(np.sin(2.0 * np.pi * period_progress))
+
     prior_score = float(np.mean(previous_scores[-3:])) if previous_scores else float(
         np.clip(0.48 + 0.08 * manager.state + rng.normal(0, 0.04), 0.0, 1.0)
     )
-    kpi_target = float(np.clip(rng.normal(0.64 + (0.08 if manager.high_pressure else 0.0), 0.05), 0.35, 0.95))
+    kpi_target = float(
+        np.clip(
+            rng.normal(
+                0.62
+                + 0.04 * period_progress
+                + (0.08 if manager.high_pressure else 0.0),
+                0.05,
+            ),
+            0.35,
+            0.95,
+        )
+    )
     performance_pressure = float(np.clip(kpi_target - prior_score, 0.0, 1.0))
-    target_difficulty = float(abs(kpi_target - prior_score))
-    demand_volatility = float(np.clip(rng.beta(2, 4) + 0.15 * rng.random(), 0.0, 1.0))
-    task_complexity = float(np.clip(1 + rng.poisson(3 + 5 * demand_volatility), 1, 15))
+    target_gap = float(abs(kpi_target - prior_score))
+    demand_volatility = float(
+        np.clip(
+            0.14
+            + 0.58 * rng.beta(2.0, 3.2)
+            + 0.06 * rng.random()
+            + 0.07 * period_progress
+            + 0.035 * period_wave
+            + rng.normal(0.0, 0.035),
+            0.02,
+            0.98,
+        )
+    )
+    independent_difficulty_load = float(rng.beta(2.1, 2.7))
+    independent_complexity_load = float(rng.beta(2.0, 2.0))
+    independent_disruption_load = float(rng.beta(1.4, 3.2))
+    target_difficulty = float(
+        np.clip(
+            0.34 * target_gap
+            + 0.13 * demand_volatility
+            + 0.18 * independent_difficulty_load
+            + 0.07 * period_progress
+            + rng.normal(0.0, 0.035),
+            0.02,
+            0.90,
+        )
+    )
+    task_complexity = float(np.clip(1 + rng.poisson(2.2 + 3.0 * demand_volatility + 3.5 * independent_complexity_load), 1, 15))
     task_complexity_index = task_complexity / 15.0
-    supply_disruption_count = float(rng.poisson(0.15 + 1.2 * demand_volatility))
+    supply_disruption_count = float(rng.poisson(0.12 + 0.85 * demand_volatility + 1.10 * independent_disruption_load))
 
-    forecast_accuracy_mape = float(np.clip(rng.normal(0.22 + 0.18 * demand_volatility, 0.07), 0.05, 0.60))
+    forecast_accuracy_mape = float(np.clip(rng.normal(0.19 + 0.12 * demand_volatility + 0.04 * rng.beta(2.0, 3.0), 0.085), 0.04, 0.62))
     forecast_accuracy = 1.0 - forecast_accuracy_mape
 
-    shock_prob = 0.06 + 0.08 * demand_volatility
+    shock_prob = 0.045 + 0.07 * demand_volatility + 0.055 * independent_disruption_load
     recent_negative_shock = float(int(rng.random() < shock_prob))
 
     return {
@@ -188,6 +243,9 @@ def period_context(
         "forecast_accuracy_mape": forecast_accuracy_mape,
         "forecast_accuracy": forecast_accuracy,
         "recent_negative_shock": recent_negative_shock,
+        "period_id": float(period_id),
+        "period_progress": period_progress,
+        "period_wave": period_wave,
     }
 
 
@@ -210,6 +268,7 @@ def sample_ai_uncertainty(rng: np.random.Generator, ai_confidence: float) -> flo
 
 
 def episode_decision_probabilities(
+    cfg: SimConfig,
     manager: ManagerProfile,
     ctx: Dict[str, float],
     ai_confidence: float,
@@ -223,17 +282,47 @@ def episode_decision_probabilities(
     pressure = ctx["performance_pressure"]
     shock = ctx["recent_negative_shock"]
     risk = manager.risk_aversion_index
+    complexity = ctx["task_complexity_index"]
+    volatility = ctx["demand_volatility"]
+    progress = ctx.get("period_progress", 0.0)
+    wave = ctx.get("period_wave", 0.0)
+    forecast_signal = (ctx["forecast_accuracy"] - 0.70) / 0.08
+    supply_signal = ctx["supply_disruption_count"]
+    difficulty = ctx["target_difficulty"]
 
-    base_accept = [0.15, 0.45, 0.75][s]
-    base_reject = [0.55, 0.25, 0.10][s]
+    if cfg.n_states >= 4:
+        base_accept_by_state = [0.28, 0.42, 0.58, 0.72]
+        base_reject_by_state = [0.48, 0.35, 0.20, 0.08]
+        drift_by_state = [-1.00, -0.35, 0.45, 1.00]
+        wave_by_state = [-0.30, 0.15, -0.10, 0.30]
+    else:
+        base_accept_by_state = [0.42, 0.58, 0.68]
+        base_reject_by_state = [0.42, 0.25, 0.10]
+        drift_by_state = [-0.50, 0.18, 0.68]
+        wave_by_state = [-0.24, -0.06, 0.18]
+
+    base_accept = base_accept_by_state[s]
+    base_reject = base_reject_by_state[s]
+    temporal_shift = (
+        cfg.authority_common_time_shift * progress
+        + cfg.authority_time_drift_strength * drift_by_state[s] * progress
+        + cfg.time_wave_strength * wave_by_state[s] * wave
+    )
 
     conf_effect = 0.20 * (ai_confidence - 0.5)
 
-    pressure_penalty = (0.18 if s == 0 else 0.06) * pressure * risk
-    shock_penalty = (0.20 if s <= 1 else 0.10) * shock
+    pressure_penalty = ((0.25 if s == 0 else 0.12) * pressure * risk) + 0.240 * pressure
+    shock_penalty = (0.24 if s <= 1 else 0.12) * shock
+    context_penalty = (
+        -0.085 * forecast_signal
+        + 0.070 * supply_signal
+        + 0.430 * difficulty
+        + 0.240 * complexity
+        + 0.180 * volatility
+    )
 
-    accept = clip01(base_accept + conf_effect - pressure_penalty - shock_penalty)
-    reject = clip01(base_reject + pressure_penalty + shock_penalty - 0.5 * conf_effect)
+    accept = clip01(base_accept + temporal_shift + conf_effect - pressure_penalty - shock_penalty - context_penalty)
+    reject = clip01(base_reject - 0.65 * temporal_shift + pressure_penalty + shock_penalty + 0.55 * context_penalty - 0.5 * conf_effect)
     modify = clip01(1.0 - accept - reject)
 
     if manager.governance_mode == "controlled_opening":
@@ -245,14 +334,122 @@ def episode_decision_probabilities(
     return accept / z, modify / z, reject / z
 
 
-def escalation_probability(cfg: SimConfig, manager: ManagerProfile, ai_confidence: float) -> float:
+def escalation_probability(
+    cfg: SimConfig,
+    manager: ManagerProfile,
+    ctx: Dict[str, float],
+    ai_confidence: float,
+) -> float:
     """
     Escalation probability to employees for review, validation, local input, or execution support.
     """
-    autonomy_base = {"low": 0.04, "medium": 0.08, "high": 0.12}[cfg.autonomy_level]
+    autonomy_base = {"low": 0.06, "medium": 0.10, "high": 0.15}[cfg.autonomy_level]
     low_conf = max(0.0, 0.6 - ai_confidence)
-    state_factor = [1.15, 1.00, 0.85][manager.state]
-    return clip01((autonomy_base + 0.40 * low_conf) * state_factor)
+    forecast_signal = (ctx["forecast_accuracy"] - 0.70) / 0.08
+    complexity = ctx["task_complexity_index"]
+    volatility = ctx["demand_volatility"]
+    if cfg.n_states >= 4:
+        state_factor = [1.08, 1.04, 1.02, 1.10][manager.state]
+        drift_by_state = [0.24, 0.30, 0.36, 0.44][manager.state]
+    else:
+        state_factor = [1.06, 1.00, 1.10][manager.state]
+        drift_by_state = [0.58, -0.48, -0.45][manager.state]
+    progress = ctx.get("period_progress", 0.0)
+    temporal_shift = (
+        cfg.escalation_common_time_shift * progress
+        + cfg.escalation_time_drift_strength * drift_by_state * progress
+    )
+    context_shift = (
+        -0.065 * forecast_signal
+        + 0.220 * ctx["performance_pressure"]
+        + 0.055 * ctx["supply_disruption_count"]
+        + 0.330 * ctx["target_difficulty"]
+        + 0.105 * ctx["recent_negative_shock"]
+        + 0.140 * complexity
+        + 0.120 * volatility
+    )
+    return float(np.clip((autonomy_base + 0.38 * low_conf) * state_factor + temporal_shift + context_shift, 0.045, 0.60))
+
+
+def _std_signal(value: float, center: float, scale: float, limit: float = 2.25) -> float:
+    """Bounded standardization for DGP-level manager-period control signals."""
+    if scale <= 0:
+        return 0.0
+    return float(np.clip((value - center) / scale, -limit, limit))
+
+
+def calibrate_panel_emissions(
+    cfg: SimConfig,
+    rng: np.random.Generator,
+    manager: ManagerProfile,
+    ctx: Dict[str, float],
+    ai_authority_share: float,
+    escalation_share: float,
+    decision_latency: float,
+) -> Tuple[float, float]:
+    """
+    Add a transparent manager-period calibration layer to the synthetic
+    emission shares. It keeps the raw episode-level behavior as the starting
+    point while making every pre-specified emission control identifiable in the
+    downstream HMM.
+    """
+    progress = float(ctx.get("period_progress", 0.0))
+    strength = float(getattr(cfg, "emission_control_effect_strength", 0.075))
+    noise_sd = float(getattr(cfg, "emission_panel_noise_sd", 0.010))
+    state_target_weight = float(np.clip(getattr(cfg, "emission_state_target_weight", 0.68), 0.0, 1.0))
+    s = int(manager.state)
+
+    signals = np.array(
+        [
+            _std_signal(decision_latency, 8.8, 2.8),
+            _std_signal(ctx["demand_volatility"], 0.40, 0.16),
+            _std_signal(ctx["forecast_accuracy"], 0.76, 0.095),
+            _std_signal(ctx["performance_pressure"], 0.08, 0.075),
+            _std_signal(ctx["recent_negative_shock"], 0.10, 0.30),
+            _std_signal(ctx["supply_disruption_count"], 0.62, 0.85),
+            _std_signal(ctx["target_difficulty"], 0.22, 0.105),
+            _std_signal(ctx["task_complexity"], 5.8, 2.5),
+        ],
+        dtype=float,
+    )
+
+    authority_weights = np.array([-0.55, -1.35, 0.80, -0.95, -0.70, -0.85, -1.15, -2.40])
+    escalation_weights = np.array([0.65, 1.00, -0.80, 0.95, 0.80, 0.90, 1.05, 1.10])
+    normalizer = float(np.sqrt(len(signals)))
+
+    authority_control_shift = strength * float(authority_weights @ signals) / normalizer
+    escalation_control_shift = strength * float(escalation_weights @ signals) / normalizer
+
+    authority_intercepts = tuple(getattr(cfg, "authority_state_time_intercepts", (0.20, 0.43, 0.53)))
+    authority_slopes = tuple(getattr(cfg, "authority_state_time_slopes", (-0.15, -0.045, 0.12)))
+    escalation_intercepts = tuple(getattr(cfg, "escalation_state_time_intercepts", (0.46, 0.55, 0.39)))
+    escalation_slopes = tuple(getattr(cfg, "escalation_state_time_slopes", (0.18, -0.055, 0.19)))
+    target_idx = min(s, len(authority_intercepts) - 1, len(authority_slopes) - 1)
+    escalation_idx = min(s, len(escalation_intercepts) - 1, len(escalation_slopes) - 1)
+    authority_state_target = float(authority_intercepts[target_idx] + authority_slopes[target_idx] * progress)
+    escalation_state_target = float(escalation_intercepts[escalation_idx] + escalation_slopes[escalation_idx] * progress)
+
+    ai_authority_share = float(
+        np.clip(
+            (1.0 - state_target_weight) * ai_authority_share
+            + state_target_weight * authority_state_target
+            + authority_control_shift
+            + rng.normal(0.0, noise_sd),
+            0.015,
+            0.955,
+        )
+    )
+    escalation_share = float(
+        np.clip(
+            (1.0 - state_target_weight) * escalation_share
+            + state_target_weight * escalation_state_target
+            + escalation_control_shift
+            + rng.normal(0.0, noise_sd),
+            0.030,
+            0.720,
+        )
+    )
+    return ai_authority_share, escalation_share
 
 
 def update_latent_state(
@@ -269,22 +466,100 @@ def update_latent_state(
     s = manager.state
     pressure = ctx["performance_pressure"]
 
-    stay = [0.78, 0.62, 0.80][s]
-    up = [0.18, 0.25, 0.00][s]
-    down = [0.00, 0.13, 0.18][s]
+    if cfg.n_states >= 4:
+        stay = [0.72, 0.58, 0.58, 0.76][s]
+        up = [0.24, 0.25, 0.22, 0.00][s]
+        down = [0.00, 0.16, 0.16, 0.20][s]
+    else:
+        stay = [0.70, 0.66, 0.78][s]
+        up = [0.18, 0.17, 0.00][s]
+        down = [0.00, 0.13, 0.10][s]
 
     perf = float(np.clip(kpi_improvement_score, -2.0, 2.0))
-    up_adj = 0.10 * max(0.0, perf)
-    down_adj = 0.08 * max(0.0, -perf)
+    xi = float(getattr(manager, "transition_random_effect_xi", 0.0))
+    xi_scaled = float(np.tanh(xi))
+    ai_authority_signal = float(ctx.get("ai_authority_share", 0.5))
+    peer_signal = float(ctx.get("peer_benchmark_proxy", 0.0))
+    target_gap = float(ctx.get("target_gap_signed", 0.0))
+    ai_reliance = max(0.0, ai_authority_signal - 0.45)
+    manual_reliance = max(0.0, 0.45 - ai_authority_signal)
+    peer_outperformance = max(0.0, peer_signal)
+    peer_underperformance = max(0.0, -peer_signal)
+    target_success = max(0.0, target_gap)
+    target_shortfall = max(0.0, -target_gap)
+    positive_feedback = max(0.0, perf) + 0.75 * peer_outperformance + 0.45 * target_success
+    negative_feedback = max(0.0, -perf) + 0.75 * peer_underperformance + 0.45 * target_shortfall
+    ai_best_practice_signal = ai_reliance * (1.0 + positive_feedback)
+    manual_success_signal = manual_reliance * (1.0 + positive_feedback)
+    up_adj = 0.13 * max(0.0, perf) + 0.04 * max(0.0, xi_scaled)
+    down_adj = 0.08 * max(0.0, -perf) + 0.04 * max(0.0, -xi_scaled)
 
     down_adj += 0.12 * max(0.0, override_rate - 0.35)
 
     if pressure > 0.65 and perf < 0:
         down_adj += 0.05
 
-    up = clip01(up + up_adj)
-    down = clip01(down + down_adj)
+    progress = ctx.get("period_progress", 0.0)
+    max_state = max(cfg.n_states - 1, 1)
+    state_position = s / max_state
+    time_up_adj = cfg.latent_upward_time_shift * progress * (1.0 - state_position)
+    time_down_relief = cfg.latent_downward_time_shift * progress * state_position
+
+    up = clip01(up + up_adj + time_up_adj)
+    down = clip01(max(0.0, down + down_adj - time_down_relief))
     stay = clip01(1.0 - up - down)
+
+    if cfg.n_states == 3:
+        direct_high = 0.0
+        if s == 0:
+            # Aversive managers treat successful manual intervention as
+            # evidence for continued withholding, while clear AI peer wins can
+            # still pull them toward appreciation.
+            aversion_reinforcement = (
+                0.18 * manual_success_signal
+                + 0.10 * negative_feedback
+                + 0.08 * max(0.0, override_rate - 0.45)
+            )
+            ai_peer_pull = 0.16 * ai_best_practice_signal + 0.12 * peer_outperformance
+            direct_high = clip01(
+                0.02
+                + 0.18 * max(0.0, perf)
+                + 0.03 * progress
+                + 0.03 * max(0.0, xi_scaled)
+                + ai_peer_pull
+                - 0.10 * aversion_reinforcement
+            )
+            up = clip01(up + 0.07 * max(0.0, perf) + ai_peer_pull - 0.16 * aversion_reinforcement)
+            stay = clip01(stay + aversion_reinforcement)
+        elif s == 1:
+            # Neutral managers are deliberately the most benchmark-sensitive:
+            # positive AI-backed peer signals move them upward, while negative
+            # feedback or manual reliance moves them downward.
+            neutral_up_signal = 0.24 * ai_best_practice_signal + 0.14 * peer_outperformance + 0.05 * max(0.0, xi_scaled)
+            neutral_down_signal = 0.16 * negative_feedback + 0.10 * manual_reliance + 0.05 * max(0.0, -xi_scaled)
+            up = clip01(up + neutral_up_signal)
+            down = clip01(down + neutral_down_signal)
+        elif s == 2 and perf > 0:
+            appreciation_reinforcement = 0.12 * perf + 0.16 * ai_best_practice_signal + 0.08 * peer_outperformance
+            stay = clip01(stay + appreciation_reinforcement)
+            down = clip01(max(0.0, down - 0.08 * appreciation_reinforcement + 0.10 * negative_feedback))
+        elif s == 2 and xi_scaled > 0:
+            stay = clip01(stay + 0.04 * xi_scaled)
+            down = clip01(max(0.0, down - 0.03 * xi_scaled))
+        elif s == 2:
+            down = clip01(down + 0.12 * negative_feedback + 0.08 * peer_underperformance)
+
+        probs = np.zeros(cfg.n_states, dtype=float)
+        probs[s] += stay
+        if s > 0:
+            probs[s - 1] += down
+        if s < cfg.n_states - 1:
+            probs[s + 1] += up
+        if s == 0:
+            probs[2] += direct_high
+        probs = np.maximum(probs, 0.0)
+        probs = probs / probs.sum()
+        return int(rng.choice(np.arange(cfg.n_states), p=probs))
 
     r = rng.random()
     if r < down and s > 0:
@@ -349,6 +624,7 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                 region=site_region_map.get(m.site_id, ""),
                 governance_mode=m.governance_mode,
                 high_pressure=int(m.high_pressure),
+                transition_random_effect_xi=m.transition_random_effect_xi,
             )
         )
 
@@ -386,7 +662,7 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
 
         # --- Manager-period loop
         for m in managers:
-            ctx = period_context(rng, m, manager_score_history[m.manager_id])
+            ctx = period_context(cfg, rng, m, manager_score_history[m.manager_id], period_id)
             n_episodes = int(max(5, rng.integers(max(5, base_eps - 8), base_eps + 9)))
 
             # period accumulators (manager panel)
@@ -427,8 +703,8 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
 
                 ai_recommendation_type = str(rng.choice(["transfer", "reroute", "reorder", "expedite"]))
 
-                escalation_flag = int(rng.random() < escalation_probability(cfg, m, ai_conf))
-                p_acc, p_mod, p_rej = episode_decision_probabilities(m, ctx, ai_conf)
+                escalation_flag = int(rng.random() < escalation_probability(cfg, m, ctx, ai_conf))
+                p_acc, p_mod, p_rej = episode_decision_probabilities(cfg, m, ctx, ai_conf)
                 manager_action = choice_with_probs(rng, ["accept", "modify", "reject"], [p_acc, p_mod, p_rej])
 
                 override_flag = int(manager_action in ["modify", "reject"])
@@ -571,6 +847,15 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
             override_rate = overridden / n_episodes
             escalation_share = escalated / n_episodes
             decision_latency = float(np.mean(decision_latency_list)) if decision_latency_list else float("nan")
+            ai_authority_share, escalation_share = calibrate_panel_emissions(
+                cfg=cfg,
+                rng=rng,
+                manager=m,
+                ctx=ctx,
+                ai_authority_share=ai_authority_share,
+                escalation_share=escalation_share,
+                decision_latency=decision_latency,
+            )
 
             quality = float(np.mean(correctness_list)) if correctness_list else 0.5
             collab_effect = (ai_authority_share - 0.5) * (quality - 0.5)
@@ -610,10 +895,13 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
             composite_kpi_score = float(
                 np.clip(
                     0.54
+                    + ([-0.035, 0.000, 0.055][m.state] if cfg.n_states == 3 else 0.0)
                     + 0.28 * (quality - 0.5)
-                    + 0.12 * ai_authority_share
+                    + 0.16 * ai_authority_share
+                    + 0.05 * ai_authority_share * max(0.0, quality - 0.5)
                     - 0.10 * override_rate
-                    - 0.08 * escalation_share
+                    - 0.05 * escalation_share
+                    + 0.05 * escalation_share * max(0.0, 0.65 - quality)
                     - 0.12 * ctx["demand_volatility"]
                     - 0.10 * normalized_error_rate
                     + rng.normal(0, 0.04),
@@ -625,6 +913,16 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
             previous_score = previous_scores[-1] if previous_scores else ctx["prior_composite_kpi_score"]
             team_t_minus_1_vs_team_t = float(composite_kpi_score - previous_score)
             target_attainment = int(composite_kpi_score >= ctx["kpi_target"])
+            transition_ctx = dict(ctx)
+            transition_ctx.update(
+                {
+                    "ai_authority_share": ai_authority_share,
+                    "escalation_share": escalation_share,
+                    "peer_benchmark_proxy": composite_kpi_score
+                    - (0.50 + 0.03 * ctx["period_progress"] - 0.02 * ctx["demand_volatility"]),
+                    "target_gap_signed": composite_kpi_score - ctx["kpi_target"],
+                }
+            )
 
             new_state = update_latent_state(
                 cfg=cfg,
@@ -632,7 +930,7 @@ def simulate(cfg: SimConfig) -> Dict[str, pd.DataFrame]:
                 manager=m,
                 kpi_improvement_score=kpi_improvement_score / 3.0,
                 override_rate=override_rate,
-                ctx=ctx,
+                ctx=transition_ctx,
             )
 
             period_manager_rows.append(
