@@ -1,0 +1,2 @@
+spec,J,P,transition_cols,LL,AIC,BIC,k_params,n_obs,soft_converged,scipy_success,strict_converged,screen_converged,continuation_round,iterations,occupancy_min,certainty_mean,runtime_min,source,message
+three_period,3,3,"team_prev3_avg_vs_team_t, team_vs_peer_average_3period, target_attainment_3period",-9495.351738017202,19188.703476034403,19983.903198047934,99,22750,True,True,True,False,4,210,0.17019799452258227,0.9434101674649993,14.284993469715118,candidate_continuation,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH

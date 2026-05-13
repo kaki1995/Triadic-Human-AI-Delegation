@@ -1,0 +1,37 @@
+Variable,State 1 (Aversion),State 2 (Neutral),State 3 (Appreciation)
+Dependent emission: AI authority share,,,
+"Emission factors (rho_m, eta)",,,
+Emission intercept,0.0216***,0.2857***,0.6151***
+Emission standard deviation (sigma),,,
+AI authority share,0.0249,0.0733,0.0590
+Emission control factors (W),,,
+Decision latency,-0.0173***,-0.2281***,-0.1427***
+Demand volatility,0.0019***,0.0267***,-0.0042***
+Forecast accuracy,0.0014***,0.0000,0.0232***
+Performance pressure,-0.0015***,-0.0344***,-0.0478***
+Recent negative shock,-0.0008***,-0.0056***,-0.0170***
+Supply disruptions,-0.0012***,-0.0083***,-0.0281***
+Target difficulty,-0.0017***,-0.0094***,-0.0108***
+Task complexity,0.0039***,0.0445***,-0.0167***
+Dependent emission: Escalation share,,,
+"Emission factors (rho_m, eta)",,,
+Emission intercept,0.6708***,0.5326***,0.3855***
+Emission standard deviation (sigma),,,
+Escalation share,0.0417,0.0647,0.0542
+Emission control factors (W),,,
+Decision latency,0.0747***,0.0497***,0.0855***
+Demand volatility,-0.0069***,0.0198***,0.0095***
+Forecast accuracy,-0.0147***,-0.0351***,-0.0312***
+Performance pressure,0.0032***,0.0323***,0.0435***
+Recent negative shock,0.0090***,0.0219***,0.0222***
+Supply disruptions,0.0139***,0.0372***,0.0329***
+Target difficulty,0.0208***,0.0153***,0.0172***
+Task complexity,-0.0183***,0.0224***,0.0041***
+Transition intercept (alpha),,,
+From Aversion,2.1850,2.8852,-2.4563
+From Neutral,0.1798,2.7605,-0.8038
+From Appreciation,-3.0411,2.2675,3.4141
+Transition factors (beta),,,
+Team (t-1) vs. Team (t),-0.0455,-0.3752***,0.2106***
+Team vs. Peer,-2.8131***,0.8097***,2.1444***
+Threshold Trigger,-0.1070,0.1957***,0.2270***

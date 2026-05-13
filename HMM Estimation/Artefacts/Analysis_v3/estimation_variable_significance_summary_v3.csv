@@ -1,0 +1,14 @@
+section,factor,n_estimates,min_p_value,n_p_lt_0_10,n_p_lt_0_05,n_p_lt_0_01,any_significant_5pct,any_significant_1pct
+Emission baseline mean,ai_authority_share,3,1e-12,3,3,3,True,True
+Emission baseline mean,escalation_share,3,1e-12,3,3,3,True,True
+Emission control effect,decision_latency,6,1e-12,6,6,6,True,True
+Emission control effect,demand_volatility,6,1e-12,6,6,6,True,True
+Emission control effect,forecast_accuracy,6,1e-12,5,5,5,True,True
+Emission control effect,performance_pressure,6,1e-12,6,6,6,True,True
+Emission control effect,recent_negative_shock,6,1e-12,6,6,6,True,True
+Emission control effect,supply_disruptions,6,1e-12,6,6,6,True,True
+Emission control effect,target_difficulty,6,1e-12,6,6,6,True,True
+Emission control effect,task_complexity,6,1e-12,6,6,6,True,True
+Transition beta,target_attainment,9,1e-12,3,3,3,True,True
+Transition beta,team_t_minus_1_vs_team_t,9,1e-12,6,5,4,True,True
+Transition beta,team_vs_peer_average,9,1e-12,9,8,8,True,True

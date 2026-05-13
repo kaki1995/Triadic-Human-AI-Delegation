@@ -1,0 +1,7 @@
+metric,state,period_1_mean,period_26_mean,delta,slope_per_period,p_value,significance,n_periods,trend_source
+AI Authority Share,Aversion,0.3,0.08000000000000002,-0.21999999999999997,-0.008858399223915101,1e-06,***,26,model_implied_calibrated_state_time_profile
+AI Authority Share,Neutral,0.36,0.32,-0.03999999999999998,-0.0016000000000000003,1e-06,***,26,model_implied_calibrated_state_time_profile
+AI Authority Share,Appreciation,0.42,0.62,0.2,0.007624198187633781,1e-06,***,26,model_implied_calibrated_state_time_profile
+Escalation Share,Aversion,0.54,0.64,0.09999999999999998,0.003930530861744789,1e-06,***,26,model_implied_calibrated_state_time_profile
+Escalation Share,Neutral,0.51,0.485,-0.025000000000000022,-0.0010000000000000009,1e-06,***,26,model_implied_calibrated_state_time_profile
+Escalation Share,Appreciation,0.47,0.405,-0.06499999999999995,-0.0026261104475657853,1e-06,***,26,model_implied_calibrated_state_time_profile

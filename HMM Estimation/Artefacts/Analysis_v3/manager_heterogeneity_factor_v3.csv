@@ -1,0 +1,2 @@
+factor,value,role,transition_model,interpretation
+xi_i,0.6447,manager-specific random effect controlling persistent heterogeneity in transition propensity,"ordered-logit reporting form: q_jkt = Pr(S_t = k | S_{t-1}=j, x_it, xi_i), with latent propensity eta_ijt = alpha_j + x_it beta_j + xi_i",larger positive xi_i shifts a manager toward higher delegation states; negative xi_i shifts persistence toward lower delegation states

@@ -1,0 +1,583 @@
+candidate,controls,section,variable,estimate,standard_error,z_stat,p_value,significance,state_idx,emission,control,from_state,to_state
+k1__decision_latency,decision_latency,Emission baseline mean,ai_authority_share,0.5097635847557108,0.1937366011163818,2.631219820200544,0.0085078986426057,***,0.0,ai_authority_share,,,
+k1__decision_latency,decision_latency,Emission baseline mean,escalation_share,0.2966261822551659,0.1687386147579059,1.757903386138045,0.078763949589794,*,0.0,escalation_share,,,
+k1__decision_latency,decision_latency,Emission baseline mean,ai_authority_share,0.7048134999754442,0.1957512737353107,3.60055639243744,0.0003175369466232,***,1.0,ai_authority_share,,,
+k1__decision_latency,decision_latency,Emission baseline mean,escalation_share,0.4408994968140461,0.1547784981966906,2.8485836337147843,0.0043914309604013,***,1.0,escalation_share,,,
+k1__decision_latency,decision_latency,Emission baseline mean,ai_authority_share,0.2229881999561668,0.171482374834656,1.3003563787308925,0.1934788532209852,,2.0,ai_authority_share,,,
+k1__decision_latency,decision_latency,Emission baseline mean,escalation_share,0.2732633947676448,0.1826752269729242,1.4958973873788997,0.1346803972555916,,2.0,escalation_share,,,
+k1__decision_latency,decision_latency,Emission control effect,ai_authority_share|decision_latency,-0.1287272625281334,0.2408655074445782,-0.5344362665034256,0.5930397331962087,,0.0,ai_authority_share,decision_latency,,
+k1__decision_latency,decision_latency,Emission control effect,escalation_share|decision_latency,0.0657734889948111,0.1612706030131143,0.4078454954959308,0.6833871100637614,,0.0,escalation_share,decision_latency,,
+k1__decision_latency,decision_latency,Emission control effect,ai_authority_share|decision_latency,-0.1089761478116494,0.1910848334224099,-0.5703024455674515,0.5684725824859436,,1.0,ai_authority_share,decision_latency,,
+k1__decision_latency,decision_latency,Emission control effect,escalation_share|decision_latency,0.0886638528116167,0.168461629899192,0.5263148223406924,0.5986694861115691,,1.0,escalation_share,decision_latency,,
+k1__decision_latency,decision_latency,Emission control effect,ai_authority_share|decision_latency,-0.0686480382976294,0.112563502017166,-0.609860541538238,0.5419541928748746,,2.0,ai_authority_share,decision_latency,,
+k1__decision_latency,decision_latency,Emission control effect,escalation_share|decision_latency,0.0874781950516117,0.1878495505292075,0.4656822164608282,0.6414429834678907,,2.0,escalation_share,decision_latency,,
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,-0.3192549702434142,1.0100836365431145,-0.316067856851958,0.7519510035762043,,,,,0.0,0.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,0.6795508015386913,1.249155190638809,0.544008307879803,0.5864357558555326,,,,,0.0,0.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,0.065367698794622,1.55704223022236,0.0419819690987359,0.9665130720182812,,,,,0.0,0.0
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,0.1236659690241088,1.01543437782723,0.1217862736622354,0.903068285055729,,,,,0.0,1.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,1.5692263183147035,1.3799649276072568,1.1371494209172477,0.2554758269045476,,,,,0.0,1.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,0.2672137937157625,1.1571367521189695,0.2309267190990484,0.8173717328369767,,,,,0.0,1.0
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,0.2051610388707077,1.005797607311904,0.2039784519064639,0.8383703377850309,,,,,0.0,2.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,-2.257404096107696,1.210255877392644,-1.8652287820084887,0.06214934282104,*,,,,0.0,2.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,-0.3259169970103618,1.5116505913383678,-0.2156033933223981,0.8292969105222623,,,,,0.0,2.0
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,-0.1829736141788087,1.2281143033504585,-0.1489874465916018,0.8815635385750127,,,,,1.0,0.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,0.2902846611242899,1.4654230884796744,0.1980893186454774,0.8429751817332569,,,,,1.0,0.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,-0.4605064638172563,1.0128570538428991,-0.4546608646008244,0.649353239932043,,,,,1.0,0.0
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,-0.2168700860535325,1.0717062630512717,-0.2023596329801025,0.839635583745356,,,,,1.0,1.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,2.288002809298627,1.2814491044764855,1.7854808289349513,0.074183358230992,*,,,,1.0,1.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,-0.2090134300341401,1.055774187671128,-0.1979717182659967,0.8430671913283423,,,,,1.0,1.0
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,0.4220490407562559,1.366219391815194,0.3089174720287864,0.7573843056675527,,,,,1.0,2.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,-2.622470980821077,1.4167029557727548,-1.851108568761773,0.0641539356151983,*,,,,1.0,2.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,0.6924254042617846,1.097176535209058,0.6310975326589978,0.5279767543220286,,,,,1.0,2.0
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,-0.5216663062259083,1.7104366242806222,-0.304990140424122,0.7603736616087953,,,,,2.0,0.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,0.9758286800741596,1.2876327290352163,0.7578470615649215,0.4485425450740599,,,,,2.0,0.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,0.2075115839015366,1.926199800213112,0.1077310795477072,0.9142090150671104,,,,,2.0,0.0
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,0.6567387888654578,2.262968075786651,0.2902112477380675,0.7716546318779693,,,,,2.0,1.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,0.8561873079464976,2.162955948965564,0.3958413061329196,0.6922221025540645,,,,,2.0,1.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,0.304557786104651,1.4262984852068856,0.2135301896927098,0.8309134440850554,,,,,2.0,1.0
+k1__decision_latency,decision_latency,Transition beta,team_t_minus_1_vs_team_t,-0.1211940318656846,1.3793974712702692,-0.0878601232711255,0.9299878510089684,,,,,2.0,2.0
+k1__decision_latency,decision_latency,Transition beta,team_vs_peer_average,-1.889502568562012,1.545795795973716,-1.2223494031252624,0.2215755243075612,,,,,2.0,2.0
+k1__decision_latency,decision_latency,Transition beta,target_attainment,-0.5543265899049438,2.3585981019928424,-0.2350237581538705,0.814190293277345,,,,,2.0,2.0
+k1__task_complexity,task_complexity,Emission baseline mean,ai_authority_share,0.5157288901849123,0.2578094107937435,2.0004269378572586,0.0454541819995557,**,0.0,ai_authority_share,,,
+k1__task_complexity,task_complexity,Emission baseline mean,escalation_share,0.3417124850196062,0.1709241856925262,1.9992049904178533,0.0455861788438722,**,0.0,escalation_share,,,
+k1__task_complexity,task_complexity,Emission baseline mean,ai_authority_share,0.7912973400306897,0.1086519940888349,7.282860721209746,3.2684965844964614e-13,***,1.0,ai_authority_share,,,
+k1__task_complexity,task_complexity,Emission baseline mean,escalation_share,0.3653808224495848,0.1694465684798457,2.1563188073238777,0.0310587796908619,**,1.0,escalation_share,,,
+k1__task_complexity,task_complexity,Emission baseline mean,ai_authority_share,0.1745418733122884,0.222038526070934,0.7860882361312739,0.4318157956822865,,2.0,ai_authority_share,,,
+k1__task_complexity,task_complexity,Emission baseline mean,escalation_share,0.3711849477066642,0.1929716776461443,1.9235203436812771,0.0544147340981955,*,2.0,escalation_share,,,
+k1__task_complexity,task_complexity,Emission control effect,ai_authority_share|task_complexity,0.0129655674908837,0.1636013755610993,0.0792509686817489,0.9368330048968952,,0.0,ai_authority_share,task_complexity,,
+k1__task_complexity,task_complexity,Emission control effect,escalation_share|task_complexity,0.029318841009907,0.1682657804413023,0.174241256499176,0.861675863417847,,0.0,escalation_share,task_complexity,,
+k1__task_complexity,task_complexity,Emission control effect,ai_authority_share|task_complexity,-0.0064874389286609,0.1137340918807836,-0.0570404073341624,0.9545130071237664,,1.0,ai_authority_share,task_complexity,,
+k1__task_complexity,task_complexity,Emission control effect,escalation_share|task_complexity,0.0211810838341882,0.1668855860009175,0.1269197918271491,0.8990038817085204,,1.0,escalation_share,task_complexity,,
+k1__task_complexity,task_complexity,Emission control effect,ai_authority_share|task_complexity,0.006578594103771,0.1980537545725759,0.0332162049538949,0.9735021755685402,,2.0,ai_authority_share,task_complexity,,
+k1__task_complexity,task_complexity,Emission control effect,escalation_share|task_complexity,0.0211797669172772,0.1558001101738242,0.1359419251606897,0.8918671916142811,,2.0,escalation_share,task_complexity,,
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,-0.2389953494682806,1.1506366924000166,-0.2077070469304957,0.8354577150248388,,,,,0.0,0.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,0.5359401852637952,1.0662782462581446,0.5026269523405852,0.615226576157311,,,,,0.0,0.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,0.0711330110253076,3.4883608397064862,0.0203915289426574,0.983731041371323,,,,,0.0,0.0
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,0.8581373787038531,1.3731488633536897,0.6249412584502996,0.5320096121727891,,,,,0.0,1.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,2.32970834160179,1.2040405217942869,1.9349085844137608,0.0530015145910871,*,,,,0.0,1.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,0.3935451655150975,3.394821159711693,0.1159251539331513,0.9077118601371424,,,,,0.0,1.0
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,-0.6095228593672215,1.636134471505073,-0.3725383640419996,0.709492053796984,,,,,0.0,2.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,-2.8739874984927063,1.475027755082471,-1.9484294370664348,0.0513636003824582,*,,,,0.0,2.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,-0.4580884251737671,6.667267527846546,-0.0687070712642791,0.9452227894529768,,,,,0.0,2.0
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,-0.0461262350009748,1.4730531648870095,-0.0313133538561135,0.9750196407937686,,,,,1.0,0.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,0.358540239808511,1.3950125991547917,0.2570157717756405,0.7971665978355187,,,,,1.0,0.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,-0.5437402840892126,4.776764449737349,-0.1138302484475888,0.9093723596390344,,,,,1.0,0.0
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,0.5498903244319862,1.4244603005380247,0.3860341521798047,0.6994713757344668,,,,,1.0,1.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,2.7675189609142925,1.4791090249256649,1.871071648050676,0.0613351507543094,*,,,,1.0,1.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,0.1630030437512857,6.188821483445171,0.0263383011106899,0.978987505630026,,,,,1.0,1.0
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,-0.4815581550111923,0.9998039828880068,-0.4816525671563904,0.630052776741262,,,,,1.0,2.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,-3.170156543829575,1.9671088018927096,-1.6115816983683455,0.1070529958956882,,,,,1.0,2.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,0.4036318974083508,10.79312146935553,0.0373971421107755,0.9701683513436824,,,,,1.0,2.0
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,-0.3788865826701874,1.0961138827480006,-0.3456635196703319,0.7295956031999982,,,,,2.0,0.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,0.645880102312748,1.1827501892124956,0.5460832796338768,0.5850086926876827,,,,,2.0,0.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,0.1406398681768694,1.198423782870473,0.1173540363493186,0.9065795059948204,,,,,2.0,0.0
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,0.9593329595531368,1.462396294092377,0.6560006774008806,0.5118236883672509,,,,,2.0,1.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,2.124603506324912,1.1575793055852293,1.83538483806152,0.0664486886352995,*,,,,2.0,1.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,0.468934175635617,1.4856755994857702,0.3156369908733286,0.752278057267457,,,,,2.0,1.0
+k1__task_complexity,task_complexity,Transition beta,team_t_minus_1_vs_team_t,-0.5666322352969843,1.0972056990491543,-0.516432092713364,0.6055526560632627,,,,,2.0,2.0
+k1__task_complexity,task_complexity,Transition beta,team_vs_peer_average,-2.8276704209824306,1.0109267670008717,-2.797107083603409,0.0051562440613508,***,,,,2.0,2.0
+k1__task_complexity,task_complexity,Transition beta,target_attainment,-0.6515821480212718,1.9388155246890564,-0.3360722769773423,0.7368163635596883,,,,,2.0,2.0
+k1__target_difficulty,target_difficulty,Emission baseline mean,ai_authority_share,0.5429128225277142,0.2405261345804302,2.257188490035656,0.0239962993213045,**,0.0,ai_authority_share,,,
+k1__target_difficulty,target_difficulty,Emission baseline mean,escalation_share,0.3448715835587016,0.168750807049919,2.04367368421938,0.0409857946225296,**,0.0,escalation_share,,,
+k1__target_difficulty,target_difficulty,Emission baseline mean,ai_authority_share,0.7973131045733352,0.1275679631314964,6.250104532526469,4.10178113696702e-10,***,1.0,ai_authority_share,,,
+k1__target_difficulty,target_difficulty,Emission baseline mean,escalation_share,0.3864461983196156,0.1598928938891019,2.4169066486947552,0.0156530309587075,**,1.0,escalation_share,,,
+k1__target_difficulty,target_difficulty,Emission baseline mean,ai_authority_share,0.2215216954052973,0.2303909274393236,0.9615035534054952,0.3362990396738583,,2.0,ai_authority_share,,,
+k1__target_difficulty,target_difficulty,Emission baseline mean,escalation_share,0.3373536939713628,0.1642646560172499,2.053720515117606,0.0400027497959105,**,2.0,escalation_share,,,
+k1__target_difficulty,target_difficulty,Emission control effect,ai_authority_share|target_difficulty,-0.0047981925564954,0.2246760526120514,-0.0213560479664493,0.9829616342028556,,0.0,ai_authority_share,target_difficulty,,
+k1__target_difficulty,target_difficulty,Emission control effect,escalation_share|target_difficulty,0.0611334841238542,0.1713172336834958,0.3568437500969505,0.7212087817251918,,0.0,escalation_share,target_difficulty,,
+k1__target_difficulty,target_difficulty,Emission control effect,ai_authority_share|target_difficulty,-0.0122621736713952,0.1083475385403047,-0.1131744554292183,0.9098922471463564,,1.0,ai_authority_share,target_difficulty,,
+k1__target_difficulty,target_difficulty,Emission control effect,escalation_share|target_difficulty,0.0602278582935367,0.1560829196333073,0.3858709103791289,0.6995922754626736,,1.0,escalation_share,target_difficulty,,
+k1__target_difficulty,target_difficulty,Emission control effect,ai_authority_share|target_difficulty,-0.0495994586435243,0.1875888628451268,-0.2644051352050342,0.7914677549687905,,2.0,ai_authority_share,target_difficulty,,
+k1__target_difficulty,target_difficulty,Emission control effect,escalation_share|target_difficulty,0.0503493788361021,0.1680211032994621,0.2996610416631121,0.7644357179224737,,2.0,escalation_share,target_difficulty,,
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,-0.2236565753447376,1.3490264531538907,-0.1657910968475456,0.8683213528446805,,,,,0.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,0.4287505028697622,1.2031490828717273,0.3563569211609274,0.7215732864594377,,,,,0.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,0.1404810437162828,3.9737890237838176,0.0353519129665614,0.9717991286143765,,,,,0.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,1.0240334281857122,1.1766411987778995,0.8703022036363413,0.3841352749972699,,,,,0.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,1.956089618135316,1.0630496053778482,1.840073697633374,0.0657574182351861,*,,,,0.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,0.417153421055055,2.2941156710868764,0.1818362632331531,0.8557112249624743,,,,,0.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,-0.7909028481474485,1.749928799359017,-0.451962873253557,0.6512957289152954,,,,,0.0,2.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,-2.3935112684982043,1.3560775329291983,-1.7650253841519623,0.0775594996185498,*,,,,0.0,2.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,-0.5512835241824096,5.814996047796101,-0.0948037659271234,0.9244706955705332,,,,,0.0,2.0
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,-0.0532647550160985,1.356596808090764,-0.0392635119723316,0.9686802973986484,,,,,1.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,0.3858441395477949,1.7091758084983812,0.2257486547781081,0.8213969136888446,,,,,1.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,-0.4734889534256393,5.488932793765819,-0.0862624796505825,0.9312577641601608,,,,,1.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,0.6117727286666166,1.073309798418337,0.5699870899978218,0.5686864543161096,,,,,1.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,2.537303370946233,1.4010497036092633,1.811001682816713,0.070140591177181,*,,,,1.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,0.1539015477722143,4.619282409792676,0.0333171982396984,0.97342163916117,,,,,1.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,-0.5365448537409773,1.415828963879169,-0.3789616312629465,0.7047163562720922,,,,,1.0,2.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,-2.9673200917618976,2.3647668891942915,-1.254804482133503,0.2095497451083698,,,,,1.0,2.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,0.342243209870297,9.93131202261044,0.0344610268100647,0.972509519976426,,,,,1.0,2.0
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,-0.3429169747321594,1.1458801243102017,-0.2992607755881873,0.764741080465591,,,,,2.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,0.5011413929938281,1.537699341817626,0.3259033670401768,0.7444974681353409,,,,,2.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,0.2621179009772947,2.2818877765180225,0.114868883419528,0.9085490492323648,,,,,2.0,0.0
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,1.2074059848351733,1.1503128139652463,1.049632734832468,0.2938870007157246,,,,,2.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,1.69600466426527,3.143300602952121,0.5395617150559568,0.5894993252696472,,,,,2.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,0.5612184506648702,2.181364623643816,0.2572786065116405,0.7969637062528883,,,,,2.0,1.0
+k1__target_difficulty,target_difficulty,Transition beta,team_t_minus_1_vs_team_t,-0.8508077432198321,1.0536171896218838,-0.8075112589280792,0.4193719905180566,,,,,2.0,2.0
+k1__target_difficulty,target_difficulty,Transition beta,team_vs_peer_average,-2.254644579544266,2.702707485161433,-0.8342170182762474,0.4041587028419515,,,,,2.0,2.0
+k1__target_difficulty,target_difficulty,Transition beta,target_attainment,-0.8656382130395174,1.0380749589466542,-0.8338879630791689,0.4043441207753029,,,,,2.0,2.0
+k1__demand_volatility,demand_volatility,Emission baseline mean,ai_authority_share,0.5110881956195273,0.2497289496910149,2.04657167802086,0.0407001580279355,**,0.0,ai_authority_share,,,
+k1__demand_volatility,demand_volatility,Emission baseline mean,escalation_share,0.3355881236987773,0.1688808526195751,1.9871294968810391,0.0469080482471226,**,0.0,escalation_share,,,
+k1__demand_volatility,demand_volatility,Emission baseline mean,ai_authority_share,0.7849420447784822,0.1628614019583597,4.819693526764404,1.4377892114669777e-06,***,1.0,ai_authority_share,,,
+k1__demand_volatility,demand_volatility,Emission baseline mean,escalation_share,0.3764046201650117,0.1702239794778178,2.211231468795862,0.0270198122621092,**,1.0,escalation_share,,,
+k1__demand_volatility,demand_volatility,Emission baseline mean,ai_authority_share,0.173762208379555,0.2083172588500365,0.834122959080616,0.404211698669612,,2.0,ai_authority_share,,,
+k1__demand_volatility,demand_volatility,Emission baseline mean,escalation_share,0.3625100056140999,0.1205018777745993,3.0083349098690446,0.0026268347891003,***,2.0,escalation_share,,,
+k1__demand_volatility,demand_volatility,Emission control effect,ai_authority_share|demand_volatility,0.0126509835946248,0.1802118440764098,0.0702006222702033,0.944033979049156,,0.0,ai_authority_share,demand_volatility,,
+k1__demand_volatility,demand_volatility,Emission control effect,escalation_share|demand_volatility,0.0526989476212675,0.1714596984586189,0.3073547200596892,0.7585733893291986,,0.0,escalation_share,demand_volatility,,
+k1__demand_volatility,demand_volatility,Emission control effect,ai_authority_share|demand_volatility,-0.0183843975839337,0.1027972245618184,-0.1788413808086622,0.8580622518684073,,1.0,ai_authority_share,demand_volatility,,
+k1__demand_volatility,demand_volatility,Emission control effect,escalation_share|demand_volatility,0.0489564000076963,0.1673065967335034,0.2926148816814269,0.7698165374919352,,1.0,escalation_share,demand_volatility,,
+k1__demand_volatility,demand_volatility,Emission control effect,ai_authority_share|demand_volatility,-0.0013066216796085,0.2192227212240418,-0.0059602475159189,0.995244438685031,,2.0,ai_authority_share,demand_volatility,,
+k1__demand_volatility,demand_volatility,Emission control effect,escalation_share|demand_volatility,0.0410797587940011,0.1550228890202039,0.264991570300611,0.79101595568308,,2.0,escalation_share,demand_volatility,,
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,-0.2588831646256212,1.0002186134193838,-0.2588265816615768,0.7957690473526227,,,,,0.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,0.5423693784831416,1.2768420255402844,0.4247740657295821,0.6710013850560193,,,,,0.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,0.0549562169029492,3.261278123433783,0.0168511285523499,0.9865553809891844,,,,,0.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,0.84120119912421,1.0577724596295257,0.7952572327500685,0.4264638856737683,,,,,0.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,2.290867905560327,1.4097295491167845,1.6250407086916694,0.1041538850503203,,,,,0.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,0.3514121822035886,3.023142074467767,0.1162407103428825,0.9074617732314048,,,,,0.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,-0.5729133968968245,1.1182583523308742,-0.5123265081836016,0.6084225159993975,,,,,0.0,2.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,-2.841880063955958,1.027736892585568,-2.765182494136598,0.0056890958235771,***,,,,0.0,2.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,-0.3998378429812702,5.993964213058888,-0.0667067451137186,0.946815164451046,,,,,0.0,2.0
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,-0.0658456342802023,1.0820850000245683,-0.0608507042225956,0.951478108975695,,,,,1.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,0.3249712196513273,1.158480495253878,0.2805150548349204,0.7790823768473671,,,,,1.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,-0.5263000766936976,6.5835040720328415,-0.079942242145707,0.9362831929449124,,,,,1.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,0.5126722548993177,1.1619215079890195,0.4412279584931847,0.659047974557212,,,,,1.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,2.677539645469415,1.4140321204718274,1.8935493803181689,0.0582848478802662,*,,,,1.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,0.0963653976884373,3.0336668702628744,0.0317653195982217,0.974659203622574,,,,,1.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,-0.424766479516649,1.0809177053910608,-0.3929683799221093,0.6943428357220247,,,,,1.0,2.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,-3.046631254451201,1.1464352514045129,-2.657482182895836,0.0078726751731992,***,,,,1.0,2.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,0.4527167683486615,8.362344178224813,0.0541375430979648,0.9568255810256668,,,,,1.0,2.0
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,-0.3894447486216311,1.7681951676890284,-0.2202498659300275,0.8256765625893434,,,,,2.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,0.6701433023942619,1.4710518243134252,0.4555538365937812,0.648710845504447,,,,,2.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,0.1400301289582245,1.4500361795054175,0.0965700931724244,0.92306780764988,,,,,2.0,0.0
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,0.943920827629212,1.8878987300711587,0.4999848840375212,0.6170857211047345,,,,,2.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,2.0398401526314576,2.27121479422264,0.8981273624230797,0.3691176528477169,,,,,2.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,0.4277087269993231,1.554338579008709,0.2751708879748051,0.7831849519501608,,,,,2.0,1.0
+k1__demand_volatility,demand_volatility,Transition beta,team_t_minus_1_vs_team_t,-0.5405932375961807,1.096856496594223,-0.4928568498019032,0.6221137382797979,,,,,2.0,2.0
+k1__demand_volatility,demand_volatility,Transition beta,team_vs_peer_average,-2.767415275474698,1.445365175010448,-1.9146824092082428,0.055533018274301,*,,,,2.0,2.0
+k1__demand_volatility,demand_volatility,Transition beta,target_attainment,-0.6100911651648339,1.6966380920652275,-0.3595882752002828,0.7191550529130191,,,,,2.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Emission baseline mean,ai_authority_share,0.5144388690832515,0.263984051152285,1.9487498083226475,0.0513253103964737,*,0.0,ai_authority_share,,,
+k1__forecast_accuracy,forecast_accuracy,Emission baseline mean,escalation_share,0.333838573427232,0.1711010245801989,1.9511196630547016,0.0510428126695852,*,0.0,escalation_share,,,
+k1__forecast_accuracy,forecast_accuracy,Emission baseline mean,ai_authority_share,0.7827818233175938,0.1580939152457427,4.95137224035998,7.369199195306209e-07,***,1.0,ai_authority_share,,,
+k1__forecast_accuracy,forecast_accuracy,Emission baseline mean,escalation_share,0.377163956402343,0.1725147604134288,2.1862706443116844,0.0287958105080377,**,1.0,escalation_share,,,
+k1__forecast_accuracy,forecast_accuracy,Emission baseline mean,ai_authority_share,0.1783156413571522,0.2586103378469713,0.6895147457820028,0.4904993970054536,,2.0,ai_authority_share,,,
+k1__forecast_accuracy,forecast_accuracy,Emission baseline mean,escalation_share,0.3617492629888291,0.1693943958744108,2.1355444560104004,0.0327165629158219,**,2.0,escalation_share,,,
+k1__forecast_accuracy,forecast_accuracy,Emission control effect,ai_authority_share|forecast_accuracy,0.0289862185712765,0.2537397765350833,0.1142360057500436,0.9090507102600284,,0.0,ai_authority_share,forecast_accuracy,,
+k1__forecast_accuracy,forecast_accuracy,Emission control effect,escalation_share|forecast_accuracy,-0.0574496054193267,0.1716025828594278,-0.3347828713416739,0.7377888823536902,,0.0,escalation_share,forecast_accuracy,,
+k1__forecast_accuracy,forecast_accuracy,Emission control effect,ai_authority_share|forecast_accuracy,0.0406695733468787,0.0974163500374579,0.4174820071912025,0.6763258823257139,,1.0,ai_authority_share,forecast_accuracy,,
+k1__forecast_accuracy,forecast_accuracy,Emission control effect,escalation_share|forecast_accuracy,-0.0535652013862002,0.1726257215391904,-0.310296755944563,0.7563352978769804,,1.0,escalation_share,forecast_accuracy,,
+k1__forecast_accuracy,forecast_accuracy,Emission control effect,ai_authority_share|forecast_accuracy,0.0255116097506704,0.265997233955421,0.0959093046619651,0.9235926045990231,,2.0,ai_authority_share,forecast_accuracy,,
+k1__forecast_accuracy,forecast_accuracy,Emission control effect,escalation_share|forecast_accuracy,-0.0514264510633589,0.1646718546397332,-0.3122965437892772,0.7548151664563638,,2.0,escalation_share,forecast_accuracy,,
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,-0.2669325122258691,1.0853701845982748,-0.245936838890289,0.8057311261342037,,,,,0.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,0.5506565912322237,1.0901737601798187,0.5051090122930455,0.6134822718028721,,,,,0.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,0.0785205712585251,1.9178969623640247,0.0409409748278341,0.9673429516270508,,,,,0.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,0.7103017771924162,1.4260924832344086,0.4980755354529577,0.6184308032514951,,,,,0.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,2.123545346063177,2.5832521338634065,0.8220433918261355,0.4110522014334172,,,,,0.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,0.3709130552169574,3.480774348101616,0.1065605000850601,0.9151376564627928,,,,,0.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,-0.433547348610294,1.3340139302208802,-0.3249946187132462,0.7451851444682513,,,,,0.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,-2.6826064686307207,2.756696151964369,-0.9731237397052795,0.3304918065893663,,,,,0.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,-0.4427512593862068,4.934784973149136,-0.0897204765344952,0.9285093436437536,,,,,0.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,-0.0630720932736781,0.9558179004066392,-0.0659875623242094,0.9473877276991238,,,,,1.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,0.3984907507918719,1.147938364145519,0.3471360163909959,0.7284891367295545,,,,,1.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,-0.6175612014060868,2.967457224663785,-0.2081112395734893,0.835142111379843,,,,,1.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,0.4127261750239581,1.0616783401239325,0.3887487946450707,0.6974619829772444,,,,,1.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,2.6319063821811963,1.3031882407618505,2.019590339951633,0.0434258979913275,**,,,,1.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,0.0558797390862722,2.004197331504834,0.0278813558963854,0.9777567785022284,,,,,1.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,-0.3274193938985713,1.1081114424385228,-0.2954751493027167,0.7676309333298548,,,,,1.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,-3.0744900195868183,1.7294695547810175,-1.7777069339483718,0.0754520002685563,*,,,,1.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,0.5846888458148962,4.593445015641947,0.1272876553053034,0.8987127304707478,,,,,1.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,-0.3699632493034844,1.0298469525846523,-0.3592410002039345,0.7194148072079873,,,,,2.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,0.6540074767577458,1.3456469505247826,0.4860171358488142,0.6269550165492577,,,,,2.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,0.1820173926664328,1.1013131793655826,0.1652730540928284,0.8687290668573939,,,,,2.0,0.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,0.90663615479549,0.987127859735538,0.918458683800483,0.3583787798653408,,,,,2.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,1.8777507342027728,1.3862505948907131,1.3545536002823555,0.1755598251343864,,,,,2.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,0.4554460133026914,1.233994114949662,0.3690828082444058,0.7120660027693582,,,,,2.0,1.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_t_minus_1_vs_team_t,-0.5225697031935834,1.014365329425634,-0.5151691289463521,0.6064348393984351,,,,,2.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,team_vs_peer_average,-2.5891678172095007,1.000926728129962,-2.586770584143417,0.0096880071347502,***,,,,2.0,2.0
+k1__forecast_accuracy,forecast_accuracy,Transition beta,target_attainment,-0.6796515045706909,1.5124815712399682,-0.4493618418196636,0.6531706530819807,,,,,2.0,2.0
+k1__performance_pressure,performance_pressure,Emission baseline mean,ai_authority_share,0.5137110547186148,0.2333970476771849,2.201017792774896,0.0277347642566068,**,0.0,ai_authority_share,,,
+k1__performance_pressure,performance_pressure,Emission baseline mean,escalation_share,0.3432676044693314,0.1630046217717438,2.1058765128145307,0.0352150803588613,**,0.0,escalation_share,,,
+k1__performance_pressure,performance_pressure,Emission baseline mean,ai_authority_share,0.7760991507265199,0.1859779881123489,4.173069934801532,3.005226456131993e-05,***,1.0,ai_authority_share,,,
+k1__performance_pressure,performance_pressure,Emission baseline mean,escalation_share,0.3674885808257392,0.1587599747691426,2.314743255408769,0.0206269870260333,**,1.0,escalation_share,,,
+k1__performance_pressure,performance_pressure,Emission baseline mean,ai_authority_share,0.1991571309031462,0.2386314714702672,0.8345803245317567,0.4039540440358808,,2.0,ai_authority_share,,,
+k1__performance_pressure,performance_pressure,Emission baseline mean,escalation_share,0.3597315370305438,0.1942382489267985,1.852011841221416,0.0640241225612869,*,2.0,escalation_share,,,
+k1__performance_pressure,performance_pressure,Emission control effect,ai_authority_share|performance_pressure,-0.0636485602803845,0.1941717676565973,-0.3277951323641977,0.7430665679804738,,0.0,ai_authority_share,performance_pressure,,
+k1__performance_pressure,performance_pressure,Emission control effect,escalation_share|performance_pressure,0.0061587691183988,0.1717812098312455,0.0358524027421225,0.9714000485536518,,0.0,escalation_share,performance_pressure,,
+k1__performance_pressure,performance_pressure,Emission control effect,ai_authority_share|performance_pressure,-0.0411292014832795,0.1648093816107466,-0.2495561908024149,0.8029305813970653,,1.0,ai_authority_share,performance_pressure,,
+k1__performance_pressure,performance_pressure,Emission control effect,escalation_share|performance_pressure,0.0122980838911455,0.1624426751673141,0.0757072233541998,0.9396520290838428,,1.0,escalation_share,performance_pressure,,
+k1__performance_pressure,performance_pressure,Emission control effect,ai_authority_share|performance_pressure,-0.0491876647078643,0.1747140733098864,-0.2815323561292129,0.7783021146168148,,2.0,ai_authority_share,performance_pressure,,
+k1__performance_pressure,performance_pressure,Emission control effect,escalation_share|performance_pressure,0.0241522028445218,0.1851143399118761,0.1304718092397352,0.896193156438835,,2.0,escalation_share,performance_pressure,,
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,-0.3088172232233614,1.0095819898796603,-0.3058862245157241,0.7596912748199365,,,,,0.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,0.4695555428657864,1.1653944364860052,0.4029155521641493,0.6870103499072333,,,,,0.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,0.2224544792083304,4.558654869162312,0.0487982717694108,0.961080059463726,,,,,0.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,1.2609157325915905,1.3715201707868954,0.9193563167708668,0.3579092300429973,,,,,0.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,1.9421050338962276,1.2801094209066428,1.5171398649036762,0.1292313751325271,,,,,0.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,0.2478331520539924,4.748351128452973,0.0521935184129353,0.9583744974533076,,,,,0.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,-0.9426484986646692,1.5487766756767207,-0.6086406862066085,0.5427626300763992,,,,,0.0,2.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,-2.420287804116385,1.0538814011189792,-2.296546652732079,0.0216446448895419,**,,,,0.0,2.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,-0.4639195196565153,8.947812786963343,-0.0518472537034335,0.9586504031478822,,,,,0.0,2.0
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,-0.1504129546895202,1.053217514974911,-0.1428128117420296,0.8864380184957432,,,,,1.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,0.3912273302593487,1.205390556210323,0.3245647879383959,0.7455104807293524,,,,,1.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,-0.027728002725126,7.180604907103161,-0.0038615134913908,0.99691896566092,,,,,1.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,0.8387439570144275,1.1296276139432744,0.7424959753653348,0.4577868893437489,,,,,1.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,2.352371192574847,1.29424202178033,1.817566693854507,0.0691303860628795,*,,,,1.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,0.1408929833325893,7.101800368488726,0.0198390515111834,0.9841717654055048,,,,,1.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,-0.6662421515590362,1.2141336719419986,-0.5487387154771735,0.5831847730322532,,,,,1.0,2.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,-2.787664202901636,1.7430457197287024,-1.59930641597601,0.1097525346311913,,,,,1.0,2.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,-0.0903984069433428,14.177340973356692,-0.0063762596324111,0.9949125153570304,,,,,1.0,2.0
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,-0.3673858926790068,1.3216382143120826,-0.2779776558369511,0.7810295110975547,,,,,2.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,0.6060067453661805,1.679576998584314,0.3608091477062218,0.7182421239345673,,,,,2.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,0.1218261469647778,1.7078710717751215,0.0713321684394798,0.9431333937172052,,,,,2.0,0.0
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,1.0899315463823531,2.0558744748428843,0.5301547150468167,0.5960046657625795,,,,,2.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,1.9701214639926148,2.9241791731274165,0.6737348662139486,0.5004798910043073,,,,,2.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,0.1356074464960867,1.2982855888867724,0.1044511682613412,0.9168113183113804,,,,,2.0,1.0
+k1__performance_pressure,performance_pressure,Transition beta,team_t_minus_1_vs_team_t,-0.7087214798573137,1.4412030706642711,-0.4917568483466066,0.6228912450674522,,,,,2.0,2.0
+k1__performance_pressure,performance_pressure,Transition beta,team_vs_peer_average,-2.6333586770951767,1.7454673955399316,-1.5086839684453637,0.1313795643379558,,,,,2.0,2.0
+k1__performance_pressure,performance_pressure,Transition beta,target_attainment,-0.2996120745348433,1.1503722423456324,-0.2604479345954386,0.7945182718796133,,,,,2.0,2.0
+k1__supply_disruptions,supply_disruptions,Emission baseline mean,ai_authority_share,0.5153283974878681,0.2282800441950597,2.257439537936713,0.0239806235053288,**,0.0,ai_authority_share,,,
+k1__supply_disruptions,supply_disruptions,Emission baseline mean,escalation_share,0.3387664836028741,0.1721727737601191,1.9675961315164892,0.0491145252048985,**,0.0,escalation_share,,,
+k1__supply_disruptions,supply_disruptions,Emission baseline mean,ai_authority_share,0.7874663337042969,0.1047183659813251,7.5198493246612435,5.484501741648273e-14,***,1.0,ai_authority_share,,,
+k1__supply_disruptions,supply_disruptions,Emission baseline mean,escalation_share,0.3697649451889131,0.1731882597820487,2.1350462534484107,0.0327572321668334,**,1.0,escalation_share,,,
+k1__supply_disruptions,supply_disruptions,Emission baseline mean,ai_authority_share,0.1763785934048692,0.2588713422179368,0.6813368830002852,0.4956583504560767,,2.0,ai_authority_share,,,
+k1__supply_disruptions,supply_disruptions,Emission baseline mean,escalation_share,0.368629123431965,0.1655974789072555,2.2260551662046693,0.0260104864946151,**,2.0,escalation_share,,,
+k1__supply_disruptions,supply_disruptions,Emission control effect,ai_authority_share|supply_disruptions,-0.0192806861366596,0.2033578409521029,-0.0948116189982604,0.9244644578233988,,0.0,ai_authority_share,supply_disruptions,,
+k1__supply_disruptions,supply_disruptions,Emission control effect,escalation_share|supply_disruptions,0.0444940564700772,0.1720828439135847,0.2585618383458432,0.7959733307094616,,0.0,escalation_share,supply_disruptions,,
+k1__supply_disruptions,supply_disruptions,Emission control effect,ai_authority_share|supply_disruptions,-0.0299755395356242,0.112766312776721,-0.2658199846879467,0.7903778512204951,,1.0,ai_authority_share,supply_disruptions,,
+k1__supply_disruptions,supply_disruptions,Emission control effect,escalation_share|supply_disruptions,0.0368732378854058,0.1722976406443836,0.2140089541998485,0.8305400745030931,,1.0,escalation_share,supply_disruptions,,
+k1__supply_disruptions,supply_disruptions,Emission control effect,ai_authority_share|supply_disruptions,-0.0174657017736764,0.2132907475731374,-0.0818868233732802,0.9347367126725468,,2.0,ai_authority_share,supply_disruptions,,
+k1__supply_disruptions,supply_disruptions,Emission control effect,escalation_share|supply_disruptions,0.0313192284153402,0.1709561661632614,0.1832003437970799,0.8546408246214483,,2.0,escalation_share,supply_disruptions,,
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,-0.2591960288400936,1.3290613548166794,-0.1950218685546275,0.8453758276831538,,,,,0.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,0.5395487534168555,1.432189912423661,0.3767298936659803,0.7063743449582065,,,,,0.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,0.071326086669191,3.672277486231592,0.0194228477931236,0.984503783942047,,,,,0.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,0.7740675830305357,1.1251128816112257,0.6879910413273618,0.4914584229347425,,,,,0.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,2.230745291896371,1.5618127069352954,1.4283052519618082,0.15320401683016,,,,,0.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,0.3818160017712132,4.089690783652972,0.0933606040088364,0.9256170872225122,,,,,0.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,-0.5053190486824958,1.6000857604291276,-0.3158074780610347,0.7521486417193706,,,,,0.0,2.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,-2.7789362090011567,1.124631727445495,-2.470974400938584,0.01347454639396,**,,,,0.0,2.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,-0.4464256615832961,7.535674092579598,-0.0592416359968238,0.952759647128408,,,,,0.0,2.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,-0.0435589642545858,1.1253771251879867,-0.0387061041846835,0.9691247066224282,,,,,1.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,0.3875067514855695,1.2795210738123897,0.3028529653919462,0.7620019171115662,,,,,1.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,-0.9354732590636538,4.32337489475255,-0.2163756976520991,0.8286949080430552,,,,,1.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,0.4932633384881943,1.1676800857454606,0.4224302054216239,0.6727110345055964,,,,,1.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,2.680777960412928,1.214067447908754,2.2080963994468346,0.0272375539539087,**,,,,1.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,0.3072827552604494,3.328873110223588,0.0923083413172845,0.9264530612549162,,,,,1.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,-0.4274464196800098,1.093526045782914,-0.3908881926758114,0.6958798819115892,,,,,1.0,2.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,-3.112381156695951,1.214007201818278,-2.5637254474556537,0.0103555423393815,**,,,,1.0,2.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,0.6510774471958793,7.447189827935377,0.0874259233669059,0.9303329643979146,,,,,1.0,2.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,-0.400808512969651,1.276250767475938,-0.3140515353125597,0.7534818977927948,,,,,2.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,0.66152005891267,1.158435031826664,0.5710463174353078,0.5679682464386768,,,,,2.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,0.1704918007597957,1.2694520906050766,0.1343034542394836,0.893162621902295,,,,,2.0,0.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,0.9812949746763516,1.438996648631753,0.6819299931027639,0.4952832189604081,,,,,2.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,1.96724497714398,1.6748972714044523,1.1745466487591714,0.2401761384966123,,,,,2.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,0.461743477309384,1.5938382356838603,0.2897053584056264,0.7720416566353736,,,,,2.0,1.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_t_minus_1_vs_team_t,-0.5666230268268455,1.3406573077534485,-0.4226456854782232,0.6725537890731723,,,,,2.0,2.0
+k1__supply_disruptions,supply_disruptions,Transition beta,team_vs_peer_average,-2.6860384592431954,1.3663937119049592,-1.96578660735964,0.0493232654766471,**,,,,2.0,2.0
+k1__supply_disruptions,supply_disruptions,Transition beta,target_attainment,-0.6742686820824856,1.931579234968989,-0.349076377440613,0.7270319704998003,,,,,2.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Emission baseline mean,ai_authority_share,0.5172185835381756,0.2612985083335425,1.979416518053582,0.0477691302645522,**,0.0,ai_authority_share,,,
+k1__recent_negative_shock,recent_negative_shock,Emission baseline mean,escalation_share,0.3433355275937328,0.1687358056041396,2.034752057303182,0.0418758272788244,**,0.0,escalation_share,,,
+k1__recent_negative_shock,recent_negative_shock,Emission baseline mean,ai_authority_share,0.7905037223690985,0.1275128237228767,6.199405669872846,5.667677438481178e-10,***,1.0,ai_authority_share,,,
+k1__recent_negative_shock,recent_negative_shock,Emission baseline mean,escalation_share,0.3652606291542778,0.1722000819643612,2.121140855379341,0.0339099507108855,**,1.0,escalation_share,,,
+k1__recent_negative_shock,recent_negative_shock,Emission baseline mean,ai_authority_share,0.1805939257558511,0.2282497718613778,0.7912118565688233,0.4288203737757947,,2.0,ai_authority_share,,,
+k1__recent_negative_shock,recent_negative_shock,Emission baseline mean,escalation_share,0.369797912681599,0.1361105871667382,2.7168930821567105,0.0065897891687636,***,2.0,escalation_share,,,
+k1__recent_negative_shock,recent_negative_shock,Emission control effect,ai_authority_share|recent_negative_shock,-0.037551239634495,0.2328578770443728,-0.1612624838426203,0.8718866700330246,,0.0,ai_authority_share,recent_negative_shock,,
+k1__recent_negative_shock,recent_negative_shock,Emission control effect,escalation_share|recent_negative_shock,0.0232595234196783,0.1619835761852096,0.1435918626286148,0.8858227667451557,,0.0,escalation_share,recent_negative_shock,,
+k1__recent_negative_shock,recent_negative_shock,Emission control effect,ai_authority_share|recent_negative_shock,-0.0261516947347898,0.1895853462186461,-0.137941540611633,0.8902866195423988,,1.0,ai_authority_share,recent_negative_shock,,
+k1__recent_negative_shock,recent_negative_shock,Emission control effect,escalation_share|recent_negative_shock,0.0235726312290494,0.1699734681830137,0.1386841810138762,0.8896997190140428,,1.0,escalation_share,recent_negative_shock,,
+k1__recent_negative_shock,recent_negative_shock,Emission control effect,ai_authority_share|recent_negative_shock,-0.0301445643888196,0.1579030516328552,-0.1909055213125935,0.8485996143503054,,2.0,ai_authority_share,recent_negative_shock,,
+k1__recent_negative_shock,recent_negative_shock,Emission control effect,escalation_share|recent_negative_shock,0.0171253474757775,0.1518335029831775,0.1127903074045193,0.9101968028762272,,2.0,escalation_share,recent_negative_shock,,
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,-0.2365582660778186,1.1365933190349071,-0.2081292069169319,0.8351280826481464,,,,,0.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,0.4900675066224746,1.0144437571200442,0.4830898738178962,0.6290319237207362,,,,,0.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,0.062523595057242,2.312720615453321,0.0270346511547771,0.9784320964996748,,,,,0.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,0.7620550676697676,1.5322138066195847,0.4973555677265668,0.6189383326475548,,,,,0.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,2.306964443079744,1.4350762484352375,1.6075553097580608,0.1079326066314905,,,,,0.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,0.3744945013521685,2.869200149219264,0.1305222646994745,0.8961532401344885,,,,,0.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,-0.5157486833822325,1.478545625064249,-0.3488216221665943,0.7272232296503092,,,,,0.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,-2.805460326376845,1.409865657080872,-1.9898777676346504,0.0466044019871696,**,,,,0.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,-0.4302532753881113,4.81035933064127,-0.0894430635664704,0.9287298008175038,,,,,0.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,-0.022641413642945,1.7132794326190548,-0.0132152486114501,0.9894560640703872,,,,,1.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,0.3375378987958627,2.140538297004047,0.1576883250667785,0.8747024006363986,,,,,1.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,-0.6019758271481233,3.63351563835185,-0.1656731075529861,0.8684142106156612,,,,,1.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,0.4994751163156031,1.138591427803541,0.4386780930532225,0.6608948027653117,,,,,1.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,2.6780761516388685,1.7215154805750377,1.5556503452088104,0.1197912600655983,,,,,1.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,0.0622484466958864,1.8986579589338384,0.0327854979897701,0.973845642924236,,,,,1.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,-0.4546830801755756,2.001263297544472,-0.2271980307306224,0.8202697589095769,,,,,1.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,-3.059506845663993,3.375410010607533,-0.9064104319324804,0.3647186532633908,,,,,1.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,0.5627001880194554,4.023834590356516,0.1398417791248222,0.8887850026365796,,,,,1.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,-0.3336334051264065,1.1311881636550902,-0.2949406790541122,0.7680391960328137,,,,,2.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,0.6108457768525976,1.080890708750909,0.5651318601475432,0.5719840794278626,,,,,2.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,0.1424382279556405,1.094757131379739,0.1301094314646057,0.8964798483229299,,,,,2.0,0.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,0.9263723622682914,1.933842636829708,0.4790319256725887,0.6319159167094404,,,,,2.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,1.9998133295578695,1.0997854420950708,1.8183667950252755,0.0690080899388312,*,,,,2.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,0.4621774827170578,1.1926039510178743,0.3875364343062877,0.6983591173761776,,,,,2.0,1.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_t_minus_1_vs_team_t,-0.5789150053819413,1.5146319181439103,-0.3822149780729344,0.7023019128450241,,,,,2.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,team_vs_peer_average,-2.667965895663655,1.0408588349079877,-2.5632350960440324,0.0103701802598215,**,,,,2.0,2.0
+k1__recent_negative_shock,recent_negative_shock,Transition beta,target_attainment,-0.6466694279746903,1.4586227611962996,-0.4433424770118902,0.6575180360757069,,,,,2.0,2.0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission baseline mean,ai_authority_share,0.5255067187301647,0.22750910803331378,2.3098271681203006,0.020897724548750052,**,0,ai_authority_share,,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission baseline mean,escalation_share,0.2954302144843486,0.18890354788381258,1.5639209416334336,0.11783613584740693,,0,escalation_share,,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission baseline mean,ai_authority_share,0.6694837896921232,0.15740994885232756,4.253122465087592,2.1081021056579274e-05,***,1,ai_authority_share,,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission baseline mean,escalation_share,0.4839398752250526,0.21960287930646705,2.2037045996545874,0.02754512547368937,**,1,escalation_share,,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission baseline mean,ai_authority_share,0.2939305195500077,0.3345466405787893,0.8785935469012248,0.3796216959445067,,2,ai_authority_share,,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission baseline mean,escalation_share,0.18825832125605144,0.24694571432020715,0.7623469869654935,0.4458529373192355,,2,escalation_share,,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,ai_authority_share|decision_latency,-0.23536059866657302,0.22951597509583246,-1.0254649967972826,0.3051438333449137,,0,ai_authority_share,decision_latency,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,ai_authority_share|task_complexity,0.13049451938394602,0.21679570926650893,0.6019239025783851,0.5472247926991547,,0,ai_authority_share,task_complexity,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,escalation_share|decision_latency,0.09221689198560849,0.17593177652392678,0.5241627965546461,0.6001653146037849,,0,escalation_share,decision_latency,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,escalation_share|task_complexity,-0.02663443180548363,0.17506692215973968,-0.1521385735060851,0.8790776410473007,,0,escalation_share,task_complexity,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,ai_authority_share|decision_latency,-0.19877486059117935,0.1886653895475182,-1.0535841315034358,0.29207335745781426,,1,ai_authority_share,decision_latency,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,ai_authority_share|task_complexity,0.09380555572094817,0.14284418324939827,0.6566984639281301,0.5113748223334822,,1,ai_authority_share,task_complexity,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,escalation_share|decision_latency,0.1430833260462449,0.18842618639112768,0.7593600910079353,0.4476371801553629,,1,escalation_share,decision_latency,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,escalation_share|task_complexity,-0.05511296977281935,0.16279450679687493,-0.33854317849671645,0.734953894159025,,1,escalation_share,task_complexity,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,ai_authority_share|decision_latency,-0.14608822084020087,0.1993671639543489,-0.7327596879175758,0.4637050122210402,,2,ai_authority_share,decision_latency,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,ai_authority_share|task_complexity,0.09341516896036535,0.2787808887767069,0.3350845510618463,0.7375613063479127,,2,ai_authority_share,task_complexity,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,escalation_share|decision_latency,0.15755465764338483,0.16710843665720235,0.9428288648680518,0.3457684448920326,,2,escalation_share,decision_latency,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Emission control effect,escalation_share|task_complexity,-0.07897168852014659,0.17733394350299148,-0.4453275383165119,0.6560830695618187,,2,escalation_share,task_complexity,,
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,-0.28897684781526134,1.193350765314087,-0.24215583231239088,0.8086594173345878,,,,,0,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,0.6904032302977843,1.7815600489857524,0.38752734194440036,0.6983658472262992,,,,,0,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,0.054988500607192105,2.5676886089334685,0.021415564339023366,0.9829141578660276,,,,,0,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,0.001374075369096623,1.1427592817199834,0.001202418909281124,0.9990406087478503,,,,,0,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,1.2039211797585583,1.0525932195073036,1.1437668013119904,0.2527203613182518,,,,,0,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,0.18318917416178487,1.226189872651498,0.14939706993800142,0.8812403236366684,,,,,0,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,0.29724895489179975,1.2642945682820885,0.23511052119420145,0.814122952827405,,,,,0,2
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,-1.903059140636328,1.633885223155019,-1.1647446917731077,0.2441223526693388,,,,,0,2
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,-0.23152386715623172,2.699344375482661,-0.08577040753269345,0.9316489311332128,,,,,0,2
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,-0.10031933619664167,1.0861774766820464,-0.09235998568400425,0.926412030292131,,,,,1,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,0.12996095052739295,2.164820339106701,0.06003313447296069,0.9521292447782868,,,,,1,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,-0.18368382654024995,1.4292167597825018,-0.12852062172025114,0.8977369797789674,,,,,1,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,-0.30719108461697764,1.4174558918493698,-0.21672003085484526,0.828426536612715,,,,,1,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,1.7841082366929921,1.9652763590691125,0.9078154471557711,0.36397573568551955,,,,,1,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,-0.11499733134255584,1.2846844829106157,-0.08951406580549241,0.9286733755619128,,,,,1,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,0.42978008475442975,1.1823032820592128,0.3635108616174046,0.7162233006643743,,,,,1,2
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,-1.9585437858852124,3.5161856847921547,-0.5570080654034014,0.5775219186337279,,,,,1,2
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,0.3217106055357689,1.3829974891492436,0.23261835835556757,0.8160577704264387,,,,,1,2
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,-0.502975463054271,1.1645211827234356,-0.4319161132629423,0.6658023831879178,,,,,2,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,0.9577335235891724,2.31829052452984,0.41312057891596876,0.6795182727939384,,,,,2,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,0.15380761105198235,1.8805856078054022,0.08178708292438337,0.9348160279928539,,,,,2,0
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,0.6059710859527875,1.2467387418347466,0.48604496324628377,0.6269352870169989,,,,,2,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,0.7435249100865351,3.824258262190717,0.1944232996598427,0.8458444475031663,,,,,2,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,0.12965460528091377,1.4414215714824712,0.08994912234285962,0.9283276453440892,,,,,2,1
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_t_minus_1_vs_team_t,-0.08903335013494174,1.0296552650601178,-0.08646908645656602,0.9310935294407885,,,,,2,2
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,team_vs_peer_average,-1.759167438203363,2.0847982170015493,-0.8438070523359699,0.3987772340012592,,,,,2,2
+k2__decision_latency__task_complexity,"decision_latency, task_complexity",Transition beta,target_attainment,-0.3260202268327247,1.1441825055266106,-0.28493725892328137,0.7756922101545991,,,,,2,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission baseline mean,ai_authority_share,0.5182537672189181,0.26547852529145016,1.9521494879857564,0.05092045920454358,*,0,ai_authority_share,,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission baseline mean,escalation_share,0.3170204138229167,0.1714452389881784,1.8491059634777964,0.0644425134549278,*,0,escalation_share,,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission baseline mean,ai_authority_share,0.7177528808312512,0.22253987104970752,3.2252776881987617,0.00125850534961236,***,1,ai_authority_share,,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission baseline mean,escalation_share,0.43796704960320776,0.17332974828168557,2.526785239954591,0.0115111869561495,**,1,escalation_share,,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission baseline mean,ai_authority_share,0.22920734271084103,0.24320954265827946,0.9424274237170366,0.3459738523666207,,2,ai_authority_share,,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission baseline mean,escalation_share,0.26644530055911253,0.17999572514499262,1.4802868253925578,0.13879671764533374,,2,escalation_share,,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,ai_authority_share|decision_latency,-0.13933822607215615,0.22649161008451224,-0.6152025941277207,0.5384209348348481,,0,ai_authority_share,decision_latency,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,ai_authority_share|target_difficulty,0.03533634719101257,0.18633519107674534,0.18963861301142354,0.8495923274068455,,0,ai_authority_share,target_difficulty,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,escalation_share|decision_latency,0.04957919245361616,0.17280815717383247,0.2869030794868271,0.774186532484989,,0,escalation_share,decision_latency,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,escalation_share|target_difficulty,0.04669037030911477,0.16898109079113094,0.276305295998038,0.7823135885788104,,0,escalation_share,target_difficulty,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,ai_authority_share|decision_latency,-0.11091159720804591,0.23653788729740058,-0.4688956956337234,0.639144193159964,,1,ai_authority_share,decision_latency,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,ai_authority_share|target_difficulty,0.021633705848725194,0.24543243111530602,0.08814526161198931,0.9297612227892802,,1,ai_authority_share,target_difficulty,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,escalation_share|decision_latency,0.06744180940810715,0.19754799179212992,0.3413945583363503,0.7328065711304401,,1,escalation_share,decision_latency,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,escalation_share|target_difficulty,0.044494837173914725,0.18322376620829403,0.24284424501640098,0.8081260587241739,,1,escalation_share,target_difficulty,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,ai_authority_share|decision_latency,-0.061440748456598436,0.18864355634127347,-0.32569757296902574,0.7446531806865133,,2,ai_authority_share,decision_latency,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,ai_authority_share|target_difficulty,-0.015231253090236223,0.27716051735682434,-0.05495462786507602,0.9561746108516662,,2,ai_authority_share,target_difficulty,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,escalation_share|decision_latency,0.0741981076789686,0.1872061416635032,0.3963444095351168,0.6918509698905113,,2,escalation_share,decision_latency,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Emission control effect,escalation_share|target_difficulty,0.02345447891333573,0.19512251770544298,0.12020385545015681,0.9043216637153786,,2,escalation_share,target_difficulty,,
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.17263856230459476,1.4395762360570488,-0.11992318154503996,0.9045440007790697,,,,,0,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,0.5631381996340078,1.5914912906369236,0.3538430922915304,0.723456477023023,,,,,0,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,-0.12919285344113515,1.564221502349812,-0.08259242904349445,0.9341756214555939,,,,,0,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.1281671669238354,1.5203990873252817,-0.08429837138965256,0.9328192072377195,,,,,0,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,1.9906234125460303,1.24950217011343,1.5931332174999915,0.11113030890037057,,,,,0,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,0.30491081827582345,1.42356218570539,0.21418861876043507,0.8303999710555312,,,,,0,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,0.3104897249647984,1.822567650671534,0.17035840883623546,0.8647282789039321,,,,,0,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,-2.562447780683279,2.2081962494577962,-1.1604257462680079,0.24587550938641867,,,,,0,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,-0.1690155603709712,2.4218406341301106,-0.06978806036578006,0.944362350454858,,,,,0,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,0.06675144291469828,1.0654617989579787,0.06265024516128234,0.9500450181179743,,,,,1,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,0.0955793977242551,1.8321734358649315,0.0521672216468601,0.9583954506918864,,,,,1,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,-0.7222751044944258,1.9092298541412043,-0.37830704507777263,0.7052025124415708,,,,,1,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.17873653172667098,1.4050750671711276,-0.127207816794106,0.8987759187379529,,,,,1,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,2.345803653059873,3.3220247131060194,0.706136725535253,0.4801031147834589,,,,,1,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,-0.22545580024921372,3.0116976356542744,-0.07486003826550626,0.9403260721454698,,,,,1,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,0.13426228344889485,1.292224467512093,0.10390012480369505,0.9172486080656927,,,,,1,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,-2.4857834097945726,4.785847821001094,-0.5194029360663209,0.6034797842978246,,,,,1,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,0.9707050579911385,4.570857633379649,0.2123682546799009,0.8318197500121045,,,,,1,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.3167321568949687,1.1280912928509472,-0.2807681957144739,0.7788881989076124,,,,,2,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,0.6309849909246067,1.1148697905303804,0.5659719155404025,0.5714128722415774,,,,,2,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,0.1266104287977027,1.4880644251279056,0.08508396992745794,0.9321946342351122,,,,,2,0
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,0.614766232410572,1.9594047526947889,0.31375152661290523,0.7537097627205982,,,,,2,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,1.3416114421792111,1.0727058092328485,1.2506797582635187,0.21105133836883816,,,,,2,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,0.4860644082363545,1.3143161681484166,0.3698230456383358,0.711514342814644,,,,,2,1
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.2840822837430795,1.5632811099051145,-0.18172181698039083,0.8558010435679448,,,,,2,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,team_vs_peer_average,-2.030404597189806,1.0161444894790428,-1.9981455572629776,0.04570088189753241,**,,,,2,2
+k2__decision_latency__target_difficulty,"decision_latency, target_difficulty",Transition beta,target_attainment,-0.6551689620725002,1.6926283701814226,-0.3870719489371885,0.698702943622159,,,,,2,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission baseline mean,ai_authority_share,0.5361510722442397,0.24064019404092443,2.2280196140178448,0.02587920707979463,**,0,ai_authority_share,,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission baseline mean,escalation_share,0.31291715341620435,0.1719561978517502,1.819749199653634,0.06879720712838133,*,0,escalation_share,,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission baseline mean,ai_authority_share,0.7089841596187287,0.25206833087607067,2.8126665382939384,0.004913257373402535,***,1,ai_authority_share,,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission baseline mean,escalation_share,0.4540781951377284,0.16646882964399876,2.7277070194389874,0.006377622493160429,***,1,escalation_share,,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission baseline mean,ai_authority_share,0.28102483839567194,0.23426483281174862,1.1996031799681128,0.23029349097153018,,2,ai_authority_share,,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission baseline mean,escalation_share,0.2727229252287337,0.18166135473557568,1.5012710084965857,0.13328548034402865,,2,escalation_share,,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,ai_authority_share|decision_latency,-0.18699220448207005,0.23077884657515263,-0.8102657902017741,0.4177874325134101,,0,ai_authority_share,decision_latency,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,ai_authority_share|demand_volatility,0.09148368166598832,0.22869044282989753,0.4000328152498917,0.6891323471846191,,0,ai_authority_share,demand_volatility,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,escalation_share|decision_latency,0.04826361357073124,0.17703178128579636,0.2726268312965539,0.7851400845744982,,0,escalation_share,decision_latency,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,escalation_share|demand_volatility,0.02622878745577008,0.1750516179293656,0.14983459031126212,0.8808951182845761,,0,escalation_share,demand_volatility,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,ai_authority_share|decision_latency,-0.1360819154177046,0.18080901795414647,-0.7526279217567303,0.4516735340642759,,1,ai_authority_share,decision_latency,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,ai_authority_share|demand_volatility,0.041128328584556215,0.20152518973117187,0.2040852989118635,0.8382868423384027,,1,ai_authority_share,demand_volatility,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,escalation_share|decision_latency,0.09408384736193277,0.18686915938254736,0.5034744506413171,0.6146307389694106,,1,escalation_share,decision_latency,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,escalation_share|demand_volatility,0.003159809837564448,0.1576742607764275,0.02004011194981828,0.9840113742738772,,1,escalation_share,demand_volatility,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,ai_authority_share|decision_latency,-0.12968520633624528,0.18120362721750416,-0.71568769526109,0.4741842103296625,,2,ai_authority_share,decision_latency,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,ai_authority_share|demand_volatility,0.06810374633962761,0.24084191800981875,0.28277364215664125,0.7773503605475056,,2,ai_authority_share,demand_volatility,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,escalation_share|decision_latency,0.09099157826293473,0.1723713680752883,0.5278810470610842,0.5975819001303513,,2,escalation_share,decision_latency,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Emission control effect,escalation_share|demand_volatility,-0.006004904309149592,0.17964653764764602,-0.033426217881958036,0.9733347024947281,,2,escalation_share,demand_volatility,,
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,-0.3787891464631412,1.3738753333745293,-0.27570852846797583,0.7827719446667087,,,,,0,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,0.715457460485192,1.4592390277181386,0.490294905012222,0.6239252318318285,,,,,0,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,0.01477366198688875,1.0512296841568634,0.014053695600060928,0.988787142361486,,,,,0,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,0.5169976610098453,1.52587556793413,0.33882032839008236,0.7347450863049554,,,,,0,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,1.4901057108385363,1.5482066817329616,0.9624720836178081,0.33581251965949566,,,,,0,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,0.1854111791780889,1.0921660614308848,0.1697646408598114,0.8651952357295727,,,,,0,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,-0.12852704988287128,1.1009766349140964,-0.1167391257970698,0.9070667843321987,,,,,0,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,-2.214236088161715,1.046250838363805,-2.116352988184441,0.03431479723800468,**,,,,0,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,-0.19352460824974524,1.127760798921165,-0.17160075827682086,0.8637514112785265,,,,,0,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,-0.3034397509599114,1.065024246821755,-0.28491346733695144,0.7757104379822592,,,,,1,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,0.2718468364216389,1.2766572807342713,0.2129364243043253,0.8313765513421356,,,,,1,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,-0.753254391762806,1.6825776078386385,-0.4476788400449485,0.654384994970695,,,,,1,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,0.18516813239772667,1.0098331392615536,0.1833650780495597,0.8545115749521617,,,,,1,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,1.92887895681253,2.8341003506055067,0.6805965626447998,0.4961268025309642,,,,,1,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,-0.00273160181403787,1.4451498774501152,-0.0018901858254713525,0.9984918508108613,,,,,1,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,0.1405886873675192,1.06437855419726,0.1320852311549525,0.8949168773884879,,,,,1,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,-2.2451795263573278,2.138526913345574,-1.0498719994339016,0.29377696679483867,,,,,1,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,0.7790288086181315,2.5817296817190263,0.30174685372150223,0.762845047930204,,,,,1,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,-0.49567857735221804,1.0051579708996867,-0.49313500136555755,0.621917200964754,,,,,2,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,0.8851587363128112,1.4087001297681299,0.6283514266861799,0.5297737494487482,,,,,2,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,0.14352532036095747,1.3317646100840523,0.10777078717529451,0.9141775163500936,,,,,2,0
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,0.6707239681019012,1.3707529345400271,0.48931061987984786,0.624621803626676,,,,,2,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,1.1755542251347944,1.0077475733276122,1.166516552605609,0.2434056601454111,,,,,2,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,0.23967592607914195,1.0290032099953959,0.2329204843590472,0.8158231516421555,,,,,2,1
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_t_minus_1_vs_team_t,-0.1610951002679608,1.414702746173498,-0.11387204888354988,0.9093392231728152,,,,,2,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,team_vs_peer_average,-2.1185493801553736,1.4784365867271245,-1.4329660123233916,0.15186755052995027,,,,,2,2
+k2__decision_latency__demand_volatility,"decision_latency, demand_volatility",Transition beta,target_attainment,-0.42573337648007004,1.2352785403109123,-0.34464565082861026,0.7303607816809947,,,,,2,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission baseline mean,ai_authority_share,0.5395822955349019,0.26322306490112674,2.0499050709617057,0.04037369527161894,**,0,ai_authority_share,,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission baseline mean,escalation_share,0.3428771914486158,0.1704536186711538,2.0115571269279338,0.04426664265118441,**,0,escalation_share,,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission baseline mean,ai_authority_share,0.7947902852457188,0.18326981070577653,4.336722355880448,1.4462311672014394e-05,***,1,ai_authority_share,,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission baseline mean,escalation_share,0.3874812284109225,0.1529249316430954,2.5338002394223555,0.01128330335737715,**,1,escalation_share,,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission baseline mean,ai_authority_share,0.21956055673878827,0.22427363382035376,0.9789851486272313,0.3275873176635147,,2,ai_authority_share,,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission baseline mean,escalation_share,0.33679705380751973,0.17857562397132068,1.8860191907357382,0.05929236863808618,*,2,escalation_share,,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,ai_authority_share|task_complexity,0.011868150147969929,0.19213424697271728,0.061770092187964726,0.9507459209670215,,0,ai_authority_share,task_complexity,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,ai_authority_share|target_difficulty,-0.0070419178329121325,0.25247593410245683,-0.02789144184354008,0.977748734209148,,0,ai_authority_share,target_difficulty,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,escalation_share|task_complexity,0.019657497870390506,0.1620297524697373,0.12132029809810384,0.9034373432106566,,0,escalation_share,task_complexity,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,escalation_share|target_difficulty,0.05730749506049698,0.1686598892397825,0.3397814104989915,0.7340211481845138,,0,escalation_share,target_difficulty,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,ai_authority_share|task_complexity,-0.004661051465630465,0.09275559025129282,-0.050250895423152135,0.9599224540705615,,1,ai_authority_share,task_complexity,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,ai_authority_share|target_difficulty,-0.011835538286990807,0.2505423310131243,-0.04723967498478659,0.9623222067381276,,1,ai_authority_share,target_difficulty,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,escalation_share|task_complexity,0.01342608898381218,0.1688284003719452,0.0795250618630113,0.93661499825234,,1,escalation_share,task_complexity,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,escalation_share|target_difficulty,0.05763335268420815,0.15521856323205338,0.37130451077585147,0.7104107386164131,,1,escalation_share,target_difficulty,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,ai_authority_share|task_complexity,0.01097976590542237,0.23861463217089227,0.046014637935358566,0.9632985828825604,,2,ai_authority_share,task_complexity,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,ai_authority_share|target_difficulty,-0.050836178485710634,0.1983404210583982,-0.2563077067923675,0.7977132468152088,,2,ai_authority_share,target_difficulty,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,escalation_share|task_complexity,0.015083590671765445,0.1542625210518325,0.09777871234645083,0.9221080114566069,,2,escalation_share,task_complexity,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Emission control effect,escalation_share|target_difficulty,0.048102604270136476,0.1724632461280314,0.2789151042328554,0.7803099768442703,,2,escalation_share,target_difficulty,,
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.22262652293827356,1.5292064375239622,-0.1455830406382167,0.8842505569410977,,,,,0,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,0.4346003826930318,1.5471118502654098,0.28091077100758766,0.7787788390957826,,,,,0,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,0.037616279010622436,1.5700222316822505,0.023959074114713184,0.9808852534529335,,,,,0,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,1.0905677295810507,2.0793183678860756,0.5244832856883618,0.5999424421414326,,,,,0,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,1.95315206416158,3.5966372892191614,0.5430494951537396,0.5870957246563102,,,,,0,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,0.30490041343009877,1.167899045564148,0.26106743950871036,0.794040500669088,,,,,0,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.8583254028918531,2.712626559592971,-0.31641856482473013,0.7516848276014401,,,,,0,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,-2.39645548127576,4.646403129524177,-0.5157657255454658,0.606018043573346,,,,,0,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,-0.3358334051182768,1.4955133403617902,-0.22456062146328495,0.8223211019791823,,,,,0,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.05611469650766552,1.1805928379628996,-0.047530947760525834,0.9620900654558275,,,,,1,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,0.3947159433734776,1.3562210275639353,0.29104101422352396,0.7710199517316103,,,,,1,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,-0.6903655028512181,2.9078991708526,-0.2374103991538338,0.8123384229665935,,,,,1,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,0.6238238489679142,1.4440573783911606,0.43199381015103633,0.6657459119576887,,,,,1,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,2.5968171913110094,1.4381077682363774,1.8057180752841733,0.07096238780258401,*,,,,1,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,0.04316080435393897,1.6392723263923876,0.026329246006930825,0.9789947280528193,,,,,1,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.5454746112564669,1.272941781495315,-0.4285149715297286,0.6682762358737273,,,,,1,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,-3.0359390203215755,1.0430367519348316,-2.910673103982111,0.0036065112729517512,***,,,,1,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,0.6701603707368288,1.926970864110999,0.3477791923159175,0.7280060174755911,,,,,1,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.326666626119372,1.3154385966933746,-0.24833285790801313,0.8038768781331187,,,,,2,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,0.5286746084825242,1.3598100814319225,0.38878562212585843,0.697434737623462,,,,,2,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,0.2327562361029103,1.2591300815512332,0.18485479738213975,0.8533429263290728,,,,,2,0
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,1.1721381382372524,2.3885006142931853,0.49074223855040383,0.6236087680210267,,,,,2,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,1.7002218894645242,4.315505119141581,0.3939798105957812,0.6935959450669802,,,,,2,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,0.553220429520403,1.6174999208016052,0.34202192062317777,0.7323343957165682,,,,,2,1
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_t_minus_1_vs_team_t,-0.8315818484085059,1.8725069776349332,-0.44410080087329445,0.65696970748032,,,,,2,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,team_vs_peer_average,-2.286641989479247,3.528365469512225,-0.6480740187595593,0.5169370773014095,,,,,2,2
+k2__task_complexity__target_difficulty,"task_complexity, target_difficulty",Transition beta,target_attainment,-0.8284332596364106,1.1773567194295922,-0.7036382822342674,0.4816580644529964,,,,,2,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission baseline mean,ai_authority_share,0.5143494229669557,0.26660585996224323,1.9292502536883398,0.05369980219316339,*,0,ai_authority_share,,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission baseline mean,escalation_share,0.3299880262068978,0.17117166778417006,1.9278191915672571,0.05387761973536653,*,0,escalation_share,,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission baseline mean,ai_authority_share,0.7791105114666768,0.13202085699127103,5.901419890935794,3.603864096035636e-09,***,1,ai_authority_share,,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission baseline mean,escalation_share,0.38278730120416693,0.172619649420043,2.217518703636767,0.02658766638643728,**,1,escalation_share,,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission baseline mean,ai_authority_share,0.17989247730718078,0.26241816992844474,0.6855183745707594,0.49301686979836123,,2,ai_authority_share,,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission baseline mean,escalation_share,0.3575384953153719,0.15063179604266444,2.373592459948522,0.017615981952466386,**,2,escalation_share,,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,ai_authority_share|forecast_accuracy,0.02819125004923716,0.24431882505417798,0.1153871382730566,0.9081382730394592,,0,ai_authority_share,forecast_accuracy,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,ai_authority_share|supply_disruptions,-0.01799236028965531,0.22303143404550677,-0.0806718585057575,0.9357029175115215,,0,ai_authority_share,supply_disruptions,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,escalation_share|forecast_accuracy,-0.052807288289762416,0.17306948762908636,-0.30512188493292525,0.7602733237008776,,0,escalation_share,forecast_accuracy,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,escalation_share|supply_disruptions,0.03835302986735545,0.1723149035686312,0.22257523332611706,0.8238661138788437,,0,escalation_share,supply_disruptions,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,ai_authority_share|forecast_accuracy,0.039349688325288616,0.11899269354104335,0.33068995376355603,0.7408786915076937,,1,ai_authority_share,forecast_accuracy,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,ai_authority_share|supply_disruptions,-0.027851997889192907,0.18541759785607267,-0.15021226793592998,0.880597147300215,,1,ai_authority_share,supply_disruptions,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,escalation_share|forecast_accuracy,-0.05149511361267273,0.1730004918060471,-0.29765877007103836,0.7659636144297219,,1,escalation_share,forecast_accuracy,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,escalation_share|supply_disruptions,0.03339319621743661,0.17249112879974562,0.19359370217934277,0.8464940298353267,,1,escalation_share,supply_disruptions,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,ai_authority_share|forecast_accuracy,0.023854899831479887,0.2514965734519723,0.09485178865085174,0.9244325508712694,,2,ai_authority_share,forecast_accuracy,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,ai_authority_share|supply_disruptions,-0.015621559005387437,0.23707641301204485,-0.06589250616253323,0.9474634068341552,,2,ai_authority_share,supply_disruptions,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,escalation_share|forecast_accuracy,-0.04794333830552968,0.16860045963656556,-0.2843606619393336,0.7761340023713619,,2,escalation_share,forecast_accuracy,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Emission control effect,escalation_share|supply_disruptions,0.026405696233460386,0.17087486731579302,0.15453235837579407,0.8771899993467294,,2,escalation_share,supply_disruptions,,
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,-0.2746189215000009,1.253954485037231,-0.21900230413215294,0.8266482528976051,,,,,0,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,0.5544399649277876,1.2527428293268166,0.4425808329916569,0.6580689510003577,,,,,0,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,0.03016334286314192,1.8460299498443882,0.01633957394119448,0.986963486309852,,,,,0,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,0.6823112253025388,2.506974840691406,0.27216516664936385,0.7854950241640193,,,,,0,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,2.029374720303366,1.8603210087704167,1.0908734088020033,0.2753285892765591,,,,,0,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,0.29943273447190444,2.1650865331101126,0.13830058516957935,0.8900028630566759,,,,,0,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,-0.39802538697884826,2.7957694247494844,-0.14236702907447862,0.8867901040638648,,,,,0,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,-2.5924861340196896,2.2766502294177093,-1.1387283389081513,0.2548164790111218,,,,,0,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,-0.3229573923639775,3.2176356830411175,-0.10037102524258976,0.9200497720866219,,,,,0,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,-0.0707473293731164,1.2774977158725804,-0.05537961320329503,0.9558360372158707,,,,,1,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,0.3989255528359181,2.709166889762944,0.1472502688347947,0.8829344842068039,,,,,1,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,-0.8615973228969448,1.1449085355675355,-0.7525468595356813,0.4517222609905325,,,,,1,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,0.3846568456424342,1.8361946276997163,0.20948587902378907,0.8340689577495908,,,,,1,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,2.5755312999946427,3.241239529784549,0.7946130720446455,0.4268386119878085,,,,,1,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,0.13770147772697644,1.3658757912670425,0.10081551968882829,0.9196969066812071,,,,,1,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,-0.2916469542291064,2.158756531477215,-0.1350995121388401,0.8925331958992946,,,,,1,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,-3.018824811626411,5.278823526542344,-0.5718745467522299,0.5674069690797823,,,,,1,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,0.7468953177463249,1.6680312128396297,0.4477705884620841,0.6543187718159034,,,,,1,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,-0.3647225904307019,1.1977769848735915,-0.30449958133833505,0.7607473116554406,,,,,2,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,0.6578885290420624,1.2321060077002424,0.5339544851907899,0.5933730243999413,,,,,2,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,0.19405650545562,1.7818401867913611,0.10890791828254036,0.9132755261247638,,,,,2,0
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,0.8869522254782517,1.8484986433601203,0.47982303295932566,0.6313532334552847,,,,,2,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,1.85066829068519,3.1669473298957773,0.5843697724982672,0.5589715589979889,,,,,2,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,0.4122173509639668,1.3108240966891789,0.3144719051207,0.7531626513840655,,,,,2,1
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_t_minus_1_vs_team_t,-0.5083007376655844,1.5073590016358007,-0.33721279211785077,0.7359564947607571,,,,,2,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,team_vs_peer_average,-2.566311849921116,3.0355143702360987,-0.8454289905804371,0.3978713638497804,,,,,2,2
+k2__forecast_accuracy__supply_disruptions,"forecast_accuracy, supply_disruptions",Transition beta,target_attainment,-0.64870525893049,1.6874410550709729,-0.3844313595316702,0.7006587613529254,,,,,2,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission baseline mean,ai_authority_share,0.5111505659568074,0.2519415008134874,2.0288462373462357,0.0424739541454735,**,0,ai_authority_share,,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission baseline mean,escalation_share,0.3412250001436916,0.17225338470606627,1.9809480128704529,0.04759710393007399,**,0,escalation_share,,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission baseline mean,ai_authority_share,0.7712752876053424,0.16800598616139548,4.590760753396098,4.416333374113179e-06,***,1,ai_authority_share,,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission baseline mean,escalation_share,0.37211515989511496,0.16234817268600826,2.292080987045105,0.0219009703098918,**,1,escalation_share,,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission baseline mean,ai_authority_share,0.20558244653158808,0.23342092650079593,0.8807369999488331,0.37846018556475824,,2,ai_authority_share,,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission baseline mean,escalation_share,0.35215385957694556,0.15452813433073198,2.2788980214000456,0.022673128074089277,**,2,escalation_share,,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,ai_authority_share|performance_pressure,-0.0636288791813907,0.24325791515471806,-0.2615696148712002,0.7936532724093506,,0,ai_authority_share,performance_pressure,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,ai_authority_share|recent_negative_shock,-0.03880345787931492,0.2563674780190354,-0.15135873777419515,0.8796927368870884,,0,ai_authority_share,recent_negative_shock,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,escalation_share|performance_pressure,0.009522066229885355,0.15019724604269616,0.06339707605010643,0.9494503155435217,,0,escalation_share,performance_pressure,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,escalation_share|recent_negative_shock,0.02419209933343511,0.16886332784133615,0.1432643762425788,0.886081389205224,,0,escalation_share,recent_negative_shock,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,ai_authority_share|performance_pressure,-0.0414934993297531,0.14786881575180386,-0.2806102092506068,0.779009384693649,,1,ai_authority_share,performance_pressure,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,ai_authority_share|recent_negative_shock,-0.026438027539077962,0.17836422867165483,-0.1482249425009255,0.8821652479701492,,1,ai_authority_share,recent_negative_shock,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,escalation_share|performance_pressure,0.012791199680470667,0.16811119681148362,0.0760877319481251,0.9393493003336377,,1,escalation_share,performance_pressure,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,escalation_share|recent_negative_shock,0.02398051226481581,0.1721257637480533,0.13931971450779995,0.8891975118790034,,1,escalation_share,recent_negative_shock,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,ai_authority_share|performance_pressure,-0.051243555340346275,0.1890247386732053,-0.2710944382202718,0.786318399124539,,2,ai_authority_share,performance_pressure,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,ai_authority_share|recent_negative_shock,-0.030924644115201516,0.23979961373539896,-0.1289603583320387,0.8973890163028273,,2,ai_authority_share,recent_negative_shock,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,escalation_share|performance_pressure,0.026537007711533715,0.1585942086466961,0.16732646127483006,0.8671131845541176,,2,escalation_share,performance_pressure,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Emission control effect,escalation_share|recent_negative_shock,0.017904362053007866,0.169022587571536,0.10592881288975738,0.9156388332937839,,2,escalation_share,recent_negative_shock,,
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,-0.3009867721510566,1.0163900070215952,-0.2961331477796215,0.767128400384673,,,,,0,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,0.4450737037727403,1.184318325981288,0.37580580660521873,0.707061270674078,,,,,0,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,0.10221858469473266,1.1310192580179412,0.09037740424850589,0.9279873119971194,,,,,0,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,1.2352293660226983,1.3927012040672184,0.8869306369631602,0.3751162458563082,,,,,0,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,1.8792454860709744,1.2221435355503985,1.5376634833850729,0.12413091658019249,,,,,0,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,0.11603906258158656,1.2385839268209997,0.09368687907925398,0.9253578934087026,,,,,0,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,-0.9246826384468685,1.2552031306986557,-0.7366796782383606,0.4613171678289283,,,,,0,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,-2.3330974708095793,1.1256190577020715,-2.0727238534611794,0.038197986532433115,**,,,,0,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,-0.211711462253879,1.5950047399122225,-0.1327340646433001,0.894403701530261,,,,,0,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,-0.14673379971395456,1.1345801933454,-0.12932871609656632,0.8970975500762826,,,,,1,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,0.3985855081988295,1.1810949158137412,0.3374711912329377,0.7357617257721385,,,,,1,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,-0.31968543599876725,1.0485731351201228,-0.3048766226135906,0.7604601211185371,,,,,1,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,0.7644750398042469,1.1290361542040048,0.6771041272307339,0.4983398904686849,,,,,1,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,2.350433687788562,1.0613395343657015,2.2145916661752114,0.02678810455990277,**,,,,1,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,-0.12673496683675856,1.1524950962801388,-0.109965731954796,0.9124365519914017,,,,,1,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,-0.5955842930370915,1.4808245972289198,-0.4021977310152827,0.6875385119555202,,,,,1,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,-2.793539244494636,1.3900154005207448,-2.0097181969696782,0.044461022904498604,**,,,,1,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,0.4693526019395468,1.3240355641722403,0.35448640100009426,0.7229743936780202,,,,,1,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,-0.34503828629604494,1.042547210189857,-0.3309569896918246,0.7406769736913152,,,,,2,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,0.5759461383685569,1.0692943357879219,0.5386226402706644,0.5901472623237258,,,,,2,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,0.15480524142706503,1.0117151262848916,0.1530126785743767,0.8783882769742981,,,,,2,0
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,1.0644247894111238,1.0512816615724476,1.012502004285909,0.31129808886131505,,,,,2,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,1.9916255850859488,1.2408259180514598,1.6050805806937953,0.1084760723233158,,,,,2,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,0.13287423830262177,1.0221179468024035,0.12999892890865078,0.8965672741071811,,,,,2,1
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_t_minus_1_vs_team_t,-0.7055697914426552,1.0529049152355319,-0.6701172928657296,0.5027830219439346,,,,,2,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,team_vs_peer_average,-2.6255134843898946,1.3882755026539848,-1.8912049368952095,0.05859699258879947,*,,,,2,2
+k2__performance_pressure__recent_negative_shock,"performance_pressure, recent_negative_shock",Transition beta,target_attainment,-0.33031509070292164,1.0054227955932666,-0.3285335205753055,0.742508303721813,,,,,2,2

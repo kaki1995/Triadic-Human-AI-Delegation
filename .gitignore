@@ -1,0 +1,21 @@
+# Local Python/Jupyter scratch
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Generated synthetic scratch and backups
+Datasets/Archive/*_pre_*_202*.xlsx
+Datasets/Archive/Triadic_Delegation_Dataset_SYNTH_ANALYSIS_v[4-9]*.xlsx
+Datasets/Archive/Triadic_Delegation_Dataset_SYNTH_v[4-9]*.xlsx
+Datasets/Triadic_Delegation_Dataset_SYNTH.xlsx
+
+# HMM estimation run scratch
+HMM Estimation/Artefacts/*.log
+HMM Estimation/Artefacts/*.pid
+HMM Estimation/Artefacts/Convergence_Checkpoints/[0-9a-f]*/
+HMM Estimation/Artefacts/Reduced_Control_Candidates_v3/
+HMM Estimation/Artefacts/Analysis_v3_run_*/
+HMM Estimation/Artefacts/model_selection_v3_all_converged_progress.csv
+HMM Estimation/Artefacts/model_selection_v3_single_vs_3period_pre_*.csv
+HMM Estimation/Artefacts/best_model_artifacts_v3_2emissions_*backup*.pkl
+HMM Estimation/Artefacts/best_model_artifacts_v3_2emissions_pre_*.pkl

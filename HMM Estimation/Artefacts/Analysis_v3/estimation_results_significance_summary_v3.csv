@@ -1,0 +1,4 @@
+section,n_estimates,n_p_lt_0_10,n_p_lt_0_05,n_p_lt_0_01,n_not_sig_0_10
+Emission baseline mean,6,6,6,6,0
+Emission control effect,48,47,47,47,1
+Transition beta,27,18,16,15,9
