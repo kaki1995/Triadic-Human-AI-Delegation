@@ -1,0 +1,10 @@
+from_state,to_state,from_state_display,to_state_display,transition_intercept_alpha,manager_heterogeneity_xi_i,transition_factor_beta_status,intrinsic_probability_source,intrinsic_probability,intrinsic_probability_pct
+Aversion,Aversion,Low (Aversion),Low (Aversion),2.185,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.3307173647811589,33.07173647811589
+Aversion,Neutral,Low (Aversion),Medium (Neutral),2.8852,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.6660929229748653,66.60929229748653
+Aversion,Appreciation,Low (Aversion),High (Appreciation),-2.4563,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.0031897122439758,0.31897122439758
+Neutral,Aversion,Medium (Neutral),Low (Aversion),0.1798,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.0685814974494765,6.85814974494765
+Neutral,Neutral,Medium (Neutral),Medium (Neutral),2.7605,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.9057697483858196,90.57697483858196
+Neutral,Appreciation,Medium (Neutral),High (Appreciation),-0.8038,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.0256487541647035,2.56487541647035
+Appreciation,Aversion,High (Appreciation),Low (Aversion),-3.0411,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.0011917340608348,0.11917340608348
+Appreciation,Neutral,High (Appreciation),Medium (Neutral),2.2675,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.2408276827178432,24.082768271784317
+Appreciation,Appreciation,High (Appreciation),High (Appreciation),3.4141,0.6447,set_to_zero,baseline_transition_probabilities_v3.csv,0.757980583221322,75.7980583221322
