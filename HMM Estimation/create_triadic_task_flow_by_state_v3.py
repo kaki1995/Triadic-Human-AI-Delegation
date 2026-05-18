@@ -18,17 +18,19 @@ POSTERIOR_CSV = ANALYSIS_DIR / "posterior_state_assignments_v3.csv"
 FLOW_CSV = ANALYSIS_DIR / "triadic_task_flow_by_state_v3.csv"
 PATH_CSV = ANALYSIS_DIR / "triadic_task_flow_paths_by_state_v3.csv"
 ACCEPTANCE_CSV = ANALYSIS_DIR / "manager_acceptance_by_ai_confidence_state_v3.csv"
-FLOW_FIGURE = ANALYSIS_DIR / "figure_triadic_task_flow_by_state_v3.png"
+FLOW_FIGURE = ANALYSIS_DIR / "figure_triadic_task_flow_by_state_v3_misq.png"
+FLOW_FIGURE_PDF = ANALYSIS_DIR / "figure_triadic_task_flow_by_state_v3_misq.pdf"
 ACCEPTANCE_FIGURE = ANALYSIS_DIR / "figure_manager_acceptance_by_ai_confidence_v3.png"
 
 STATE_ORDER = ["Aversion", "Neutral", "Appreciation"]
 DECISION_ORDER = ["Fully approved", "Escalated", "Manager changed"]
 EXECUTION_ORDER = ["AI", "Joint", "Employee"]
+TIME_SPECIFIC_PERIODS = [1, 13, 26]
 
 DECISION_SHORT_LABELS = {
     "Fully approved": "Approved",
     "Escalated": "Escalated",
-    "Manager changed": "Changed",
+    "Manager changed": "Overridden",
 }
 EXECUTION_SHORT_LABELS = {
     "AI": "AI",
@@ -37,17 +39,22 @@ EXECUTION_SHORT_LABELS = {
 }
 
 TEXT = "#111111"
-MUTED = "#64748B"
-GRID = "#E5E7EB"
-PANEL_FILL = "#F8FAFC"
-PANEL_EDGE = "#E2E8F0"
-SOURCE_FILL = "#EEF2F7"
-GREEN = "#16A34A"
-ORANGE = "#F97316"
-SLATE = "#475569"
-BLUE = "#2563EB"
-TEAL = "#0891B2"
-PURPLE = "#7C3AED"
+MUTED = "#667085"
+GRID = "#D9D9D9"
+PANEL_FILL = "#FFFFFF"
+PANEL_EDGE = "#CBD5E1"
+SOURCE_FILL = "#F8FAFC"
+SOURCE_EDGE = "#93C5FD"
+RULE = "#64748B"
+MANAGER_FILL = "#EAF6FF"
+BLUE = "#0057FF"
+GREEN = "#00C853"
+ORANGE = "#FF6B00"
+GRAY = "#CBD5E1"
+DARK_GRAY = "#94A3B8"
+PALE_BLUE = "#BFDBFE"
+PALE_GREEN = "#BBF7D0"
+PALE_ORANGE = "#FED7AA"
 
 STATE_COLORS = {
     "Aversion": ORANGE,
@@ -55,14 +62,24 @@ STATE_COLORS = {
     "Appreciation": GREEN,
 }
 DECISION_COLORS = {
-    "Fully approved": GREEN,
-    "Escalated": ORANGE,
-    "Manager changed": SLATE,
+    "Fully approved": PALE_GREEN,
+    "Escalated": PALE_ORANGE,
+    "Manager changed": GRAY,
 }
 EXECUTION_COLORS = {
-    "AI": BLUE,
-    "Joint": PURPLE,
-    "Employee": TEAL,
+    "AI": PALE_BLUE,
+    "Joint": MANAGER_FILL,
+    "Employee": "#D7DEE8",
+}
+STATE_PANEL_LABELS = {
+    "Aversion": "Managers in\nAversion state",
+    "Neutral": "Managers in\nNeutral state",
+    "Appreciation": "Managers in\nAppreciation state",
+}
+STATE_PANEL_PREFIXES = {
+    "Aversion": "(a)",
+    "Neutral": "(b)",
+    "Appreciation": "(c)",
 }
 
 
@@ -70,10 +87,11 @@ def setup_style() -> None:
     plt.rcParams.update(
         {
             "figure.dpi": 160,
-            "savefig.dpi": 160,
+            "savefig.dpi": 300,
             "figure.facecolor": "white",
             "axes.facecolor": "white",
-            "font.family": "Times New Roman",
+            "font.family": "sans-serif",
+            "font.sans-serif": ["Arial", "Calibri", "DejaVu Sans"],
             "axes.edgecolor": "#222222",
             "axes.linewidth": 1.0,
             "axes.grid": False,
@@ -87,6 +105,16 @@ def pct(value: float) -> str:
 
 def pct1(value: float) -> str:
     return f"{value:.1f}%"
+
+
+def contrast_text(facecolor: str) -> str:
+    if not facecolor.startswith("#") or len(facecolor) != 7:
+        return TEXT
+    red = int(facecolor[1:3], 16) / 255.0
+    green = int(facecolor[3:5], 16) / 255.0
+    blue = int(facecolor[5:7], 16) / 255.0
+    luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
+    return "white" if luminance < 0.46 else TEXT
 
 
 def read_task_data() -> pd.DataFrame:
@@ -141,6 +169,91 @@ def add_flow_categories(tasks: pd.DataFrame) -> pd.DataFrame:
         unexpected_execution = sorted(tasks.loc[tasks["execution_path"].isna(), "execution_mode"].dropna().unique())
         raise ValueError(f"Unexpected execution modes: {unexpected_execution}")
     return tasks
+
+
+def summarize_flow_and_paths(tasks: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    rows: list[dict[str, float | int | str]] = []
+
+    for state in STATE_ORDER:
+        g = tasks[tasks["state_label"] == state]
+        n = len(g)
+        fully_approved = g["decision_path"].eq("Fully approved")
+        escalated = g["decision_path"].eq("Escalated")
+        manager_changed = g["decision_path"].eq("Manager changed")
+
+        def mean_pct(series: pd.Series) -> float:
+            return 100.0 * float(series.mean()) if n else 0.0
+
+        rows.append(
+            {
+                "state": state,
+                "n_tasks": int(n),
+                "fully_approved_no_escalation_n": int(fully_approved.sum()),
+                "fully_approved_no_escalation_pct": mean_pct(fully_approved),
+                "escalated_to_employee_n": int(escalated.sum()),
+                "escalated_to_employee_pct": mean_pct(escalated),
+                "manager_override_no_escalation_n": int(manager_changed.sum()),
+                "manager_override_no_escalation_pct": mean_pct(manager_changed),
+                "manager_accept_n": int(g["manager_action"].eq("accept").sum()),
+                "manager_accept_pct": mean_pct(g["manager_action"].eq("accept")),
+                "manager_modify_n": int(g["manager_action"].eq("modify").sum()),
+                "manager_modify_pct": mean_pct(g["manager_action"].eq("modify")),
+                "manager_reject_n": int(g["manager_action"].eq("reject").sum()),
+                "manager_reject_pct": mean_pct(g["manager_action"].eq("reject")),
+                "employee_execution_n": int(g["execution_path"].eq("Employee").sum()),
+                "employee_execution_pct": mean_pct(g["execution_path"].eq("Employee")),
+                "ai_execution_n": int(g["execution_path"].eq("AI").sum()),
+                "ai_execution_pct": mean_pct(g["execution_path"].eq("AI")),
+                "joint_execution_n": int(g["execution_path"].eq("Joint").sum()),
+                "joint_execution_pct": mean_pct(g["execution_path"].eq("Joint")),
+                "employee_override_during_execution_n": int(g["employee_override_during_execution"].eq(1).sum()),
+                "employee_override_during_execution_pct": mean_pct(g["employee_override_during_execution"].eq(1)),
+                "mean_ai_confidence": float(g["ai_confidence"].mean()) if n else np.nan,
+            }
+        )
+
+    flow = pd.DataFrame(rows)
+
+    path_index = pd.MultiIndex.from_product(
+        [STATE_ORDER, DECISION_ORDER, EXECUTION_ORDER],
+        names=["state", "decision_path", "execution_path"],
+    )
+    paths = (
+        tasks.groupby(["state_label", "decision_path", "execution_path"], observed=True)
+        .agg(n_tasks=("episode_id", "size"))
+        .rename_axis(["state", "decision_path", "execution_path"])
+        .reindex(path_index, fill_value=0)
+        .reset_index()
+    )
+    state_totals = flow.set_index("state")["n_tasks"]
+    paths["state_total"] = paths["state"].map(state_totals).astype(int)
+    paths["decision_total"] = paths.groupby(["state", "decision_path"])["n_tasks"].transform("sum").astype(int)
+    paths["execution_total"] = paths.groupby(["state", "execution_path"])["n_tasks"].transform("sum").astype(int)
+    paths["path_pct_of_state"] = np.where(
+        paths["state_total"].gt(0),
+        100.0 * paths["n_tasks"] / paths["state_total"],
+        0.0,
+    )
+    paths["path_pct_of_decision"] = np.where(
+        paths["decision_total"].gt(0),
+        100.0 * paths["n_tasks"] / paths["decision_total"],
+        0.0,
+    )
+    paths["path_pct_of_execution"] = np.where(
+        paths["execution_total"].gt(0),
+        100.0 * paths["n_tasks"] / paths["execution_total"],
+        0.0,
+    )
+    return flow, paths
+
+
+def build_time_specific_flow(period_id: int, tasks: pd.DataFrame | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
+    if tasks is None:
+        tasks = add_flow_categories(read_task_data())
+    period_tasks = tasks[tasks["period_id"].eq(period_id)].copy()
+    if period_tasks.empty:
+        raise ValueError(f"No task episodes found for period_id={period_id}")
+    return summarize_flow_and_paths(period_tasks)
 
 
 def build_outputs() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -264,7 +377,7 @@ def draw_box(
     facecolor: str,
     edgecolor: str = "white",
     linewidth: float = 1.0,
-    radius: float = 0.006,
+    radius: float = 0.002,
     zorder: int = 6,
     alpha: float = 1.0,
 ) -> None:
@@ -391,18 +504,18 @@ def draw_node_label(
     label: str,
     value_pct: float,
     color: str,
-    small_threshold: float = 0.046,
+    small_threshold: float = 0.030,
 ) -> None:
     if y_top <= y_bottom:
         return
     height = y_top - y_bottom
     if height >= small_threshold:
-        text = f"{label}\n{pct(value_pct)}"
-        fontsize = 8.2
+        text = f"{label}\n({pct(value_pct)})"
+        fontsize = 6.5
     else:
-        text = pct(value_pct)
-        fontsize = 8.0
-    text_color = TEXT if color == SOURCE_FILL else "white"
+        text = f"({pct(value_pct)})"
+        fontsize = 6.4
+    text_color = contrast_text(color)
     ax.text(
         x_center,
         (y_bottom + y_top) / 2.0,
@@ -411,7 +524,7 @@ def draw_node_label(
         va="center",
         fontsize=fontsize,
         color=text_color,
-        weight="bold",
+        weight="normal",
         linespacing=0.92,
         zorder=9,
     )
@@ -443,19 +556,19 @@ def draw_state_flow(
 ) -> None:
     y_bottom = y_center - band_height / 2.0
     y_top = y_center + band_height / 2.0
-    source_x = 0.205
-    decision_x = 0.500
-    execution_x = 0.795
-    node_width = 0.118
+    source_x = 0.248
+    decision_x = 0.525
+    execution_x = 0.805
+    node_width = 0.104
     segment_gap = 0.0048
 
     ax.add_patch(
         FancyBboxPatch(
-            (0.010, y_bottom - 0.016),
-            0.975,
-            band_height + 0.032,
-            boxstyle="round,pad=0.004,rounding_size=0.012",
-            linewidth=0.8,
+            (0.018, y_bottom - 0.013),
+            0.958,
+            band_height + 0.026,
+            boxstyle="round,pad=0,rounding_size=0.002",
+            linewidth=0.65,
             edgecolor=PANEL_EDGE,
             facecolor=PANEL_FILL,
             zorder=0,
@@ -463,17 +576,28 @@ def draw_state_flow(
     )
 
     n_tasks = int(flow_row["n_tasks"])
-    mean_confidence = float(flow_row["mean_ai_confidence"]) * 100.0
-    ax.text(0.032, y_center + 0.050, state, ha="left", va="center", fontsize=14.4, weight="bold", color=STATE_COLORS[state])
-    ax.text(0.032, y_center + 0.005, f"{n_tasks:,} tasks", ha="left", va="center", fontsize=9.6, color=TEXT)
     ax.text(
-        0.032,
-        y_center - 0.038,
-        f"Mean AI confidence: {pct1(mean_confidence)}",
+        0.035,
+        y_center + 0.012,
+        STATE_PANEL_PREFIXES[state],
         ha="left",
         va="center",
-        fontsize=8.7,
-        color=MUTED,
+        fontsize=6.8,
+        weight="normal",
+        color=TEXT,
+        zorder=10,
+    )
+    ax.text(
+        0.058,
+        y_center,
+        STATE_PANEL_LABELS[state],
+        ha="left",
+        va="center",
+        fontsize=6.8,
+        weight="normal",
+        color=TEXT,
+        linespacing=1.02,
+        zorder=10,
     )
 
     decision_counts, execution_counts = state_counts(flow_row, paths_state)
@@ -496,7 +620,7 @@ def draw_state_flow(
             decision_segments[decision][0],
             decision_segments[decision][1],
             color=DECISION_COLORS[decision],
-            alpha=0.22,
+            alpha=0.42,
             zorder=2,
         )
 
@@ -535,7 +659,7 @@ def draw_state_flow(
                 execution_subsegments[decision][0],
                 execution_subsegments[decision][1],
                 color=DECISION_COLORS[decision],
-                alpha=0.18,
+                alpha=0.34,
                 zorder=3,
             )
 
@@ -546,20 +670,20 @@ def draw_state_flow(
         y_top,
         width=node_width,
         facecolor=SOURCE_FILL,
-        edgecolor="#CBD5E1",
-        linewidth=0.9,
+        edgecolor=SOURCE_EDGE,
+        linewidth=0.65,
         zorder=7,
     )
     ax.text(
         source_x,
         y_center,
-        f"All tasks\n{n_tasks:,}",
+        f"Task\n({n_tasks:,})",
         ha="center",
         va="center",
-        fontsize=8.6,
-        weight="bold",
+        fontsize=6.4,
+        weight="normal",
         color=TEXT,
-        linespacing=0.95,
+        linespacing=0.96,
         zorder=9,
     )
 
@@ -573,7 +697,8 @@ def draw_state_flow(
             y1,
             width=node_width,
             facecolor=DECISION_COLORS[decision],
-            linewidth=1.1,
+            edgecolor="white",
+            linewidth=0.8,
             zorder=8,
         )
         draw_node_label(
@@ -596,7 +721,8 @@ def draw_state_flow(
             y1,
             width=node_width,
             facecolor=EXECUTION_COLORS[execution],
-            linewidth=1.1,
+            edgecolor="white",
+            linewidth=0.8,
             zorder=8,
         )
         draw_node_label(
@@ -610,25 +736,34 @@ def draw_state_flow(
         )
 
 
-def make_flow_figure(flow: pd.DataFrame, paths: pd.DataFrame) -> Path:
-    fig = plt.figure(figsize=(13.7, 8.6))
-    ax = fig.add_axes([0.035, 0.115, 0.930, 0.730])
+def make_flow_figure(
+    flow: pd.DataFrame,
+    paths: pd.DataFrame,
+    *,
+    output_png: Path = FLOW_FIGURE,
+    output_pdf: Path = FLOW_FIGURE_PDF,
+    title: str = "State-dependent triadic task flow",
+    subtitle: str = "Ribbon width shows the share of tasks moving through each response and execution path.",
+    note: str = "Note. Counts in parentheses are task episodes pooled across all planning cycles and assigned to each latent state; node labels report within-state task shares.",
+) -> Path:
+    fig = plt.figure(figsize=(7.40, 5.65))
+    ax = fig.add_axes([0.045, 0.185, 0.910, 0.705])
     clean_alluvial_axis(ax)
 
-    fig.text(0.045, 0.946, "State-dependent triadic task flow", fontsize=21, weight="bold", color=TEXT)
+    fig.text(0.045, 0.957, title, fontsize=10.1, weight="normal", color=TEXT)
     fig.text(
         0.045,
-        0.908,
-        "Each row follows tasks from AI recommendation to manager response and final execution mode; ribbon width is proportional to task share.",
-        fontsize=11.1,
-        color="#374151",
+        0.926,
+        subtitle,
+        fontsize=6.7,
+        color=MUTED,
     )
 
-    stage_positions = [(0.205, "AI recommendation"), (0.500, "Manager response"), (0.795, "Execution mode")]
+    stage_positions = [(0.248, "AI recommendations"), (0.525, "Managers' decisions"), (0.805, "Task execution")]
     for x, label in stage_positions:
-        ax.text(x, 0.975, label, ha="center", va="center", fontsize=11.2, weight="bold", color=TEXT)
-    ax.annotate("", xy=(0.405, 0.975), xytext=(0.295, 0.975), arrowprops={"arrowstyle": "-|>", "lw": 0.9, "color": MUTED})
-    ax.annotate("", xy=(0.700, 0.975), xytext=(0.590, 0.975), arrowprops={"arrowstyle": "-|>", "lw": 0.9, "color": MUTED})
+        ax.text(x, 0.972, label, ha="center", va="center", fontsize=6.7, weight="normal", color=TEXT)
+    ax.annotate("", xy=(0.425, 0.972), xytext=(0.345, 0.972), arrowprops={"arrowstyle": "-|>", "lw": 0.65, "color": RULE})
+    ax.annotate("", xy=(0.710, 0.972), xytext=(0.630, 0.972), arrowprops={"arrowstyle": "-|>", "lw": 0.65, "color": RULE})
 
     flow_by_state = flow.set_index("state")
     for state, y_center in zip(STATE_ORDER, [0.790, 0.515, 0.240]):
@@ -643,39 +778,55 @@ def make_flow_figure(flow: pd.DataFrame, paths: pd.DataFrame) -> Path:
         )
 
     handles = [
-        Line2D([0], [0], color=DECISION_COLORS["Fully approved"], linewidth=6, label="Approved, no escalation"),
-        Line2D([0], [0], color=DECISION_COLORS["Escalated"], linewidth=6, label="Escalated to employee"),
-        Line2D([0], [0], color=DECISION_COLORS["Manager changed"], linewidth=6, label="Manager modify/reject"),
+        Line2D([0], [0], color=DECISION_COLORS["Fully approved"], linewidth=5, label="Approved"),
+        Line2D([0], [0], color=DECISION_COLORS["Escalated"], linewidth=5, label="Escalated"),
+        Line2D([0], [0], color=DECISION_COLORS["Manager changed"], linewidth=5, label="Overridden"),
     ]
     legend = fig.legend(
         handles=handles,
         loc="lower center",
-        bbox_to_anchor=(0.50, 0.040),
+        bbox_to_anchor=(0.50, 0.095),
         ncol=3,
-        frameon=True,
+        frameon=False,
         facecolor="white",
-        edgecolor="#222222",
         framealpha=1.0,
-        fontsize=9.4,
-    )
-    legend.get_frame().set_linewidth(0.8)
-    fig.text(
-        0.045,
-        0.086,
-        "Ribbon color follows the manager response. Right-hand node colors identify the final execution mode.",
-        fontsize=8.8,
-        color=MUTED,
+        fontsize=6.4,
+        handlelength=1.7,
+        columnspacing=1.6,
     )
     fig.text(
         0.045,
-        0.062,
-        "Note: manager self-execution is not a separate dataset field; manager involvement is observed through accept, modify/reject, and escalation.",
-        fontsize=8.8,
+        0.058,
+        note,
+        fontsize=5.9,
         color=MUTED,
     )
-    fig.savefig(FLOW_FIGURE, dpi=160, facecolor="white")
+    fig.savefig(output_png, dpi=300, facecolor="white", bbox_inches="tight")
+    fig.savefig(output_pdf, facecolor="white", bbox_inches="tight")
     plt.close(fig)
-    return FLOW_FIGURE
+    return output_png
+
+
+def time_specific_figure_paths(period_id: int) -> tuple[Path, Path]:
+    stem = f"figure_triadic_task_flow_by_state_v3_misq_t{period_id:02d}"
+    return ANALYSIS_DIR / f"{stem}.png", ANALYSIS_DIR / f"{stem}.pdf"
+
+
+def make_time_specific_flow_figure(period_id: int, tasks: pd.DataFrame | None = None) -> Path:
+    flow, paths = build_time_specific_flow(period_id, tasks=tasks)
+    output_png, output_pdf = time_specific_figure_paths(period_id)
+    return make_flow_figure(
+        flow,
+        paths,
+        output_png=output_png,
+        output_pdf=output_pdf,
+        title=f"State-dependent triadic task flow at t = {period_id}",
+        subtitle="Ribbon width shows the share of task episodes in this planning cycle.",
+        note=(
+            f"Note. Counts in parentheses are task episodes from planning cycle t = {period_id} "
+            "assigned to each latent state; node labels report within-state task shares."
+        ),
+    )
 
 
 def make_acceptance_figure(acceptance: pd.DataFrame) -> Path:
@@ -724,12 +875,29 @@ def make_acceptance_figure(acceptance: pd.DataFrame) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--refresh", action="store_true", help="Recompute summaries from the Excel workbook.")
+    parser.add_argument(
+        "--time-specific",
+        action="store_true",
+        help="Also render period-specific task-flow snapshots.",
+    )
+    parser.add_argument(
+        "--time-periods",
+        nargs="+",
+        type=int,
+        default=TIME_SPECIFIC_PERIODS,
+        help="Planning cycles to render when --time-specific is set.",
+    )
     args = parser.parse_args()
 
     setup_style()
     flow, acceptance, paths = load_or_build(refresh=args.refresh)
     for path in [make_flow_figure(flow, paths), make_acceptance_figure(acceptance)]:
         print(path)
+    if args.time_specific:
+        tasks = add_flow_categories(read_task_data())
+        for period_id in args.time_periods:
+            print(make_time_specific_flow_figure(period_id, tasks=tasks))
+            print(time_specific_figure_paths(period_id)[1])
     print(FLOW_CSV)
     print(PATH_CSV)
     print(ACCEPTANCE_CSV)
