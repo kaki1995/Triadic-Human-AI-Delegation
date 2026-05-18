@@ -1,0 +1,4 @@
+parameter,label,cutpoint,estimate,standard_error,z_stat,p_value,significance,n_obs,method
+mu_1,To Aversion / Neutral cutpoint,Aversion | Neutral+,0.776020,0.024915,31.147045,1.000000e-300,***,21875,post-HMM ordered-logit transition threshold test
+mu_2,To Neutral / Appreciation cutpoint,Aversion+Neutral | Appreciation,1.331038,0.010266,129.660263,1.000000e-300,***,21875,post-HMM ordered-logit transition threshold test
+mu_3,To Appreciation,upper terminal category; no finite ordered-logit threshold,,,,,,21875,not estimated: three ordered states require two finite thresholds

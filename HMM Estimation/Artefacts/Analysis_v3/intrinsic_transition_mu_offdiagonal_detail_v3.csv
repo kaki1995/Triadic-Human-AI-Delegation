@@ -1,0 +1,7 @@
+from_state,to_state,parameter,estimate,p_value,significance,n_obs_from_state,transition_count,reference_category,method
+Aversion,Neutral,mu,-0.825257,2.893699e-232,***,7473,2251,Stay in Aversion,post-HMM multinomial logit intercept; destination relative to staying in origin state
+Aversion,Appreciation,mu,-4.005583,1e-300,***,7473,94,Stay in Aversion,post-HMM multinomial logit intercept; destination relative to staying in origin state
+Neutral,Aversion,mu,-1.040227,1e-300,***,10856,2659,Stay in Neutral,post-HMM multinomial logit intercept; destination relative to staying in origin state
+Neutral,Appreciation,mu,-2.372988,1e-300,***,10856,698,Stay in Neutral,post-HMM multinomial logit intercept; destination relative to staying in origin state
+Appreciation,Aversion,mu,-6.200743,1.244921e-49,***,3546,7,Stay in Appreciation,post-HMM multinomial logit intercept; destination relative to staying in origin state
+Appreciation,Neutral,mu,-1.971881,1e-300,***,3546,432,Stay in Appreciation,post-HMM multinomial logit intercept; destination relative to staying in origin state

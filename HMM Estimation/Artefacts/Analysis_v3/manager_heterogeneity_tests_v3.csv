@@ -1,0 +1,3 @@
+factor,label,estimate,p_value,significance,icc,n_obs,n_managers,method,components
+delta,Manager-Specific Heterogeneity in Transitions,0.204494,1.271671e-37,***,0.083057,21875,875,post-HMM manager_fixed_effect_f_test_df_874 on standardized next posterior state order,
+xi,Manager-Specific Heterogeneity in Emissions,0.129762,1.526146e-10,***,0.046412,45500,875,RMS random-intercept SD across standardized emissions; p-value combined by Fisher test,"ai_authority_share, escalation_share"
