@@ -1,0 +1,11 @@
+section,variable,Asia-Pacific minus EMEA,Americas minus EMEA,Welch F,p_value
+Delegation outcomes,AI Authority Share,0.0341***,0.0537***,16.8555***,1.0059216932026212e-07
+Delegation outcomes,Escalation Share,-0.0136***,-0.0190***,11.6053***,1.3114568197288557e-05
+Delegation outcomes,Composite KPI Score,0.0188***,0.0285***,31.2447***,2.9340990028461965e-13
+Delegation outcomes,Target Attainment,0.0199**,0.0267***,7.9654***,0.0004139937038600191
+Latent-state composition,Aversion-state share,-0.1316***,-0.1386***,52.7989***,6.6495215163069184e-21
+Latent-state composition,Neutral-state share,0.0730***,0.0859***,34.5784***,1.6969955114617777e-14
+Latent-state composition,Appreciation-state share,0.0586***,0.0527***,12.2510***,7.262044575589814e-06
+Transition dynamics,Persistence rate,0.0485***,0.0747***,35.0089***,1.2756027468090781e-14
+Transition dynamics,Upward transition rate,-0.0233***,-0.0366***,33.7885***,3.51983589174005e-14
+Transition dynamics,Downward transition rate,-0.0253***,-0.0381***,29.7160***,1.1397085887245379e-12

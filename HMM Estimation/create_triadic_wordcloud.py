@@ -14,8 +14,9 @@ from wordcloud import WordCloud
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = SCRIPT_DIR / "Artefacts" / "Analysis_v3"
 
-FIGURE_PNG = OUTPUT_DIR / "triadic_wordcloud_figure.png"
-PHRASE_COUNTS_CSV = OUTPUT_DIR / "triadic_wordcloud_phrase_counts_v3.csv"
+FIGURE_PNG = OUTPUT_DIR / "triadic_wordcloud_contextual_figure.png"
+FIGURE_SVG = OUTPUT_DIR / "triadic_wordcloud_contextual_figure.svg"
+PHRASE_COUNTS_CSV = OUTPUT_DIR / "triadic_wordcloud_contextual_phrase_counts_v3.csv"
 
 TEAL = "#0E868B"
 PURPLE = "#4A237D"
@@ -24,64 +25,49 @@ BLUE = "#1F5496"
 YELLOW = "#E8BE00"
 WHITE = "#FFFFFF"
 
-WORD_DATA = {
-    "Appreciation": {
-        "Seems okay but I should check": 85,
-        "I still want final say": 88,
-        "AI helps but not blindly": 80,
-        "Looks useful but situation changed": 78,
-        "I know the local issue better": 82,
-        "Need to check with the team": 75,
-        "Let me confirm first": 72,
-        "Maybe later not now": 70,
-        "Customer request changed": 76,
-        "I don't want to rush this": 79,
-        "Need to see the latest update": 74,
-        "It depends on the plant situation": 77,
-        "I trust it but with caution": 81,
-        "Something feels missing": 68,
-        "Better to be careful today": 73,
-    },
-    "Neutral": {
-        "Not sure yet": 82,
-        "Need more context": 78,
-        "I need to think about it": 80,
-        "Let's wait and see": 75,
-        "Could be right could be wrong": 77,
-        "I don't have enough information": 79,
-        "Need another opinion": 73,
-        "Need to ask someone first": 76,
-        "I want to compare options": 74,
-        "Maybe approve later": 72,
-        "Looks unclear to me": 71,
-        "I need more details": 78,
-        "Hard to judge now": 70,
-        "Not enough confidence": 75,
-        "Let's double-check the numbers": 77,
-        "I don't fully get the reason": 76,
-        "Need to understand the logic": 74,
-        "Could work but unsure": 73,
-    },
-    "Aversion": {
-        "I don't trust this": 90,
-        "Too risky for me": 88,
-        "I prefer doing it myself": 85,
-        "AI doesn't know reality": 87,
-        "I've seen this fail before": 83,
-        "Better safe than sorry": 84,
-        "This could cause trouble": 82,
-        "I don't want to be responsible": 86,
-        "Not worth the risk": 81,
-        "I don't believe the output": 85,
-        "Human judgment is better": 84,
-        "The system misses too much": 82,
-        "I don't want surprises": 80,
-        "This feels wrong": 79,
-        "I won't approve this": 89,
-        "AI is guessing again": 81,
-        "I know better than the model": 83,
-        "If it fails we pay the price": 86,
-    },
+REASON_DATA = {
+    "Appreciation": [
+        ("I still want final say", 92, "Performance pressure"),
+        ("I trust it but with caution", 89, "Forecast accuracy"),
+        ("Seems okay but I should check", 86, "Forecast accuracy"),
+        ("Looks useful but situation changed", 83, "Demand volatility"),
+        ("I know the local issue better", 80, "Task complexity"),
+        ("Need to check with the team", 77, "Task complexity"),
+        ("AI helps but not blindly", 74, "Task complexity"),
+        ("Need to see the latest update", 73, "Decision latency"),
+        ("Germany shift changed", 70, "Task complexity"),
+        ("China supplier is late", 68, "Supply disruptions"),
+        ("Better to be careful today", 66, "Recent negative shock"),
+        ("I don't want to rush this", 64, "Decision latency"),
+    ],
+    "Neutral": [
+        ("Not sure yet", 90, "Task complexity"),
+        ("I need more details", 86, "Forecast accuracy"),
+        ("I need to think about it", 84, "Task complexity"),
+        ("Need to understand the logic", 82, "Forecast accuracy"),
+        ("I don't have enough information", 80, "Task complexity"),
+        ("Need more context", 78, "Task complexity"),
+        ("Need to ask someone first", 76, "Performance pressure"),
+        ("Let's double-check the numbers", 74, "Forecast accuracy"),
+        ("Could be right could be wrong", 72, "Forecast accuracy"),
+        ("Mexico border delay unclear", 70, "Decision latency"),
+        ("Need another opinion", 68, "Performance pressure"),
+        ("Maybe approve later", 66, "Decision latency"),
+    ],
+    "Aversion": [
+        ("I don't trust this", 92, "Forecast accuracy"),
+        ("AI doesn't know reality", 90, "Demand volatility"),
+        ("Too risky for me", 88, "Supply disruptions"),
+        ("I won't approve this", 86, "Performance pressure"),
+        ("I prefer doing it myself", 84, "Performance pressure"),
+        ("I don't believe the output", 82, "Forecast accuracy"),
+        ("Human judgment is better", 80, "Task complexity"),
+        ("The system misses too much", 78, "Task complexity"),
+        ("If it fails we pay the price", 76, "Target difficulty"),
+        ("Brazil port backlog is risky", 74, "Supply disruptions"),
+        ("Better safe than sorry", 72, "Recent negative shock"),
+        ("I've seen this fail before", 70, "Recent negative shock"),
+    ],
 }
 
 STATE_ORDER = ["Appreciation", "Neutral", "Aversion"]
@@ -108,19 +94,24 @@ def color_func_factory(palette: list[str]):
 
 def phrase_counts() -> pd.DataFrame:
     rows = []
-    for state, frequencies in WORD_DATA.items():
-        total = sum(frequencies.values())
-        for phrase, frequency in frequencies.items():
+    for state, reasons in REASON_DATA.items():
+        total = sum(frequency for _, frequency, _ in reasons)
+        for phrase, frequency, contextual_factor in reasons:
             rows.append(
                 {
                     "state": state,
                     "reason_phrase": phrase,
+                    "contextual_factor": contextual_factor,
                     "weighted_count": frequency,
                     "share_within_state": frequency / total,
-                    "source": "wordcloud_library_template",
+                    "source": "wordcloud_library_contextual_template",
                 }
             )
     return pd.DataFrame(rows)
+
+
+def frequencies_for_state(state: str) -> dict[str, int]:
+    return {phrase: frequency for phrase, frequency, _ in REASON_DATA[state]}
 
 
 def create_wordcloud_figure() -> None:
@@ -128,20 +119,21 @@ def create_wordcloud_figure() -> None:
     fig.patch.set_facecolor(WHITE)
 
     for ax, state in zip(axes, STATE_ORDER):
+        frequencies = frequencies_for_state(state)
         wordcloud = WordCloud(
             width=900,
             height=700,
             background_color=WHITE,
             colormap=None,
-            relative_scaling=0.6,
+            relative_scaling=0.45,
             min_font_size=12,
-            max_font_size=150,
-            prefer_horizontal=0.6,
+            max_font_size=115,
+            prefer_horizontal=1.0,
             max_words=80,
             collocations=False,
             random_state=42,
             margin=10,
-        ).generate_from_frequencies(WORD_DATA[state])
+        ).generate_from_frequencies(frequencies)
 
         wordcloud.recolor(color_func=color_func_factory(STATE_PALETTES[state]))
         ax.imshow(wordcloud, interpolation="bilinear")
@@ -159,6 +151,7 @@ def create_wordcloud_figure() -> None:
 
     plt.tight_layout()
     fig.savefig(FIGURE_PNG, dpi=300, bbox_inches="tight", facecolor=WHITE, pad_inches=0.3)
+    fig.savefig(FIGURE_SVG, bbox_inches="tight", facecolor=WHITE, pad_inches=0.3)
     plt.close(fig)
 
 
@@ -168,6 +161,7 @@ def main() -> None:
     create_wordcloud_figure()
     print(PHRASE_COUNTS_CSV)
     print(FIGURE_PNG)
+    print(FIGURE_SVG)
 
 
 if __name__ == "__main__":

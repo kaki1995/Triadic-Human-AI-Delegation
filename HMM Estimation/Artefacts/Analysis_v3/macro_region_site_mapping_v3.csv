@@ -1,0 +1,33 @@
+scenario_plant_id,macro_region,country_scenario
+P001,"Europe, Middle East, Africa",Germany
+P002,"Europe, Middle East, Africa",Germany
+P003,"Europe, Middle East, Africa",Germany
+P004,"Europe, Middle East, Africa",Germany
+P005,"Europe, Middle East, Africa",Germany
+P006,"Europe, Middle East, Africa",Germany
+P007,"Europe, Middle East, Africa",Germany
+P008,"Europe, Middle East, Africa",Germany
+P009,"Europe, Middle East, Africa",United Kingdom
+P010,"Europe, Middle East, Africa",United Kingdom
+P011,"Europe, Middle East, Africa",United Kingdom
+P012,"Europe, Middle East, Africa",United Kingdom
+P013,"Europe, Middle East, Africa",Austria
+P014,"Europe, Middle East, Africa",Austria
+P015,"Europe, Middle East, Africa",Hungary
+P016,"Europe, Middle East, Africa",South Africa
+P017,"Europe, Middle East, Africa",Netherlands
+P018,"Europe, Middle East, Africa",Netherlands
+P019,"Europe, Middle East, Africa",Italy
+P020,"Europe, Middle East, Africa",Italy
+P021,Asia-Pacific,China
+P022,Asia-Pacific,China
+P023,Asia-Pacific,India
+P024,Asia-Pacific,India
+P025,Asia-Pacific,Thailand
+P026,Asia-Pacific,Indonesia
+P027,Asia-Pacific,Malaysia
+P028,"North, Central, South America",United States
+P029,"North, Central, South America",Mexico
+P030,"North, Central, South America",Mexico
+P031,"North, Central, South America",Brazil
+P032,"North, Central, South America",Brazil

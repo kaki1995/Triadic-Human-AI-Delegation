@@ -1,0 +1,4 @@
+from_state,chi2,df,p_value,significance,cramers_v,n_transitions,unit_of_analysis
+Aversion,6.950857625476203,6,0.3254157979320602,,0.021565359756661687,7473,manager_period_transition
+Neutral,6.535227468966222,6,0.3659720181908296,,0.017349239369886648,10856,manager_period_transition
+Appreciation,3.411584878143022,6,0.7556933566391167,,0.021932782247868276,3546,manager_period_transition

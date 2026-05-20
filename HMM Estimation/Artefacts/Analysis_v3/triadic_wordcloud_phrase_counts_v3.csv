@@ -1,52 +1,45 @@
-state,reason_phrase,weighted_count,share_within_state,source
-Appreciation,Seems okay but I should check,85,0.07340241796200346,wordcloud_library_template
-Appreciation,I still want final say,88,0.07599309153713299,wordcloud_library_template
-Appreciation,AI helps but not blindly,80,0.0690846286701209,wordcloud_library_template
-Appreciation,Looks useful but situation changed,78,0.06735751295336788,wordcloud_library_template
-Appreciation,I know the local issue better,82,0.07081174438687392,wordcloud_library_template
-Appreciation,Need to check with the team,75,0.06476683937823834,wordcloud_library_template
-Appreciation,Let me confirm first,72,0.06217616580310881,wordcloud_library_template
-Appreciation,Maybe later not now,70,0.06044905008635579,wordcloud_library_template
-Appreciation,Customer request changed,76,0.06563039723661486,wordcloud_library_template
-Appreciation,I don't want to rush this,79,0.06822107081174439,wordcloud_library_template
-Appreciation,Need to see the latest update,74,0.06390328151986183,wordcloud_library_template
-Appreciation,It depends on the plant situation,77,0.06649395509499137,wordcloud_library_template
-Appreciation,I trust it but with caution,81,0.06994818652849741,wordcloud_library_template
-Appreciation,Something feels missing,68,0.05872193436960276,wordcloud_library_template
-Appreciation,Better to be careful today,73,0.06303972366148532,wordcloud_library_template
-Neutral,Not sure yet,82,0.060294117647058824,wordcloud_library_template
-Neutral,Need more context,78,0.057352941176470586,wordcloud_library_template
-Neutral,I need to think about it,80,0.058823529411764705,wordcloud_library_template
-Neutral,Let's wait and see,75,0.05514705882352941,wordcloud_library_template
-Neutral,Could be right could be wrong,77,0.05661764705882353,wordcloud_library_template
-Neutral,I don't have enough information,79,0.05808823529411765,wordcloud_library_template
-Neutral,Need another opinion,73,0.05367647058823529,wordcloud_library_template
-Neutral,Need to ask someone first,76,0.05588235294117647,wordcloud_library_template
-Neutral,I want to compare options,74,0.054411764705882354,wordcloud_library_template
-Neutral,Maybe approve later,72,0.052941176470588235,wordcloud_library_template
-Neutral,Looks unclear to me,71,0.05220588235294118,wordcloud_library_template
-Neutral,I need more details,78,0.057352941176470586,wordcloud_library_template
-Neutral,Hard to judge now,70,0.051470588235294115,wordcloud_library_template
-Neutral,Not enough confidence,75,0.05514705882352941,wordcloud_library_template
-Neutral,Let's double-check the numbers,77,0.05661764705882353,wordcloud_library_template
-Neutral,I don't fully get the reason,76,0.05588235294117647,wordcloud_library_template
-Neutral,Need to understand the logic,74,0.054411764705882354,wordcloud_library_template
-Neutral,Could work but unsure,73,0.05367647058823529,wordcloud_library_template
-Aversion,I don't trust this,90,0.0594059405940594,wordcloud_library_template
-Aversion,Too risky for me,88,0.058085808580858087,wordcloud_library_template
-Aversion,I prefer doing it myself,85,0.056105610561056105,wordcloud_library_template
-Aversion,AI doesn't know reality,87,0.05742574257425743,wordcloud_library_template
-Aversion,I've seen this fail before,83,0.05478547854785479,wordcloud_library_template
-Aversion,Better safe than sorry,84,0.055445544554455446,wordcloud_library_template
-Aversion,This could cause trouble,82,0.05412541254125412,wordcloud_library_template
-Aversion,I don't want to be responsible,86,0.05676567656765676,wordcloud_library_template
-Aversion,Not worth the risk,81,0.053465346534653464,wordcloud_library_template
-Aversion,I don't believe the output,85,0.056105610561056105,wordcloud_library_template
-Aversion,Human judgment is better,84,0.055445544554455446,wordcloud_library_template
-Aversion,The system misses too much,82,0.05412541254125412,wordcloud_library_template
-Aversion,I don't want surprises,80,0.052805280528052806,wordcloud_library_template
-Aversion,This feels wrong,79,0.05214521452145215,wordcloud_library_template
-Aversion,I won't approve this,89,0.058745874587458745,wordcloud_library_template
-Aversion,AI is guessing again,81,0.053465346534653464,wordcloud_library_template
-Aversion,I know better than the model,83,0.05478547854785479,wordcloud_library_template
-Aversion,If it fails we pay the price,86,0.05676567656765676,wordcloud_library_template
+state,reason_phrase,contextual_factor,weighted_count,share_within_state,source
+Appreciation,Decision latency changed,Decision latency,88,0.07899461400359066,contextual_factor_template
+Appreciation,Demand volatility increased,Demand volatility,84,0.07540394973070018,contextual_factor_template
+Appreciation,Forecast accuracy needs check,Forecast accuracy,82,0.07360861759425494,contextual_factor_template
+Appreciation,Performance pressure is high,Performance pressure,78,0.07001795332136446,contextual_factor_template
+Appreciation,Recent negative shock,Recent negative shock,80,0.0718132854578097,contextual_factor_template
+Appreciation,Supply disruptions changed plan,Supply disruptions,86,0.07719928186714542,contextual_factor_template
+Appreciation,Target difficulty is high,Target difficulty,75,0.06732495511669659,contextual_factor_template
+Appreciation,Task complexity needs review,Task complexity,87,0.07809694793536805,contextual_factor_template
+Appreciation,Need local validation,Task complexity,76,0.06822262118491922,contextual_factor_template
+Appreciation,Check team feasibility,Supply disruptions,74,0.06642728904847396,contextual_factor_template
+Appreciation,Customer request changed,Demand volatility,72,0.06463195691202872,contextual_factor_template
+Appreciation,Latest ERP update needed,Decision latency,70,0.06283662477558348,contextual_factor_template
+Appreciation,AI useful but context changed,Task complexity,83,0.07450628366247755,contextual_factor_template
+Appreciation,Retain final say,Performance pressure,79,0.07091561938958707,contextual_factor_template
+Neutral,Decision latency unclear,Decision latency,82,0.06960950764006792,contextual_factor_template
+Neutral,Demand volatility unclear,Demand volatility,80,0.06791171477079797,contextual_factor_template
+Neutral,Forecast accuracy uncertain,Forecast accuracy,81,0.06876061120543293,contextual_factor_template
+Neutral,Performance pressure unclear,Performance pressure,76,0.06451612903225806,contextual_factor_template
+Neutral,Recent shock needs context,Recent negative shock,78,0.06621392190152801,contextual_factor_template
+Neutral,Supply disruption details,Supply disruptions,77,0.06536502546689305,contextual_factor_template
+Neutral,Target difficulty unclear,Target difficulty,75,0.0636672325976231,contextual_factor_template
+Neutral,Task complexity unclear,Task complexity,79,0.06706281833616298,contextual_factor_template
+Neutral,Need more context,Task complexity,84,0.07130730050933787,contextual_factor_template
+Neutral,Need more details,Forecast accuracy,83,0.07045840407470289,contextual_factor_template
+Neutral,Need to compare options,Demand volatility,74,0.06281833616298811,contextual_factor_template
+Neutral,Need another opinion,Performance pressure,73,0.06196943972835314,contextual_factor_template
+Neutral,Not sure yet,Task complexity,86,0.0730050933786078,contextual_factor_template
+Neutral,Need to understand logic,Forecast accuracy,78,0.06621392190152801,contextual_factor_template
+Neutral,Could work but unsure,Recent negative shock,72,0.06112054329371817,contextual_factor_template
+Aversion,Decision latency too risky,Decision latency,86,0.06766325727773406,contextual_factor_template
+Aversion,Demand volatility too high,Demand volatility,84,0.06608969315499606,contextual_factor_template
+Aversion,Forecast accuracy unreliable,Forecast accuracy,88,0.06923682140047208,contextual_factor_template
+Aversion,Performance pressure too high,Performance pressure,82,0.06451612903225806,contextual_factor_template
+Aversion,Recent negative shock confirms risk,Recent negative shock,80,0.06294256490952006,contextual_factor_template
+Aversion,Supply disruptions make AI unsafe,Supply disruptions,85,0.06687647521636507,contextual_factor_template
+Aversion,Target difficulty beyond AI,Target difficulty,78,0.06136900078678206,contextual_factor_template
+Aversion,Task complexity beyond AI,Task complexity,87,0.06845003933910307,contextual_factor_template
+Aversion,I don't trust this,Task complexity,90,0.07081038552321008,contextual_factor_template
+Aversion,AI doesn't know reality,Demand volatility,89,0.07002360346184107,contextual_factor_template
+Aversion,I prefer doing it myself,Performance pressure,83,0.06530291109362707,contextual_factor_template
+Aversion,I won't approve this,Recent negative shock,86,0.06766325727773406,contextual_factor_template
+Aversion,Too risky for me,Supply disruptions,88,0.06923682140047208,contextual_factor_template
+Aversion,I don't want responsibility,Performance pressure,84,0.06608969315499606,contextual_factor_template
+Aversion,Human judgment is better,Task complexity,81,0.06372934697088907,contextual_factor_template

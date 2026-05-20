@@ -20,7 +20,9 @@ PATH_CSV = ANALYSIS_DIR / "triadic_task_flow_paths_by_state_v3.csv"
 ACCEPTANCE_CSV = ANALYSIS_DIR / "manager_acceptance_by_ai_confidence_state_v3.csv"
 FLOW_FIGURE = ANALYSIS_DIR / "figure_triadic_task_flow_by_state_v3_misq.png"
 FLOW_FIGURE_PDF = ANALYSIS_DIR / "figure_triadic_task_flow_by_state_v3_misq.pdf"
+FLOW_FIGURE_SVG = ANALYSIS_DIR / "figure_triadic_task_flow_by_state_v3_misq.svg"
 ACCEPTANCE_FIGURE = ANALYSIS_DIR / "figure_manager_acceptance_by_ai_confidence_v3.png"
+ACCEPTANCE_FIGURE_SVG = ANALYSIS_DIR / "figure_manager_acceptance_by_ai_confidence_v3.svg"
 
 STATE_ORDER = ["Aversion", "Neutral", "Appreciation"]
 DECISION_ORDER = ["Fully approved", "Escalated", "Manager changed"]
@@ -742,6 +744,7 @@ def make_flow_figure(
     *,
     output_png: Path = FLOW_FIGURE,
     output_pdf: Path = FLOW_FIGURE_PDF,
+    output_svg: Path = FLOW_FIGURE_SVG,
     title: str = "State-dependent triadic task flow",
     subtitle: str = "Ribbon width shows the share of tasks moving through each response and execution path.",
     note: str = "Note. Counts in parentheses are task episodes pooled across all planning cycles and assigned to each latent state; node labels report within-state task shares.",
@@ -785,7 +788,7 @@ def make_flow_figure(
     legend = fig.legend(
         handles=handles,
         loc="lower center",
-        bbox_to_anchor=(0.50, 0.095),
+        bbox_to_anchor=(0.50, 0.130),
         ncol=3,
         frameon=False,
         facecolor="white",
@@ -796,30 +799,32 @@ def make_flow_figure(
     )
     fig.text(
         0.045,
-        0.058,
+        0.044,
         note,
         fontsize=5.9,
         color=MUTED,
     )
     fig.savefig(output_png, dpi=300, facecolor="white", bbox_inches="tight")
     fig.savefig(output_pdf, facecolor="white", bbox_inches="tight")
+    fig.savefig(output_svg, facecolor="white", bbox_inches="tight")
     plt.close(fig)
     return output_png
 
 
-def time_specific_figure_paths(period_id: int) -> tuple[Path, Path]:
+def time_specific_figure_paths(period_id: int) -> tuple[Path, Path, Path]:
     stem = f"figure_triadic_task_flow_by_state_v3_misq_t{period_id:02d}"
-    return ANALYSIS_DIR / f"{stem}.png", ANALYSIS_DIR / f"{stem}.pdf"
+    return ANALYSIS_DIR / f"{stem}.png", ANALYSIS_DIR / f"{stem}.pdf", ANALYSIS_DIR / f"{stem}.svg"
 
 
 def make_time_specific_flow_figure(period_id: int, tasks: pd.DataFrame | None = None) -> Path:
     flow, paths = build_time_specific_flow(period_id, tasks=tasks)
-    output_png, output_pdf = time_specific_figure_paths(period_id)
+    output_png, output_pdf, output_svg = time_specific_figure_paths(period_id)
     return make_flow_figure(
         flow,
         paths,
         output_png=output_png,
         output_pdf=output_pdf,
+        output_svg=output_svg,
         title=f"State-dependent triadic task flow at t = {period_id}",
         subtitle="Ribbon width shows the share of task episodes in this planning cycle.",
         note=(
@@ -868,6 +873,7 @@ def make_acceptance_figure(acceptance: pd.DataFrame) -> Path:
     legend.get_frame().set_linewidth(0.8)
     fig.tight_layout()
     fig.savefig(ACCEPTANCE_FIGURE, dpi=160, facecolor="white")
+    fig.savefig(ACCEPTANCE_FIGURE_SVG, facecolor="white")
     plt.close(fig)
     return ACCEPTANCE_FIGURE
 
@@ -898,6 +904,7 @@ def main() -> None:
         for period_id in args.time_periods:
             print(make_time_specific_flow_figure(period_id, tasks=tasks))
             print(time_specific_figure_paths(period_id)[1])
+            print(time_specific_figure_paths(period_id)[2])
     print(FLOW_CSV)
     print(PATH_CSV)
     print(ACCEPTANCE_CSV)

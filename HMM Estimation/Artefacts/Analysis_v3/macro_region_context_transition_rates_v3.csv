@@ -1,0 +1,28 @@
+macro_region,from_state,to_state,n_transitions,share_from_state_region
+Asia-Pacific,Aversion,Aversion,960,0.6575342465753424
+Asia-Pacific,Aversion,Neutral,480,0.3287671232876712
+Asia-Pacific,Aversion,Appreciation,20,0.0136986301369863
+Asia-Pacific,Neutral,Aversion,580,0.19627749576988154
+Asia-Pacific,Neutral,Neutral,2170,0.7343485617597293
+Asia-Pacific,Neutral,Appreciation,205,0.06937394247038917
+Asia-Pacific,Appreciation,Aversion,0,0.0
+Asia-Pacific,Appreciation,Neutral,132,0.12165898617511521
+Asia-Pacific,Appreciation,Appreciation,953,0.8783410138248848
+"Europe, Middle East, Africa",Aversion,Aversion,3481,0.694394574107321
+"Europe, Middle East, Africa",Aversion,Neutral,1477,0.29463395172551365
+"Europe, Middle East, Africa",Aversion,Appreciation,55,0.01097147416716537
+"Europe, Middle East, Africa",Neutral,Aversion,1712,0.2969129379118973
+"Europe, Middle East, Africa",Neutral,Neutral,3693,0.6404786680541104
+"Europe, Middle East, Africa",Neutral,Appreciation,361,0.06260839403399236
+"Europe, Middle East, Africa",Appreciation,Aversion,4,0.002324230098779779
+"Europe, Middle East, Africa",Appreciation,Neutral,218,0.12667054038349795
+"Europe, Middle East, Africa",Appreciation,Appreciation,1499,0.8710052295177223
+"North, Central, South America",Aversion,Aversion,687,0.687
+"North, Central, South America",Aversion,Neutral,294,0.294
+"North, Central, South America",Aversion,Appreciation,19,0.019
+"North, Central, South America",Neutral,Aversion,367,0.1718969555035129
+"North, Central, South America",Neutral,Neutral,1636,0.7662763466042155
+"North, Central, South America",Neutral,Appreciation,132,0.061826697892271666
+"North, Central, South America",Appreciation,Aversion,3,0.004054054054054054
+"North, Central, South America",Appreciation,Neutral,82,0.11081081081081082
+"North, Central, South America",Appreciation,Appreciation,655,0.8851351351351351

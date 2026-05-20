@@ -133,6 +133,7 @@ def draw_badge(ax, xy: tuple[float, float], text: str, *, color: str, radius: fl
 def save(fig, filename: str) -> Path:
     path = ANALYSIS_DIR / filename
     fig.savefig(path, dpi=160, facecolor="white")
+    fig.savefig(path.with_suffix(".svg"), facecolor="white")
     plt.close(fig)
     return path
 

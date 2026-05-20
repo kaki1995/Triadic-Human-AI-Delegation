@@ -1,0 +1,35 @@
+comparison,section,variable,Aversion,Neutral,Appreciation
+"Asia-Pacific minus Europe, Middle East, Africa","Emission factors (rho_m, eta)",Emission intercept,0.0035,0.0022,-0.0161***
+"Asia-Pacific minus Europe, Middle East, Africa",Emission standard deviation (sigma),Escalation share,-0.0022,0.0025,0.0066
+"Asia-Pacific minus Europe, Middle East, Africa",Emission control factors (W),Decision latency,0.0025,0.0104**,0.0019
+"Asia-Pacific minus Europe, Middle East, Africa",Emission control factors (W),Demand volatility,-0.0027,-0.0003,-0.0021
+"Asia-Pacific minus Europe, Middle East, Africa",Emission control factors (W),Forecast accuracy,0.0020,0.0001,0.0058
+"Asia-Pacific minus Europe, Middle East, Africa",Emission control factors (W),Performance pressure,0.0001,0.0118***,0.0051
+"Asia-Pacific minus Europe, Middle East, Africa",Emission control factors (W),Recent negative shock,0.0028,0.0008,0.0023
+"Asia-Pacific minus Europe, Middle East, Africa",Emission control factors (W),Supply disruptions,0.0008,0.0075**,0.0049
+"Asia-Pacific minus Europe, Middle East, Africa",Emission control factors (W),Target difficulty,-0.0022,-0.0041,0.0091
+"Asia-Pacific minus Europe, Middle East, Africa",Emission control factors (W),Task complexity,0.0010,-0.0082**,0.0016
+"Asia-Pacific minus Europe, Middle East, Africa",Transition threshold (mu),To Aversion,,-0.4975***,-21.6032
+"Asia-Pacific minus Europe, Middle East, Africa",Transition threshold (mu),To Neutral,0.1672**,,-0.0482
+"Asia-Pacific minus Europe, Middle East, Africa",Transition threshold (mu),To Appreciation,0.2814,0.0210,
+"Asia-Pacific minus Europe, Middle East, Africa",Manager-specific heterogeneity,delta,-0.0076,,
+"Asia-Pacific minus Europe, Middle East, Africa",Transition factors (beta),Team (t-1) vs. Team (t),0.0848*,-0.1117**,0.1461*
+"Asia-Pacific minus Europe, Middle East, Africa",Transition factors (beta),Team vs. Peer,-0.1386**,0.1478***,-0.1492*
+"Asia-Pacific minus Europe, Middle East, Africa",Transition factors (beta),Target Attainment,0.0128,-0.0132,0.0024
+"North, Central, South America minus Europe, Middle East, Africa","Emission factors (rho_m, eta)",Emission intercept,0.0047,0.0014,-0.0119*
+"North, Central, South America minus Europe, Middle East, Africa",Emission standard deviation (sigma),Escalation share,-0.0003,-0.0017,0.0034
+"North, Central, South America minus Europe, Middle East, Africa",Emission control factors (W),Decision latency,0.0107,0.0173***,0.0084
+"North, Central, South America minus Europe, Middle East, Africa",Emission control factors (W),Demand volatility,-0.0039,-0.0045,0.0071
+"North, Central, South America minus Europe, Middle East, Africa",Emission control factors (W),Forecast accuracy,0.0011,-0.0017,0.0054
+"North, Central, South America minus Europe, Middle East, Africa",Emission control factors (W),Performance pressure,-0.0016,0.0121**,0.0010
+"North, Central, South America minus Europe, Middle East, Africa",Emission control factors (W),Recent negative shock,-0.0024,-0.0006,-0.0067
+"North, Central, South America minus Europe, Middle East, Africa",Emission control factors (W),Supply disruptions,-0.0036,0.0030,0.0046
+"North, Central, South America minus Europe, Middle East, Africa",Emission control factors (W),Target difficulty,0.0003,-0.0014,0.0002
+"North, Central, South America minus Europe, Middle East, Africa",Emission control factors (W),Task complexity,-0.0085,-0.0081*,-0.0027
+"North, Central, South America minus Europe, Middle East, Africa",Transition threshold (mu),To Aversion,,-0.6543***,0.5204
+"North, Central, South America minus Europe, Middle East, Africa",Transition threshold (mu),To Neutral,0.0138,,-0.1441
+"North, Central, South America minus Europe, Middle East, Africa",Transition threshold (mu),To Appreciation,0.5557**,-0.1206,
+"North, Central, South America minus Europe, Middle East, Africa",Manager-specific heterogeneity,delta,-0.0061,,
+"North, Central, South America minus Europe, Middle East, Africa",Transition factors (beta),Team (t-1) vs. Team (t),0.1177**,-0.1093**,0.0433
+"North, Central, South America minus Europe, Middle East, Africa",Transition factors (beta),Team vs. Peer,-0.1841***,0.1996***,-0.1861**
+"North, Central, South America minus Europe, Middle East, Africa",Transition factors (beta),Target Attainment,0.0184,-0.0518,0.1179

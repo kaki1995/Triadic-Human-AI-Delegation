@@ -160,6 +160,7 @@ def make_structure_figure(profile: pd.DataFrame) -> Path:
 
     path = ANALYSIS_DIR / "figure_triadic_authority_structure_by_state_v3.png"
     fig.savefig(path, dpi=160, facecolor="white")
+    fig.savefig(path.with_suffix(".svg"), facecolor="white")
     plt.close(fig)
     return path
 
@@ -243,6 +244,7 @@ def make_time_figure(trend_tests: pd.DataFrame) -> Path:
 
     path = ANALYSIS_DIR / "figure_triadic_authority_trends_by_state_v3.png"
     fig.savefig(path, dpi=160, facecolor="white")
+    fig.savefig(path.with_suffix(".svg"), facecolor="white")
     plt.close(fig)
     return path
 

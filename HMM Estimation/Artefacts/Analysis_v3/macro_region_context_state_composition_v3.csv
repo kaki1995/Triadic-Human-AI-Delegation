@@ -1,0 +1,10 @@
+macro_region,state_label,n_manager_periods,share_within_region
+Asia-Pacific,Appreciation,1178,0.20594405594405593
+Asia-Pacific,Aversion,1540,0.2692307692307692
+Asia-Pacific,Neutral,3002,0.5248251748251749
+"Europe, Middle East, Africa",Appreciation,1915,0.1473076923076923
+"Europe, Middle East, Africa",Aversion,5211,0.40084615384615385
+"Europe, Middle East, Africa",Neutral,5874,0.45184615384615384
+"North, Central, South America",Appreciation,806,0.2
+"North, Central, South America",Aversion,1057,0.26228287841191067
+"North, Central, South America",Neutral,2167,0.5377171215880894
