@@ -1,0 +1,19 @@
+comparison,variable,left_transition,right_transition,left_mean,right_mean,difference_left_minus_right,welch_t,p_value,significance
+Aversion -> Neutral vs Appreciation -> Neutral,team_t_minus_1_vs_team_t,Aversion -> Neutral,Appreciation -> Neutral,0.0007220919325027045,-0.000995719528997519,0.0017178114615002235,0.2569472267711305,0.7973058520235046,
+Aversion -> Neutral vs Appreciation -> Neutral,team_vs_peer_average,Aversion -> Neutral,Appreciation -> Neutral,-0.009009092298058049,0.006099358771843461,-0.01510845106990151,-2.54164212811734,0.011278759462123861,**
+Aversion -> Neutral vs Appreciation -> Neutral,target_attainment,Aversion -> Neutral,Appreciation -> Neutral,0.06974677920924034,0.09953703703703703,-0.029790257827796693,-1.935929184077754,0.053382221365767195,*
+Aversion -> Neutral vs Appreciation -> Neutral,forecast_accuracy,Aversion -> Neutral,Appreciation -> Neutral,0.7401973170093502,0.7489628051251898,-0.008765488115839548,-1.9545598199710954,0.05108917329988191,*
+Aversion -> Neutral vs Appreciation -> Neutral,recent_negative_shock,Aversion -> Neutral,Appreciation -> Neutral,0.09729009329187029,0.0625,0.034790093291870286,2.6300222007226393,0.008724776935196053,***
+Aversion -> Neutral vs Appreciation -> Neutral,override_rate,Aversion -> Neutral,Appreciation -> Neutral,0.687347239866777,0.5674748467783061,0.11987239308847097,8.574799978442371,8.03150557260957e-17,***
+Aversion -> Neutral vs Appreciation -> Neutral,composite_kpi_score,Aversion -> Neutral,Appreciation -> Neutral,0.469571003671034,0.5134520855293006,-0.04388108185826656,-7.323235033354942,7.482556385055879e-13,***
+Aversion -> Neutral vs Appreciation -> Neutral,ai_authority_share,Aversion -> Neutral,Appreciation -> Neutral,0.3075485989579717,0.4368804451656465,-0.1293318462076748,-8.00673291490523,6.2581044143759925e-15,***
+Aversion -> Neutral vs Appreciation -> Neutral,escalation_share,Aversion -> Neutral,Appreciation -> Neutral,0.5589120077948878,0.552977246680308,0.005934761114579801,0.5969201292547633,0.550791266436585,
+Neutral -> Appreciation vs Neutral -> Aversion,team_t_minus_1_vs_team_t,Neutral -> Appreciation,Neutral -> Aversion,0.010945794096918333,0.010091718983841142,0.000854075113077191,0.16691484678662646,0.8674673676267941,
+Neutral -> Appreciation vs Neutral -> Aversion,team_vs_peer_average,Neutral -> Appreciation,Neutral -> Aversion,0.006867064194078425,-0.005334106064668027,0.012201170258746452,2.480790673968248,0.013265474248193616,**
+Neutral -> Appreciation vs Neutral -> Aversion,target_attainment,Neutral -> Appreciation,Neutral -> Aversion,0.09025787965616046,0.06430989093644227,0.025947988719718193,2.189522405097642,0.028793818531991353,**
+Neutral -> Appreciation vs Neutral -> Aversion,forecast_accuracy,Neutral -> Appreciation,Neutral -> Aversion,0.7394808951025612,0.7420114628856815,-0.00253056778312033,-0.669262253878678,0.5034737805157762,
+Neutral -> Appreciation vs Neutral -> Aversion,recent_negative_shock,Neutral -> Appreciation,Neutral -> Aversion,0.08882521489971347,0.09326814591951861,-0.004442931019805141,-0.3652852237546076,0.7149681335533635,
+Neutral -> Appreciation vs Neutral -> Aversion,override_rate,Neutral -> Appreciation,Neutral -> Aversion,0.6013180946852561,0.6911918418393594,-0.08987374715410335,-7.714302217086269,2.7489853690014434e-14,***
+Neutral -> Appreciation vs Neutral -> Aversion,composite_kpi_score,Neutral -> Appreciation,Neutral -> Aversion,0.5068525347796903,0.4698796813975796,0.036972853382110704,7.41254965109587,2.491655207180417e-13,***
+Neutral -> Appreciation vs Neutral -> Aversion,ai_authority_share,Neutral -> Appreciation,Neutral -> Aversion,0.4012640121618811,0.30599865163899964,0.09526536052288148,7.226582381260582,9.548287498654315e-13,***
+Neutral -> Appreciation vs Neutral -> Aversion,escalation_share,Neutral -> Appreciation,Neutral -> Aversion,0.5763586933059996,0.5552591719441797,0.021099521361819917,2.824878459946461,0.004812182160472729,***
