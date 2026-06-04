@@ -95,8 +95,8 @@ ESCALATION_CONFIG = FigureConfig(
 def main() -> None:
     paths = create_figure(
         config=ESCALATION_CONFIG,
-        coefficients=ESCALATION_COEFFICIENTS,
-        p_values=ESCALATION_P_VALUES,
+        fallback_coefficients=ESCALATION_COEFFICIENTS,
+        fallback_p_values=ESCALATION_P_VALUES,
     )
     print("Saved Escalation Rate three-panel joint-effects outputs:")
     for path in paths:

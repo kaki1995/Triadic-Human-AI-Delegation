@@ -67,6 +67,7 @@ class FigureConfig:
     output_dir: Path = ANALYSIS_DIR
     output_stem: str = OUTPUT_STEM
     use_spread_when_quantiles_collapse: bool = True
+    plot_range_quantiles: tuple[float, float] | None = (0.05, 0.95)
 
 
 @dataclass(frozen=True)
@@ -82,6 +83,25 @@ class StateCoefficients:
     beta6_c: float
     beta7_xc: float
     beta8_yc: float
+    r_squared: float | None = None
+    f_statistic: float | None = None
+    aic: float | None = None
+    bic: float | None = None
+    n_effective: float | None = None
+
+
+EMPIRICAL_TESTS_CSV = ANALYSIS_DIR / "conditioned_interaction_effect_statistical_tests_v3.csv"
+EMPIRICAL_TERM_TO_FIELD = {
+    "beta0": "alpha",
+    "beta1_x": "beta1_x",
+    "beta2_x2": "beta2_x2",
+    "beta3_y": "beta3_y",
+    "beta4_y2": "beta4_y2",
+    "beta5_xy": "beta5_xy",
+    "beta6_c": "beta6_c",
+    "beta7_xc": "beta7_xc",
+    "beta8_yc": "beta8_yc",
+}
 
 
 # Placeholder values designed to create readable thesis-style surfaces.
@@ -196,6 +216,7 @@ def observed_range(
     data: pd.DataFrame,
     variable: str,
     fallback: tuple[float, float] = (-0.5, 0.5),
+    quantiles: tuple[float, float] | None = None,
 ) -> tuple[float, float]:
     """Return the observed min/max for a variable, with a safe fallback."""
 
@@ -204,8 +225,15 @@ def observed_range(
     values = pd.to_numeric(data[variable], errors="coerce").dropna()
     if values.empty:
         return fallback
-    lower = float(values.min())
-    upper = float(values.max())
+    if quantiles is None:
+        lower = float(values.min())
+        upper = float(values.max())
+    else:
+        low_q, high_q = quantiles
+        if not 0 <= low_q < high_q <= 1:
+            raise ValueError("plot range quantiles must satisfy 0 <= low < high <= 1")
+        lower = float(values.quantile(low_q))
+        upper = float(values.quantile(high_q))
     if np.isclose(lower, upper):
         pad = max(abs(lower) * 0.05, 0.05)
         return lower - pad, upper + pad
@@ -436,6 +464,55 @@ def format_estimate(value: float, p_value: float | None = None) -> str:
     return f"{format_number(value)}{significance_stars(p_value)}"
 
 
+def load_empirical_coefficients(
+    config: FigureConfig,
+) -> tuple[dict[str, StateCoefficients], dict[str, dict[str, float]]] | None:
+    if not EMPIRICAL_TESTS_CSV.exists():
+        return None
+
+    estimates = pd.read_csv(EMPIRICAL_TESTS_CSV)
+    scoped = estimates[estimates["outcome"].eq(config.outcome_var)].copy()
+    if scoped.empty:
+        return None
+
+    coefficients: dict[str, StateCoefficients] = {}
+    p_values: dict[str, dict[str, float]] = {}
+    for state in config.state_names:
+        state_rows = scoped[scoped["state"].eq(state)]
+        if state_rows.empty:
+            return None
+
+        term_values: dict[str, float] = {}
+        state_p_values: dict[str, float] = {}
+        for term, field_name in EMPIRICAL_TERM_TO_FIELD.items():
+            match = state_rows[state_rows["term"].eq(term)]
+            if match.empty:
+                return None
+            term_values[field_name] = float(match.iloc[0]["estimate"])
+            state_p_values[field_name] = float(match.iloc[0]["p_value"])
+
+        model_row = state_rows[state_rows["term"].eq("model")]
+        if model_row.empty:
+            reference_row = state_rows.iloc[0]
+            f_p_value = np.nan
+        else:
+            reference_row = model_row.iloc[0]
+            f_p_value = float(reference_row["f_p_value"])
+
+        coefficients[state] = StateCoefficients(
+            **term_values,
+            r_squared=float(reference_row["r_squared"]),
+            f_statistic=float(reference_row["f_statistic"]),
+            aic=float(reference_row["aic"]),
+            bic=float(reference_row["bic"]),
+            n_effective=float(reference_row["n_effective"]),
+        )
+        state_p_values["f_statistic"] = f_p_value
+        p_values[state] = state_p_values
+
+    return coefficients, p_values
+
+
 def coefficient_table(
     coefficients: Mapping[str, StateCoefficients],
     state_names: Sequence[str],
@@ -452,6 +529,16 @@ def coefficient_table(
         ("X x Conditioning Benchmark", "beta7_xc"),
         ("Y x Conditioning Benchmark", "beta8_yc"),
     ]
+    if any(coefficients[state].r_squared is not None for state in state_names):
+        row_specs.extend(
+            [
+                ("R^2", "r_squared"),
+                ("F-statistic", "f_statistic"),
+                ("AIC", "aic"),
+                ("BIC", "bic"),
+                ("Effective n", "n_effective"),
+            ]
+        )
     rows = []
     for label, field_name in row_specs:
         rows.append(
@@ -473,6 +560,7 @@ def add_coefficient_table(
     coefficients: Mapping[str, StateCoefficients],
     p_values: Mapping[str, Mapping[str, float]] | None,
     c_values: Mapping[str, float],
+    source_note: str,
 ) -> None:
     axis.axis("off")
     col_labels, rows = coefficient_table(coefficients, config.state_names, p_values)
@@ -484,8 +572,8 @@ def add_coefficient_table(
         colWidths=[0.34, 0.22, 0.22, 0.22],
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(10.0)
-    table.scale(1.0, 1.20)
+    table.set_fontsize(8.9)
+    table.scale(1.0, 1.12)
 
     for (row, col), cell in table.get_celld().items():
         cell.set_edgecolor("#111111")
@@ -506,17 +594,17 @@ def add_coefficient_table(
         transform=axis.transAxes,
         ha="center",
         va="bottom",
-        fontsize=8.9,
+        fontsize=8.6,
         color="#333333",
     )
     axis.text(
         0.0,
-        -0.10,
-        "Significance: * p < 0.10, ** p < 0.05, *** p < 0.01.",
+        -0.085,
+        source_note,
         transform=axis.transAxes,
         ha="left",
         va="top",
-        fontsize=8.5,
+        fontsize=8.3,
         color="#333333",
         clip_on=False,
     )
@@ -524,17 +612,34 @@ def add_coefficient_table(
 
 def figure_title(config: FigureConfig) -> str:
     return (
-        "Joint Effects of Performance Benchmarks on "
+        "Posterior-Weighted Joint Effects of Performance Benchmarks on "
         f"{config.outcome_label} Across Latent Delegation States"
     )
 
 
-def add_note(figure: plt.Figure, config: FigureConfig) -> None:
+def add_note(
+    figure: plt.Figure,
+    config: FigureConfig,
+    used_empirical_coefficients: bool,
+    x_limits: tuple[float, float],
+    y_limits: tuple[float, float],
+) -> None:
+    source = (
+        "Coefficients are posterior-weighted OLS estimates using HMM state probabilities as weights."
+        if used_empirical_coefficients
+        else "Display-calibrated placeholder coefficients are used because empirical estimates were unavailable."
+    )
+    range_note = ""
+    if used_empirical_coefficients and config.plot_range_quantiles is not None:
+        low_q, high_q = config.plot_range_quantiles
+        range_note = (
+            f" Surfaces are drawn over the central {low_q:.0%}-{high_q:.0%} observed driver range "
+            f"(X={x_limits[0]:.3f} to {x_limits[1]:.3f}; Y={y_limits[0]:.3f} to {y_limits[1]:.3f}) "
+            "to reduce edge clipping from extrapolated fitted values."
+        )
     note = (
-        "Note. The figure visualizes the joint effects of two performance benchmarks on predicted "
-        f"{config.outcome_label} across latent delegation states, while conditioning on Target Attainment "
-        "at low, medium, and high levels. Placeholder coefficients should be replaced with fitted "
-        "HMM estimates before final reporting."
+        "Note. Surfaces show the fitted joint effects of own-performance change, peer-benchmark "
+        f"performance, and target attainment on {config.outcome_label}. {source}{range_note}"
     )
     figure.text(
         0.045,
@@ -574,27 +679,54 @@ def export_surface_predictions(
 
 def create_figure(
     config: FigureConfig = FigureConfig(),
-    coefficients: Mapping[str, StateCoefficients] = PLACEHOLDER_COEFFICIENTS,
-    p_values: Mapping[str, Mapping[str, float]] | None = PLACEHOLDER_P_VALUES,
+    coefficients: Mapping[str, StateCoefficients] | None = None,
+    p_values: Mapping[str, Mapping[str, float]] | None = None,
+    fallback_coefficients: Mapping[str, StateCoefficients] = PLACEHOLDER_COEFFICIENTS,
+    fallback_p_values: Mapping[str, Mapping[str, float]] | None = PLACEHOLDER_P_VALUES,
 ) -> list[Path]:
     setup_style()
     config.output_dir.mkdir(parents=True, exist_ok=True)
 
+    used_empirical_coefficients = False
+    if coefficients is None:
+        empirical = load_empirical_coefficients(config)
+        if empirical is not None:
+            coefficients, p_values = empirical
+            used_empirical_coefficients = True
+        else:
+            coefficients = fallback_coefficients
+            p_values = fallback_p_values if p_values is None else p_values
+    elif p_values is None:
+        p_values = {}
+
+    source_note = (
+        "Significance: * p < 0.10, ** p < 0.05, *** p < 0.01. "
+        "Coefficients and fit statistics are posterior-weighted OLS estimates."
+        if used_empirical_coefficients
+        else "Significance: * p < 0.10, ** p < 0.05, *** p < 0.01. "
+        "Display-calibrated coefficients are shown; run the statistical-test script for empirical estimates."
+    )
+
     panel_data = load_panel_data(config)
+    plot_quantiles = (
+        config.plot_range_quantiles if used_empirical_coefficients else None
+    )
+    x_limits = observed_range(panel_data, config.x_driver, quantiles=plot_quantiles)
+    y_limits = observed_range(panel_data, config.y_driver, quantiles=plot_quantiles)
     x_grid, y_grid = prediction_grid(
-        observed_range(panel_data, config.x_driver),
-        observed_range(panel_data, config.y_driver),
+        x_limits,
+        y_limits,
         config.grid_size,
     )
     c_values = conditioning_values(config, panel_data)
     surfaces = compute_surfaces(config, coefficients, x_grid, y_grid, c_values)
 
-    figure = plt.figure(figsize=(20.0, 11.6), dpi=180)
+    figure = plt.figure(figsize=(20.0, 13.2), dpi=180)
     add_title_bar(figure, figure_title(config))
 
     panel_lefts = [0.045, 0.355, 0.665]
     for level_name, left in zip(config.conditioning_levels, panel_lefts):
-        axis = figure.add_axes([left, 0.395, 0.285, 0.465], projection="3d")
+        axis = figure.add_axes([left, 0.435, 0.285, 0.435], projection="3d")
         plot_panel(
             axis,
             config,
@@ -616,9 +748,9 @@ def create_figure(
         columnspacing=2.6,
     )
 
-    table_axis = figure.add_axes([0.045, 0.075, 0.910, 0.245])
-    add_coefficient_table(table_axis, config, coefficients, p_values, c_values)
-    add_note(figure, config)
+    table_axis = figure.add_axes([0.045, 0.085, 0.910, 0.305])
+    add_coefficient_table(table_axis, config, coefficients, p_values, c_values, source_note)
+    add_note(figure, config, used_empirical_coefficients, x_limits, y_limits)
 
     png_path = config.output_dir / f"{config.output_stem}.png"
     pdf_path = config.output_dir / f"{config.output_stem}.pdf"

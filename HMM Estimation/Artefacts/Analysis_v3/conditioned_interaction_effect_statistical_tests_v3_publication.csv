@@ -1,0 +1,29 @@
+outcome,term,Aversion,Neutral,Appreciation
+AI Authority Rate,Intercept,0.302***,0.255***,0.403***
+AI Authority Rate,X,-0.292***,-0.197***,-0.295***
+AI Authority Rate,X^2,0.463***,0.119,-0.001
+AI Authority Rate,Y,2.255***,1.972***,2.46***
+AI Authority Rate,Y^2,3.614***,3.479***,2.254***
+AI Authority Rate,X x Y,-1.089***,-0.507**,-0.215
+AI Authority Rate,Conditioning Benchmark,0.424***,0.408***,0.338***
+AI Authority Rate,X x Conditioning Benchmark,0.115,0.071,0.166
+AI Authority Rate,Y x Conditioning Benchmark,-2.406***,-2.101***,-2.2***
+AI Authority Rate,R^2,0.609,0.581,0.675
+AI Authority Rate,F-statistic,1.459e+03,1.963e+03,1.008e+03
+AI Authority Rate,AIC,-3.603e+03,-6.070e+03,-2.240e+03
+AI Authority Rate,BIC,-3.541e+03,-6.004e+03,-2.184e+03
+AI Authority Rate,Effective n,7.509e+03,1.135e+04,3.893e+03
+Escalation Rate,Intercept,0.578***,0.541***,0.607***
+Escalation Rate,X,-0.058***,0.092***,-0.008
+Escalation Rate,X^2,-0.112,0.285**,-0.084
+Escalation Rate,Y,-0.544***,-0.753***,-0.461***
+Escalation Rate,Y^2,-1.023***,-0.939***,-1.388***
+Escalation Rate,X x Y,0.246,0.047,0.556*
+Escalation Rate,Conditioning Benchmark,-0.035,-0.059***,-0.059**
+Escalation Rate,X x Conditioning Benchmark,0.172**,0.067,-0.019
+Escalation Rate,Y x Conditioning Benchmark,-0.199,0.014,-0.04
+Escalation Rate,R^2,0.18,0.2,0.181
+Escalation Rate,F-statistic,205.098,354.847,107.451
+Escalation Rate,AIC,-5.849e+03,-7.091e+03,-3.490e+03
+Escalation Rate,BIC,-5.787e+03,-7.025e+03,-3.434e+03
+Escalation Rate,Effective n,7.509e+03,1.135e+04,3.893e+03

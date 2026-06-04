@@ -1,0 +1,10 @@
+benchmark,benchmark_label,benchmark_order,state_at_t_minus_1,state_at_t_minus_1_order,Aversion,Aversion_ci95,Aversion_transition_count,origin_count,Neutral,Neutral_ci95,Neutral_transition_count,Appreciation,Appreciation_ci95,Appreciation_transition_count
+team_t_minus_1_vs_team_t,Team(t) >= Team(t-1),0,Aversion,0,62.80%,[60.76%-64.84%],2580,3757,35.39%,[33.37%-37.40%],1131,1.81%,[1.14%-2.48%],46
+team_t_minus_1_vs_team_t,Team(t) >= Team(t-1),0,Neutral,1,28.80%,[27.24%-30.37%],1408,5511,63.99%,[62.43%-65.54%],3724,7.21%,[6.51%-7.92%],379
+team_t_minus_1_vs_team_t,Team(t) >= Team(t-1),0,Appreciation,2,0.09%,[0.00%-0.22%],2,1810,17.74%,[15.23%-20.25%],218,82.17%,[79.66%-84.68%],1590
+team_vs_peer_average,Team >= Peer Average,1,Aversion,0,61.89%,[59.63%-64.15%],2403,3474,36.11%,[33.89%-38.33%],1027,2.00%,[1.24%-2.76%],44
+team_vs_peer_average,Team >= Peer Average,1,Neutral,1,28.43%,[26.65%-30.21%],1225,5372,63.76%,[61.97%-65.55%],3773,7.81%,[6.89%-8.74%],374
+team_vs_peer_average,Team >= Peer Average,1,Appreciation,2,0.31%,[0.00%-0.73%],3,1869,18.79%,[16.18%-21.40%],230,80.90%,[78.27%-83.53%],1636
+target_attainment,Target Attained,2,Aversion,0,67.32%,[62.79%-71.85%],372,538,30.20%,[25.79%-34.62%],157,2.48%,[0.76%-4.19%],9
+target_attainment,Target Attained,2,Neutral,1,25.25%,[21.55%-28.94%],171,787,66.33%,[62.35%-70.31%],553,8.42%,[6.09%-10.76%],63
+target_attainment,Target Attained,2,Appreciation,2,0.45%,[0.00%-1.33%],1,388,11.67%,[8.00%-15.33%],43,87.88%,[84.14%-91.63%],344
