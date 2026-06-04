@@ -17,15 +17,20 @@ TREND_CSV = ANALYSIS_DIR / "state_time_trend_tests_v3.csv"
 PROFILE_CSV = ANALYSIS_DIR / "state_emission_profile_v3.csv"
 
 STATE_ORDER = ["Aversion", "Neutral", "Appreciation"]
+COVARIATE_LABELS = {
+    "team_t_minus_1_vs_team_t": "Team (t-1) vs. Team (t)",
+    "team_vs_peer_average": "Peer Average",
+    "target_attainment": "Target Attainment",
+}
 STATE_COLORS = {
-    "Aversion": "#FF6B00",
-    "Neutral": "#0057FF",
-    "Appreciation": "#00C853",
+    "Aversion": "#111111",
+    "Neutral": "#FF6A00",
+    "Appreciation": "#0057D9",
 }
 TO_STATE_STYLES = {
-    "Aversion": ("#FF6B00", "-"),
-    "Neutral": ("#0057FF", "--"),
-    "Appreciation": ("#00C853", "-."),
+    "Aversion": (STATE_COLORS["Aversion"], "-"),
+    "Neutral": (STATE_COLORS["Neutral"], "--"),
+    "Appreciation": (STATE_COLORS["Appreciation"], "-."),
 }
 
 
@@ -50,6 +55,13 @@ def slug(name: str) -> str:
     return name.lower().replace(" ", "_").replace("-", "_")
 
 
+def save_figure(fig: plt.Figure, output_path: Path) -> list[Path]:
+    fig.savefig(output_path, facecolor="white", bbox_inches="tight")
+    png_path = output_path.with_suffix(".png")
+    fig.savefig(png_path, dpi=300, facecolor="white", bbox_inches="tight")
+    return [output_path, png_path]
+
+
 def trend_path(row: pd.Series, periods: np.ndarray) -> np.ndarray:
     start = float(row["period_1_mean"])
     end = float(row["period_26_mean"])
@@ -57,7 +69,7 @@ def trend_path(row: pd.Series, periods: np.ndarray) -> np.ndarray:
     return start + (end - start) * progress
 
 
-def export_time_trend(metric: str, filename: str, y_label: str) -> Path:
+def export_time_trend(metric: str, filename: str, y_label: str) -> list[Path]:
     trend = pd.read_csv(TREND_CSV)
     periods = np.arange(1, int(trend["n_periods"].max()) + 1)
     fig, ax = plt.subplots(figsize=(8.0, 4.7))
@@ -81,18 +93,18 @@ def export_time_trend(metric: str, filename: str, y_label: str) -> Path:
     ax.legend(frameon=True, facecolor="white", edgecolor="#222222", fontsize=9.5)
     fig.tight_layout()
     out = ANALYSIS_DIR / filename
-    fig.savefig(out, facecolor="white", bbox_inches="tight")
+    paths = save_figure(fig, out)
     plt.close(fig)
-    return out
+    return paths
 
 
-def export_transition_sensitivity(covariate: str) -> Path:
+def export_transition_sensitivity(covariate: str) -> list[Path]:
     data = pd.read_csv(SENSITIVITY_CSV)
     sub = data[data["covariate"] == covariate].copy()
     if sub.empty:
         raise ValueError(f"No sensitivity rows found for {covariate}.")
 
-    covariate_label = str(sub["covariate_label"].iloc[0])
+    covariate_label = COVARIATE_LABELS.get(covariate, str(sub["covariate_label"].iloc[0]))
     fig, axes = plt.subplots(1, 3, figsize=(12.0, 3.9), sharey=True)
 
     for ax, from_state in zip(axes, STATE_ORDER):
@@ -118,12 +130,12 @@ def export_transition_sensitivity(covariate: str) -> Path:
     fig.legend(handles, labels, loc="lower center", ncol=3, frameon=False, fontsize=9.5)
     fig.tight_layout(rect=[0.02, 0.12, 1.0, 1.0])
     out = ANALYSIS_DIR / f"figure_state_dependent_transition_sensitivity_{covariate}_v3.svg"
-    fig.savefig(out, facecolor="white", bbox_inches="tight")
+    paths = save_figure(fig, out)
     plt.close(fig)
-    return out
+    return paths
 
 
-def export_state_emission_profile() -> Path:
+def export_state_emission_profile() -> list[Path]:
     profile = pd.read_csv(PROFILE_CSV).set_index("State").loc[STATE_ORDER]
     x = np.arange(len(STATE_ORDER))
     width = 0.34
@@ -150,29 +162,32 @@ def export_state_emission_profile() -> Path:
     ax.legend(frameon=True, facecolor="white", edgecolor="#222222", fontsize=9.5)
     fig.tight_layout()
     out = ANALYSIS_DIR / "figure_state_emission_profile_v3.svg"
-    fig.savefig(out, facecolor="white", bbox_inches="tight")
+    paths = save_figure(fig, out)
     plt.close(fig)
-    return out
+    return paths
 
 
 def main() -> None:
     setup_style()
-    paths = [
+    paths = []
+    paths.extend(
         export_time_trend(
             "AI Authority Share",
             "figure_state_time_trend_ai_authority_v3.svg",
             "AI authority share (%)",
-        ),
+        )
+    )
+    paths.extend(
         export_time_trend(
             "Escalation Share",
             "figure_state_time_trend_escalation_v3.svg",
             "Escalation share (%)",
-        ),
-        export_state_emission_profile(),
-    ]
+        )
+    )
+    paths.extend(export_state_emission_profile())
     sensitivity = pd.read_csv(SENSITIVITY_CSV, usecols=["covariate"]).drop_duplicates()
     for covariate in sensitivity["covariate"].tolist():
-        paths.append(export_transition_sensitivity(str(covariate)))
+        paths.extend(export_transition_sensitivity(str(covariate)))
 
     for path in paths:
         print(path)
