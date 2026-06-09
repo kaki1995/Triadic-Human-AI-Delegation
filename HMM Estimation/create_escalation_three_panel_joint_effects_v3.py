@@ -89,6 +89,7 @@ ESCALATION_CONFIG = FigureConfig(
     surface_alpha=0.72,
     gradient_norm_mode="global",
     gradient_padding=0.24,
+    show_mixed_signal_callouts=False,
 )
 
 

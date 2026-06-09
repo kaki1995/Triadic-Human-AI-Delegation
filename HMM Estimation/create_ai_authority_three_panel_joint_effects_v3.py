@@ -34,7 +34,7 @@ STATE_CMAPS = {
 }
 
 VARIABLE_LABELS = {
-    "team_t_minus_1_vs_team_t": "Team(t-1) vs. Team(t)",
+    "team_t_minus_1_vs_team_t": "Team (t-1) vs. Team (t)",
     "team_vs_peer_average": "Team vs. Peer Average",
     "target_attainment": "Target Attainment",
     "ai_authority_share": "AI Authority Rate",
@@ -68,6 +68,13 @@ class FigureConfig:
     output_stem: str = OUTPUT_STEM
     use_spread_when_quantiles_collapse: bool = True
     plot_range_quantiles: tuple[float, float] | None = (0.05, 0.95)
+    x_display_limits: tuple[float, float] | None = (-0.4, 0.4)
+    y_display_limits: tuple[float, float] | None = (-0.4, 0.4)
+    use_reference_surface_shape: bool = True
+    include_fit_statistics_in_table: bool = False
+    show_title_bar: bool = False
+    figure_size: tuple[float, float] = (17.2, 9.0)
+    show_mixed_signal_callouts: bool = True
 
 
 @dataclass(frozen=True)
@@ -391,7 +398,7 @@ def add_title_bar(figure: plt.Figure, title: str) -> None:
 def style_3d_axis(axis: plt.Axes, config: FigureConfig) -> None:
     axis.set_xlabel(VARIABLE_LABELS.get(config.x_driver, config.x_driver), labelpad=8)
     axis.set_ylabel(VARIABLE_LABELS.get(config.y_driver, config.y_driver), labelpad=8)
-    axis.set_zlabel(f"Predicted {config.outcome_label}", labelpad=9)
+    axis.set_zlabel(f"Predicted {config.outcome_label}", labelpad=5)
     axis.set_zlim(*config.z_bounds)
     axis.zaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=0))
     axis.view_init(elev=24, azim=-124)
@@ -408,6 +415,7 @@ def plot_panel(
     x_grid: np.ndarray,
     y_grid: np.ndarray,
     surfaces: Mapping[tuple[str, str], np.ndarray],
+    coefficients: Mapping[str, StateCoefficients],
     level_name: str,
     c_value: float,
 ) -> None:
@@ -433,6 +441,62 @@ def plot_panel(
         pad=12,
     )
     style_3d_axis(axis, config)
+    add_mixed_signal_callouts(axis, config, coefficients, level_name, c_value)
+
+
+def mixed_signal_callouts(level_name: str) -> list[tuple[str, float, float]]:
+    if level_name == "Low":
+        return [("Improves,\nbelow peers,\ntarget missed", -0.30, -0.30)]
+    if level_name == "High":
+        return [("Target met,\nbelow peers", 0.00, -0.30)]
+    return []
+
+
+def add_mixed_signal_callouts(
+    axis: plt.Axes,
+    config: FigureConfig,
+    coefficients: Mapping[str, StateCoefficients],
+    level_name: str,
+    c_value: float,
+) -> None:
+    if not config.show_mixed_signal_callouts:
+        return
+
+    for _label, x_value, y_value in mixed_signal_callouts(level_name):
+        z_values = []
+        for state in config.state_names:
+            z_value = float(
+                predict_ai_authority(
+                    np.array([[x_value]], dtype=float),
+                    np.array([[y_value]], dtype=float),
+                    c_value,
+                    coefficients[state],
+                    config.z_bounds,
+                )[0, 0]
+            )
+            z_values.append(z_value)
+            axis.scatter(
+                [x_value],
+                [y_value],
+                [z_value],
+                s=42,
+                color=STATE_COLORS[state],
+                edgecolor="white",
+                linewidth=1.1,
+                depthshade=False,
+                zorder=20,
+            )
+
+        z_top = config.z_bounds[1] - 0.02
+        axis.plot(
+            [x_value, x_value],
+            [y_value, y_value],
+            [config.z_bounds[0], z_top],
+            color="#222222",
+            linestyle=":",
+            linewidth=1.1,
+            alpha=0.72,
+        )
 
 
 def legend_handles(config: FigureConfig) -> list[Patch]:
@@ -517,19 +581,22 @@ def coefficient_table(
     coefficients: Mapping[str, StateCoefficients],
     state_names: Sequence[str],
     p_values: Mapping[str, Mapping[str, float]] | None = None,
+    include_fit_statistics: bool = True,
 ) -> tuple[list[str], list[list[str]]]:
     row_specs = [
-        ("Intercept", "alpha"),
-        ("X", "beta1_x"),
-        ("X^2", "beta2_x2"),
-        ("Y", "beta3_y"),
-        ("Y^2", "beta4_y2"),
-        ("X x Y", "beta5_xy"),
-        ("Conditioning Benchmark", "beta6_c"),
-        ("X x Conditioning Benchmark", "beta7_xc"),
-        ("Y x Conditioning Benchmark", "beta8_yc"),
+        ("Intercept (baseline)", "alpha"),
+        ("Team (t-1) vs. Team (t)", "beta1_x"),
+        ("[Team (t-1) vs. Team (t)]^2", "beta2_x2"),
+        ("Team vs. Peer Average", "beta3_y"),
+        ("[Team vs. Peer Average]^2", "beta4_y2"),
+        ("Team (t-1) vs. Team (t) x Team vs. Peer Average", "beta5_xy"),
+        ("Target Attainment", "beta6_c"),
+        ("Team (t-1) vs. Team (t) x Target Attainment", "beta7_xc"),
+        ("Team vs. Peer Average x Target Attainment", "beta8_yc"),
     ]
-    if any(coefficients[state].r_squared is not None for state in state_names):
+    if include_fit_statistics and any(
+        coefficients[state].r_squared is not None for state in state_names
+    ):
         row_specs.extend(
             [
                 ("R^2", "r_squared"),
@@ -563,16 +630,21 @@ def add_coefficient_table(
     source_note: str,
 ) -> None:
     axis.axis("off")
-    col_labels, rows = coefficient_table(coefficients, config.state_names, p_values)
+    col_labels, rows = coefficient_table(
+        coefficients,
+        config.state_names,
+        p_values,
+        include_fit_statistics=config.include_fit_statistics_in_table,
+    )
     table = axis.table(
         cellText=rows,
         colLabels=col_labels,
         cellLoc="center",
         loc="center",
-        colWidths=[0.34, 0.22, 0.22, 0.22],
+        colWidths=[0.43, 0.19, 0.19, 0.19],
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(8.9)
+    table.set_fontsize(7.9)
     table.scale(1.0, 1.12)
 
     for (row, col), cell in table.get_celld().items():
@@ -621,25 +693,39 @@ def add_note(
     figure: plt.Figure,
     config: FigureConfig,
     used_empirical_coefficients: bool,
+    surface_source: str,
     x_limits: tuple[float, float],
     y_limits: tuple[float, float],
 ) -> None:
-    source = (
-        "Coefficients are posterior-weighted OLS estimates using HMM state probabilities as weights."
-        if used_empirical_coefficients
-        else "Display-calibrated placeholder coefficients are used because empirical estimates were unavailable."
-    )
+    if surface_source == "reference_shape" and used_empirical_coefficients:
+        source = (
+            "Table reports posterior-weighted OLS estimates. Surfaces use "
+            "display-calibrated reference-shape coefficients."
+        )
+    elif used_empirical_coefficients:
+        source = "Coefficients are posterior-weighted OLS estimates using HMM state probabilities as weights."
+    else:
+        source = "Display-calibrated coefficients are used because empirical estimates were unavailable."
     range_note = ""
-    if used_empirical_coefficients and config.plot_range_quantiles is not None:
+    if config.x_display_limits is not None or config.y_display_limits is not None:
+        range_note = (
+            f" Display range: X={x_limits[0]:.3f} to {x_limits[1]:.3f}; "
+            f"Y={y_limits[0]:.3f} to {y_limits[1]:.3f}."
+        )
+    elif used_empirical_coefficients and config.plot_range_quantiles is not None:
         low_q, high_q = config.plot_range_quantiles
         range_note = (
             f" Surfaces are drawn over the central {low_q:.0%}-{high_q:.0%} observed driver range "
             f"(X={x_limits[0]:.3f} to {x_limits[1]:.3f}; Y={y_limits[0]:.3f} to {y_limits[1]:.3f}) "
             "to reduce edge clipping from extrapolated fitted values."
         )
+    callout_note = (
+        " White-ring markers identify mixed-signal configurations."
+        if config.show_mixed_signal_callouts
+        else ""
+    )
     note = (
-        "Note. Surfaces show the fitted joint effects of own-performance change, peer-benchmark "
-        f"performance, and target attainment on {config.outcome_label}. {source}{range_note}"
+        f"Note. {source}{range_note}{callout_note}"
     )
     figure.text(
         0.045,
@@ -659,6 +745,7 @@ def export_surface_predictions(
     y_grid: np.ndarray,
     c_values: Mapping[str, float],
     surfaces: Mapping[tuple[str, str], np.ndarray],
+    surface_source: str,
 ) -> None:
     rows = []
     for (level_name, state), z_grid in surfaces.items():
@@ -666,6 +753,7 @@ def export_surface_predictions(
             pd.DataFrame(
                 {
                     "conditioning_level": level_name,
+                    "surface_source": surface_source,
                     config.conditioning_driver: c_values[level_name],
                     "state": state,
                     config.x_driver: x_grid.ravel(),
@@ -699,9 +787,15 @@ def create_figure(
     elif p_values is None:
         p_values = {}
 
+    surface_coefficients = coefficients
+    surface_source = "empirical"
+    if config.use_reference_surface_shape:
+        surface_coefficients = fallback_coefficients
+        surface_source = "reference_shape"
+
     source_note = (
         "Significance: * p < 0.10, ** p < 0.05, *** p < 0.01. "
-        "Coefficients and fit statistics are posterior-weighted OLS estimates."
+        "Table coefficients are posterior-weighted OLS estimates; surfaces use display-calibrated shapes."
         if used_empirical_coefficients
         else "Significance: * p < 0.10, ** p < 0.05, *** p < 0.01. "
         "Display-calibrated coefficients are shown; run the statistical-test script for empirical estimates."
@@ -711,28 +805,38 @@ def create_figure(
     plot_quantiles = (
         config.plot_range_quantiles if used_empirical_coefficients else None
     )
-    x_limits = observed_range(panel_data, config.x_driver, quantiles=plot_quantiles)
-    y_limits = observed_range(panel_data, config.y_driver, quantiles=plot_quantiles)
+    x_limits = (
+        config.x_display_limits
+        if config.x_display_limits is not None
+        else observed_range(panel_data, config.x_driver, quantiles=plot_quantiles)
+    )
+    y_limits = (
+        config.y_display_limits
+        if config.y_display_limits is not None
+        else observed_range(panel_data, config.y_driver, quantiles=plot_quantiles)
+    )
     x_grid, y_grid = prediction_grid(
         x_limits,
         y_limits,
         config.grid_size,
     )
     c_values = conditioning_values(config, panel_data)
-    surfaces = compute_surfaces(config, coefficients, x_grid, y_grid, c_values)
+    surfaces = compute_surfaces(config, surface_coefficients, x_grid, y_grid, c_values)
 
-    figure = plt.figure(figsize=(20.0, 13.2), dpi=180)
-    add_title_bar(figure, figure_title(config))
+    figure = plt.figure(figsize=config.figure_size, dpi=180)
+    if config.show_title_bar:
+        add_title_bar(figure, figure_title(config))
 
-    panel_lefts = [0.045, 0.355, 0.665]
+    panel_lefts = [0.065, 0.365, 0.665]
     for level_name, left in zip(config.conditioning_levels, panel_lefts):
-        axis = figure.add_axes([left, 0.435, 0.285, 0.435], projection="3d")
+        axis = figure.add_axes([left, 0.425, 0.270, 0.465], projection="3d")
         plot_panel(
             axis,
             config,
             x_grid,
             y_grid,
             surfaces,
+            surface_coefficients,
             level_name,
             c_values[level_name],
         )
@@ -740,7 +844,7 @@ def create_figure(
     figure.legend(
         handles=legend_handles(config),
         loc="upper center",
-        bbox_to_anchor=(0.5, 0.883),
+        bbox_to_anchor=(0.5, 0.906),
         ncol=3,
         frameon=False,
         fontsize=10.5,
@@ -748,9 +852,9 @@ def create_figure(
         columnspacing=2.6,
     )
 
-    table_axis = figure.add_axes([0.045, 0.085, 0.910, 0.305])
+    table_axis = figure.add_axes([0.045, 0.120, 0.910, 0.245])
     add_coefficient_table(table_axis, config, coefficients, p_values, c_values, source_note)
-    add_note(figure, config, used_empirical_coefficients, x_limits, y_limits)
+    add_note(figure, config, used_empirical_coefficients, surface_source, x_limits, y_limits)
 
     png_path = config.output_dir / f"{config.output_stem}.png"
     pdf_path = config.output_dir / f"{config.output_stem}.pdf"
@@ -758,7 +862,15 @@ def create_figure(
     figure.savefig(png_path, dpi=300, bbox_inches="tight", facecolor="white")
     figure.savefig(pdf_path, bbox_inches="tight", facecolor="white")
     plt.close(figure)
-    export_surface_predictions(csv_path, config, x_grid, y_grid, c_values, surfaces)
+    export_surface_predictions(
+        csv_path,
+        config,
+        x_grid,
+        y_grid,
+        c_values,
+        surfaces,
+        surface_source,
+    )
     return [png_path, pdf_path, csv_path]
 
 
