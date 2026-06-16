@@ -1,0 +1,34 @@
+age_group,state_label,n_manager_periods,share_within_group,group_dimension,group_label,locality_group,age_x_locality
+Early-career proxy,Appreciation,888,0.1716273676072671,age_group,Early-career proxy,,
+Early-career proxy,Aversion,1740,0.33629686896018557,age_group,Early-career proxy,,
+Early-career proxy,Neutral,2546,0.49207576343254733,age_group,Early-career proxy,,
+Mid-career proxy,Appreciation,1930,0.16386483273900493,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,4082,0.3465783664459161,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,5766,0.48955680081507896,age_group,Mid-career proxy,,
+Senior-career proxy,Appreciation,1081,0.18644360124180753,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,1986,0.34253190755432905,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,2731,0.4710244912038634,age_group,Senior-career proxy,,
+,Appreciation,648,0.17307692307692307,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,1263,0.3373397435897436,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,1833,0.4895833333333333,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,240,0.16783216783216784,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,477,0.33356643356643356,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,713,0.4986013986013986,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,1419,0.1624313186813187,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,3042,0.3482142857142857,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,4275,0.4893543956043956,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,511,0.16798159105851412,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,1040,0.3418803418803419,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,1491,0.490138067061144,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,848,0.19185520361990951,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,1435,0.3246606334841629,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,2137,0.4834841628959276,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,233,0.1690856313497823,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,551,0.39985486211901305,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,594,0.4310595065312046,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,2915,0.1724852071005917,locality_group,Local,Local,
+,Aversion,5740,0.33964497041420116,locality_group,Local,Local,
+,Neutral,8245,0.4878698224852071,locality_group,Local,Local,
+,Appreciation,984,0.1682051282051282,locality_group,Non-local,Non-local,
+,Aversion,2068,0.3535042735042735,locality_group,Non-local,Non-local,
+,Neutral,2798,0.4782905982905983,locality_group,Non-local,Non-local,

@@ -1,0 +1,298 @@
+age_group,previous_state,current_state,next_state,n_windows,share_from_two_state_history_group,group_dimension,group_label,locality_group,age_x_locality
+Early-career proxy,Appreciation,Appreciation,Appreciation,560,0.865533230293663,age_group,Early-career proxy,,
+Early-career proxy,Appreciation,Appreciation,Aversion,1,0.0015455950540958269,age_group,Early-career proxy,,
+Early-career proxy,Appreciation,Appreciation,Neutral,86,0.13292117465224113,age_group,Early-career proxy,,
+Early-career proxy,Appreciation,Aversion,Appreciation,0,0.0,age_group,Early-career proxy,,
+Early-career proxy,Appreciation,Aversion,Aversion,1,0.5,age_group,Early-career proxy,,
+Early-career proxy,Appreciation,Aversion,Neutral,1,0.5,age_group,Early-career proxy,,
+Early-career proxy,Appreciation,Neutral,Appreciation,18,0.18556701030927836,age_group,Early-career proxy,,
+Early-career proxy,Appreciation,Neutral,Aversion,24,0.24742268041237114,age_group,Early-career proxy,,
+Early-career proxy,Appreciation,Neutral,Neutral,55,0.5670103092783505,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Appreciation,Appreciation,13,0.7647058823529411,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Appreciation,Aversion,0,0.0,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Appreciation,Neutral,4,0.23529411764705882,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Aversion,Appreciation,13,0.011959521619135235,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Aversion,Aversion,758,0.6973321067157314,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Aversion,Neutral,316,0.2907083716651334,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Neutral,Appreciation,37,0.07660455486542443,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Neutral,Aversion,198,0.40993788819875776,age_group,Early-career proxy,,
+Early-career proxy,Aversion,Neutral,Neutral,248,0.5134575569358178,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Appreciation,Appreciation,133,0.869281045751634,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Appreciation,Aversion,1,0.006535947712418301,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Appreciation,Neutral,19,0.12418300653594772,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Aversion,Appreciation,6,0.010471204188481676,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Aversion,Aversion,388,0.6771378708551483,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Aversion,Neutral,179,0.31239092495637,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Neutral,Appreciation,108,0.0629004076878276,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Neutral,Aversion,318,0.18520675596971461,age_group,Early-career proxy,,
+Early-career proxy,Neutral,Neutral,Neutral,1291,0.7518928363424577,age_group,Early-career proxy,,
+Mid-career proxy,Appreciation,Appreciation,Appreciation,1204,0.8814055636896047,age_group,Mid-career proxy,,
+Mid-career proxy,Appreciation,Appreciation,Aversion,2,0.0014641288433382138,age_group,Mid-career proxy,,
+Mid-career proxy,Appreciation,Appreciation,Neutral,160,0.1171303074670571,age_group,Mid-career proxy,,
+Mid-career proxy,Appreciation,Aversion,Appreciation,1,0.5,age_group,Mid-career proxy,,
+Mid-career proxy,Appreciation,Aversion,Aversion,1,0.5,age_group,Mid-career proxy,,
+Mid-career proxy,Appreciation,Aversion,Neutral,0,0.0,age_group,Mid-career proxy,,
+Mid-career proxy,Appreciation,Neutral,Appreciation,31,0.15656565656565657,age_group,Mid-career proxy,,
+Mid-career proxy,Appreciation,Neutral,Aversion,59,0.29797979797979796,age_group,Mid-career proxy,,
+Mid-career proxy,Appreciation,Neutral,Neutral,108,0.5454545454545454,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Appreciation,Appreciation,37,0.74,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Appreciation,Aversion,0,0.0,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Appreciation,Neutral,13,0.26,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Aversion,Appreciation,36,0.014234875444839857,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Aversion,Aversion,1756,0.6943455911427442,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Aversion,Neutral,737,0.291419533412416,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Neutral,Appreciation,75,0.0644883920894239,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Neutral,Aversion,480,0.412725709372313,age_group,Mid-career proxy,,
+Mid-career proxy,Aversion,Neutral,Neutral,608,0.5227858985382631,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Appreciation,Appreciation,288,0.8727272727272727,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Appreciation,Aversion,1,0.0030303030303030303,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Appreciation,Neutral,41,0.12424242424242424,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Aversion,Appreciation,15,0.010972933430870519,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Aversion,Aversion,892,0.6525237746891002,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Aversion,Neutral,460,0.33650329188002925,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Neutral,Appreciation,243,0.06283941039565555,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Neutral,Aversion,791,0.20455133178174295,age_group,Mid-career proxy,,
+Mid-career proxy,Neutral,Neutral,Neutral,2833,0.7326092578226014,age_group,Mid-career proxy,,
+Senior-career proxy,Appreciation,Appreciation,Appreciation,698,0.8925831202046036,age_group,Senior-career proxy,,
+Senior-career proxy,Appreciation,Appreciation,Aversion,2,0.0025575447570332483,age_group,Senior-career proxy,,
+Senior-career proxy,Appreciation,Appreciation,Neutral,82,0.10485933503836317,age_group,Senior-career proxy,,
+Senior-career proxy,Appreciation,Aversion,Appreciation,0,0.0,age_group,Senior-career proxy,,
+Senior-career proxy,Appreciation,Aversion,Aversion,2,1.0,age_group,Senior-career proxy,,
+Senior-career proxy,Appreciation,Aversion,Neutral,0,0.0,age_group,Senior-career proxy,,
+Senior-career proxy,Appreciation,Neutral,Appreciation,19,0.19,age_group,Senior-career proxy,,
+Senior-career proxy,Appreciation,Neutral,Aversion,20,0.2,age_group,Senior-career proxy,,
+Senior-career proxy,Appreciation,Neutral,Neutral,61,0.61,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Appreciation,Appreciation,18,0.9,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Appreciation,Aversion,0,0.0,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Appreciation,Neutral,2,0.1,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Aversion,Appreciation,16,0.012688342585249802,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Aversion,Aversion,921,0.7303727200634417,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Aversion,Neutral,324,0.25693893735130846,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Neutral,Appreciation,36,0.06716417910447761,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Neutral,Aversion,221,0.4123134328358209,age_group,Senior-career proxy,,
+Senior-career proxy,Aversion,Neutral,Neutral,279,0.5205223880597015,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Appreciation,Appreciation,156,0.861878453038674,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Appreciation,Aversion,0,0.0,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Appreciation,Neutral,25,0.13812154696132597,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Aversion,Appreciation,7,0.0110062893081761,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Aversion,Aversion,403,0.6336477987421384,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Aversion,Neutral,226,0.3553459119496855,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Neutral,Appreciation,131,0.07142857142857142,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Neutral,Aversion,364,0.1984732824427481,age_group,Senior-career proxy,,
+Senior-career proxy,Neutral,Neutral,Neutral,1339,0.7300981461286805,age_group,Senior-career proxy,,
+,Appreciation,Appreciation,Appreciation,419,0.8802521008403361,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Appreciation,Aversion,1,0.0021008403361344537,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Appreciation,Neutral,56,0.11764705882352941,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Aversion,Appreciation,0,0.0,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Aversion,Aversion,1,0.5,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Aversion,Neutral,1,0.5,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Neutral,Appreciation,13,0.20967741935483872,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Neutral,Aversion,11,0.1774193548387097,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Neutral,Neutral,38,0.6129032258064516,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Appreciation,Appreciation,9,0.75,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Appreciation,Aversion,0,0.0,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Appreciation,Neutral,3,0.25,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Aversion,Appreciation,8,0.010230179028132993,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Aversion,Aversion,537,0.6867007672634271,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Aversion,Neutral,237,0.3030690537084399,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Neutral,Appreciation,25,0.06906077348066299,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Neutral,Aversion,151,0.4171270718232044,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Aversion,Neutral,Neutral,186,0.5138121546961326,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Appreciation,Appreciation,92,0.8679245283018868,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Appreciation,Aversion,1,0.009433962264150943,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Appreciation,Neutral,13,0.12264150943396226,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Aversion,Appreciation,6,0.014084507042253521,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Aversion,Aversion,286,0.6713615023474179,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Aversion,Neutral,134,0.3145539906103286,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Neutral,Appreciation,76,0.06188925081433225,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Neutral,Aversion,239,0.19462540716612378,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Neutral,Neutral,Neutral,913,0.743485342019544,age_x_locality,Early-career proxy | Local,,Early-career proxy | Local
+,Appreciation,Appreciation,Appreciation,141,0.8245614035087719,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Appreciation,Aversion,0,0.0,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Appreciation,Neutral,30,0.17543859649122806,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Aversion,Appreciation,0,,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Aversion,Aversion,0,,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Aversion,Neutral,0,,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Neutral,Appreciation,5,0.14285714285714285,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Neutral,Aversion,13,0.37142857142857144,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Neutral,Neutral,17,0.4857142857142857,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Appreciation,Appreciation,4,0.8,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Appreciation,Aversion,0,0.0,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Appreciation,Neutral,1,0.2,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Aversion,Appreciation,5,0.01639344262295082,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Aversion,Aversion,221,0.7245901639344262,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Aversion,Neutral,79,0.25901639344262295,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Neutral,Appreciation,12,0.09917355371900827,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Neutral,Aversion,47,0.3884297520661157,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Aversion,Neutral,Neutral,62,0.512396694214876,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Appreciation,Appreciation,41,0.8723404255319149,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Appreciation,Aversion,0,0.0,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Appreciation,Neutral,6,0.1276595744680851,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Aversion,Appreciation,0,0.0,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Aversion,Aversion,102,0.6938775510204082,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Aversion,Neutral,45,0.30612244897959184,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Neutral,Appreciation,32,0.065439672801636,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Neutral,Aversion,79,0.16155419222903886,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Neutral,Neutral,Neutral,378,0.7730061349693251,age_x_locality,Early-career proxy | Non-local,,Early-career proxy | Non-local
+,Appreciation,Appreciation,Appreciation,873,0.8738738738738738,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Appreciation,Aversion,2,0.002002002002002002,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Appreciation,Neutral,124,0.12412412412412413,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Aversion,Appreciation,1,0.5,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Aversion,Aversion,1,0.5,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Aversion,Neutral,0,0.0,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Neutral,Appreciation,24,0.15789473684210525,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Neutral,Aversion,44,0.2894736842105263,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Neutral,Neutral,84,0.5526315789473685,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Appreciation,Appreciation,26,0.7027027027027027,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Appreciation,Aversion,0,0.0,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Appreciation,Neutral,11,0.2972972972972973,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Aversion,Appreciation,25,0.01337613697164259,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Aversion,Aversion,1293,0.6918138041733547,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Aversion,Neutral,551,0.29481005885500267,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Neutral,Appreciation,54,0.061224489795918366,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Neutral,Aversion,369,0.41836734693877553,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Aversion,Neutral,Neutral,459,0.5204081632653061,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Appreciation,Appreciation,217,0.875,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Appreciation,Aversion,1,0.004032258064516129,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Appreciation,Neutral,30,0.12096774193548387,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Aversion,Appreciation,13,0.012596899224806201,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Aversion,Aversion,663,0.6424418604651163,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Aversion,Neutral,356,0.3449612403100775,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Neutral,Appreciation,186,0.0654238480478368,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Neutral,Aversion,585,0.20576855434400282,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Neutral,Neutral,Neutral,2072,0.7288075976081604,age_x_locality,Mid-career proxy | Local,,Mid-career proxy | Local
+,Appreciation,Appreciation,Appreciation,331,0.9019073569482289,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Appreciation,Aversion,0,0.0,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Appreciation,Neutral,36,0.09809264305177112,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Aversion,Appreciation,0,,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Aversion,Aversion,0,,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Aversion,Neutral,0,,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Neutral,Appreciation,7,0.15217391304347827,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Neutral,Aversion,15,0.32608695652173914,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Neutral,Neutral,24,0.5217391304347826,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Appreciation,Appreciation,11,0.8461538461538461,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Appreciation,Aversion,0,0.0,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Appreciation,Neutral,2,0.15384615384615385,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Aversion,Appreciation,11,0.016666666666666666,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Aversion,Aversion,463,0.7015151515151515,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Aversion,Neutral,186,0.2818181818181818,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Neutral,Appreciation,21,0.07473309608540925,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Neutral,Aversion,111,0.39501779359430605,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Aversion,Neutral,Neutral,149,0.5302491103202847,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Appreciation,Appreciation,71,0.8658536585365854,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Appreciation,Aversion,0,0.0,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Appreciation,Neutral,11,0.13414634146341464,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Aversion,Appreciation,2,0.005970149253731343,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Aversion,Aversion,229,0.6835820895522388,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Aversion,Neutral,104,0.31044776119402984,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Neutral,Appreciation,57,0.0556640625,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Neutral,Aversion,206,0.201171875,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Neutral,Neutral,Neutral,761,0.7431640625,age_x_locality,Mid-career proxy | Non-local,,Mid-career proxy | Non-local
+,Appreciation,Appreciation,Appreciation,543,0.8887070376432079,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Appreciation,Aversion,1,0.0016366612111292963,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Appreciation,Neutral,67,0.10965630114566285,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Aversion,Appreciation,0,0.0,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Aversion,Aversion,1,1.0,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Aversion,Neutral,0,0.0,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Neutral,Appreciation,15,0.1875,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Neutral,Aversion,14,0.175,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Neutral,Neutral,51,0.6375,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Appreciation,Appreciation,11,0.9166666666666666,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Appreciation,Aversion,0,0.0,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Appreciation,Neutral,1,0.08333333333333333,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Aversion,Appreciation,12,0.013215859030837005,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Aversion,Aversion,660,0.7268722466960352,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Aversion,Neutral,236,0.2599118942731278,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Neutral,Appreciation,27,0.06852791878172589,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Neutral,Aversion,153,0.3883248730964467,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Aversion,Neutral,Neutral,214,0.5431472081218274,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Appreciation,Appreciation,128,0.8648648648648649,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Appreciation,Aversion,0,0.0,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Appreciation,Neutral,20,0.13513513513513514,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Aversion,Appreciation,3,0.0064516129032258064,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Aversion,Aversion,293,0.6301075268817204,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Aversion,Neutral,169,0.3634408602150538,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Neutral,Appreciation,109,0.07460643394934977,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Neutral,Aversion,274,0.18754277891854895,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Neutral,Neutral,Neutral,1078,0.7378507871321013,age_x_locality,Senior-career proxy | Local,,Senior-career proxy | Local
+,Appreciation,Appreciation,Appreciation,155,0.9064327485380117,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Appreciation,Aversion,1,0.005847953216374269,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Appreciation,Neutral,15,0.08771929824561403,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Aversion,Appreciation,0,0.0,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Aversion,Aversion,1,1.0,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Aversion,Neutral,0,0.0,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Neutral,Appreciation,4,0.2,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Neutral,Aversion,6,0.3,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Neutral,Neutral,10,0.5,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Appreciation,Appreciation,7,0.875,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Appreciation,Aversion,0,0.0,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Appreciation,Neutral,1,0.125,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Aversion,Appreciation,4,0.0113314447592068,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Aversion,Aversion,261,0.7393767705382436,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Aversion,Neutral,88,0.24929178470254956,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Neutral,Appreciation,9,0.06338028169014084,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Neutral,Aversion,68,0.4788732394366197,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Aversion,Neutral,Neutral,65,0.45774647887323944,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Appreciation,Appreciation,28,0.8484848484848485,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Appreciation,Aversion,0,0.0,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Appreciation,Neutral,5,0.15151515151515152,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Aversion,Appreciation,4,0.023391812865497075,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Aversion,Aversion,110,0.6432748538011696,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Aversion,Neutral,57,0.3333333333333333,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Neutral,Appreciation,22,0.058981233243967826,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Neutral,Aversion,90,0.24128686327077747,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Neutral,Neutral,Neutral,261,0.6997319034852547,age_x_locality,Senior-career proxy | Non-local,,Senior-career proxy | Non-local
+,Appreciation,Appreciation,Appreciation,1835,0.8796740172579098,locality_group,Local,Local,
+,Appreciation,Appreciation,Aversion,4,0.0019175455417066154,locality_group,Local,Local,
+,Appreciation,Appreciation,Neutral,247,0.1184084372003835,locality_group,Local,Local,
+,Appreciation,Aversion,Appreciation,1,0.2,locality_group,Local,Local,
+,Appreciation,Aversion,Aversion,3,0.6,locality_group,Local,Local,
+,Appreciation,Aversion,Neutral,1,0.2,locality_group,Local,Local,
+,Appreciation,Neutral,Appreciation,52,0.17687074829931973,locality_group,Local,Local,
+,Appreciation,Neutral,Aversion,69,0.23469387755102042,locality_group,Local,Local,
+,Appreciation,Neutral,Neutral,173,0.5884353741496599,locality_group,Local,Local,
+,Aversion,Appreciation,Appreciation,46,0.7540983606557377,locality_group,Local,Local,
+,Aversion,Appreciation,Aversion,0,0.0,locality_group,Local,Local,
+,Aversion,Appreciation,Neutral,15,0.2459016393442623,locality_group,Local,Local,
+,Aversion,Aversion,Appreciation,45,0.012644001123911211,locality_group,Local,Local,
+,Aversion,Aversion,Aversion,2490,0.6996347288564203,locality_group,Local,Local,
+,Aversion,Aversion,Neutral,1024,0.28772127001966846,locality_group,Local,Local,
+,Aversion,Neutral,Appreciation,106,0.06471306471306472,locality_group,Local,Local,
+,Aversion,Neutral,Aversion,673,0.41086691086691085,locality_group,Local,Local,
+,Aversion,Neutral,Neutral,859,0.5244200244200244,locality_group,Local,Local,
+,Neutral,Appreciation,Appreciation,437,0.8705179282868526,locality_group,Local,Local,
+,Neutral,Appreciation,Aversion,2,0.00398406374501992,locality_group,Local,Local,
+,Neutral,Appreciation,Neutral,63,0.1254980079681275,locality_group,Local,Local,
+,Neutral,Aversion,Appreciation,22,0.011440457618304731,locality_group,Local,Local,
+,Neutral,Aversion,Aversion,1242,0.6458658346333853,locality_group,Local,Local,
+,Neutral,Aversion,Neutral,659,0.34269370774830993,locality_group,Local,Local,
+,Neutral,Neutral,Appreciation,371,0.06706435285610991,locality_group,Local,Local,
+,Neutral,Neutral,Aversion,1098,0.1984815618221258,locality_group,Local,Local,
+,Neutral,Neutral,Neutral,4063,0.7344540853217643,locality_group,Local,Local,
+,Appreciation,Appreciation,Appreciation,627,0.8843441466854725,locality_group,Non-local,Non-local,
+,Appreciation,Appreciation,Aversion,1,0.0014104372355430183,locality_group,Non-local,Non-local,
+,Appreciation,Appreciation,Neutral,81,0.11424541607898449,locality_group,Non-local,Non-local,
+,Appreciation,Aversion,Appreciation,0,0.0,locality_group,Non-local,Non-local,
+,Appreciation,Aversion,Aversion,1,1.0,locality_group,Non-local,Non-local,
+,Appreciation,Aversion,Neutral,0,0.0,locality_group,Non-local,Non-local,
+,Appreciation,Neutral,Appreciation,16,0.15841584158415842,locality_group,Non-local,Non-local,
+,Appreciation,Neutral,Aversion,34,0.33663366336633666,locality_group,Non-local,Non-local,
+,Appreciation,Neutral,Neutral,51,0.504950495049505,locality_group,Non-local,Non-local,
+,Aversion,Appreciation,Appreciation,22,0.8461538461538461,locality_group,Non-local,Non-local,
+,Aversion,Appreciation,Aversion,0,0.0,locality_group,Non-local,Non-local,
+,Aversion,Appreciation,Neutral,4,0.15384615384615385,locality_group,Non-local,Non-local,
+,Aversion,Aversion,Appreciation,20,0.015174506828528073,locality_group,Non-local,Non-local,
+,Aversion,Aversion,Aversion,945,0.7169954476479514,locality_group,Non-local,Non-local,
+,Aversion,Aversion,Neutral,353,0.26783004552352047,locality_group,Non-local,Non-local,
+,Aversion,Neutral,Appreciation,42,0.07720588235294118,locality_group,Non-local,Non-local,
+,Aversion,Neutral,Aversion,226,0.41544117647058826,locality_group,Non-local,Non-local,
+,Aversion,Neutral,Neutral,276,0.5073529411764706,locality_group,Non-local,Non-local,
+,Neutral,Appreciation,Appreciation,140,0.8641975308641975,locality_group,Non-local,Non-local,
+,Neutral,Appreciation,Aversion,0,0.0,locality_group,Non-local,Non-local,
+,Neutral,Appreciation,Neutral,22,0.13580246913580246,locality_group,Non-local,Non-local,
+,Neutral,Aversion,Appreciation,6,0.009188361408882083,locality_group,Non-local,Non-local,
+,Neutral,Aversion,Aversion,441,0.6753445635528331,locality_group,Non-local,Non-local,
+,Neutral,Aversion,Neutral,206,0.31546707503828486,locality_group,Non-local,Non-local,
+,Neutral,Neutral,Appreciation,111,0.05885471898197243,locality_group,Non-local,Non-local,
+,Neutral,Neutral,Aversion,375,0.19883351007423117,locality_group,Non-local,Non-local,
+,Neutral,Neutral,Neutral,1400,0.7423117709437964,locality_group,Non-local,Non-local,
